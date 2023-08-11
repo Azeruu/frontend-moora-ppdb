@@ -1,0 +1,180 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+}
+.body-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url(../../image/bg-login.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.wrap{
+    position: relative;
+    width: 25rem;
+    height: 30rem;
+    background:transparent;
+    border: 2px solid rgba(225, 225, 225, .5);
+    border-radius: 1rem;
+    backdrop-filter: blur(1rem);
+    box-shadow: 0 0 1.2rem rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: height 0.2s ease;
+}
+.wrap.active{
+    height: 40rem;
+}
+
+.wrap .form-box.login{
+    transition: transform 0.2s ease;
+    transform: translateX(0);
+}
+.wrap.active .form-box.login{
+    transition: none;
+    transform: translateX(-400px);
+}
+.wrap .form-box.register{
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+.wrap.active .form-box.register{
+    transition: transform 0.2s ease;
+    transform: translateX(0);
+}
+.wrap .icon-back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45px;
+    height: 45px;
+    background:  aliceblue;
+    font-size: 2rem;
+    color: #162938;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+}
+.form-box.login{
+    width: 100%;
+    padding: 2rem;
+}
+.form-box.register{
+    margin-top: 2rem;
+    width: 100%;
+    padding: 2rem;
+}
+
+.form-box-login h1{
+    font-size: 2rem;
+    color: aliceblue;
+    text-align: center;
+}
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 2.5rem;
+    border-bottom: 2px solid aliceblue;
+    margin: 1.5rem 0;
+}
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 0.2rem ;
+    transform: translateY(-50%);
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top: -5px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary);
+    padding: 0 35px 0 5px;
+}
+.input-box .icon{
+    position: absolute;
+    right:0.5rem;
+    font-size: 1rem;
+    line-height: 3rem;
+}
+.remember{
+    font-size: .9rem;
+    font-weight: 500;
+    margin: -15px  0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.remember label input {
+    margin-right: 3px;
+}
+.remember a{
+    color: aliceblue;
+    text-decoration: none;
+}
+.remember a:hover{
+    text-decoration: underline;
+}
+.btn-login{
+    width: 100%;
+    height: 2.5rem;
+    background:var(--primary);
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--bg);
+    font-weight: 600;
+    margin-top: 1rem;
+}
+.login-register{
+    font-size: .9rem;
+    color: aliceblue;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+.login-register p .register-link{
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-register p .register-link:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.login-register p .login-link{
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-register p .login-link:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.pesan-error{
+   text-align: center;
+   background-color: var(--primary);
+   border-radius: 2rem; 
+   color: #162938;
+}

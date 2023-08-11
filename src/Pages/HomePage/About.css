@@ -1,0 +1,39 @@
+.about{
+    padding: 8rem 7% 1.4rem;
+}
+.about h2{
+    font-size: 2.6rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.about h2 span{
+    color: var(--primary);
+}
+.about .row{
+    display: flex;
+}
+.about .row .about-image{
+    flex: 1 1 45rem;
+}
+.about .row .about-image img{
+    width: 100%;
+    height: auto;
+}
+.about .row .about-text{
+    flex: 1 1 35rem;
+    padding: 0 1rem;
+}
+.about .row .about-text h3{
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.about .row .about-text h3 span{
+    color: var(--primary);
+}
+.about .row .about-text p{
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.8rem;
+    font-weight: 200;
+}

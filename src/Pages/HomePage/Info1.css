@@ -1,0 +1,39 @@
+.info1{
+    padding: 8rem 7% 1.4rem;
+}
+.info1 h2{
+    font-size: 2.6rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.info1 h2 span{
+    color: var(--primary);
+}
+.info1 .row{
+    display: flex;
+}
+.info1 .row .info1-image{
+    flex: 1 1 45rem;
+}
+.info1 .row .info1-image img{
+    width: 100%;
+    height: auto;
+}
+.info1 .row .info1-text{
+    flex: 1 1 35rem;
+    padding: 0 1rem;
+}
+.info1 .row .info1-text h3{
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.info1 .row .info1-text h3 span{
+    color: var(--primary);
+}
+.info1 .row .info1-text p{
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.8rem;
+    font-weight: 200;
+}

@@ -1,0 +1,30 @@
+.vismis{
+    padding: 8rem 7% 1.4rem;
+}
+.vismis h2{
+    font-size: 2.6rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.vismis h2 span{
+    color: var(--primary);
+}
+.vismis .row{
+    display: flex;
+}
+.vismis .row .visi-text, .misi-text{
+    flex: 1 1 35rem;
+    padding: 0 1rem;
+}
+.vismis .row .visi-text h3, .misi-text h3{
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.vismis .row .visi-text p, .misi-text p{
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.8rem;
+    font-weight: 200;
+    text-align: left;
+}

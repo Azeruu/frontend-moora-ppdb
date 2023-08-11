@@ -1,0 +1,130 @@
+.data {
+  display: inline;
+}
+.nav2{
+  position: fixed;
+  display: flex;
+  /* background-color: var(--tertiary); */
+}
+.proccess1{
+  background-color: #3b60bd;
+  display: flex;
+}
+.proccess2{
+  background-color: #3b60bd;
+}
+.data h2 {
+  padding-top: 2rem;
+  margin-top: 2rem;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 400;
+}
+.data .row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.data .row form {
+  padding: 2rem 2rem;
+}
+.data .row form .form-group {
+  display: flex;
+  width: 50rem;
+  margin-top: 2rem;
+  padding-left: 2rem;
+  border-radius: 0.5rem;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.data .row form .form-group label {
+  font-size: 1.2rem;
+  padding: 0.2rem;
+}
+.data .row form .form-group input {
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 0.8rem;
+  color: var(--bg);
+  background-color: var(--secondary);
+  border-radius: 1rem;
+}
+.btn-back {
+  margin: 3rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bg);
+  background-color: var(--tertiary);
+  border: 1px solid var(--secondary);
+  border-radius: 1.5rem;
+  box-shadow: 2px 2px 4px var(--primary);
+}
+.btn-back:hover {
+  background-color: #3b60bd;
+}
+.btn-back-1 {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  width: 5rem;
+  padding: 10px;
+  margin-left: 1.8rem;
+  margin-right: 98rem;
+  margin-top: 6rem;
+}
+.btn-back-1:hover {
+  background-color: #3b60bd;
+}
+.btn-daftar {
+  margin: 3rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bg);
+  background-color: var(--tertiary);
+  border: 1px solid var(--secondary);
+  border-radius: 1.5rem;
+  box-shadow: 2px 2px 4px var(--primary);
+}
+.btn-daftar:hover {
+  background-color: #3b60bd;
+}
+.form-group .jk {
+  display: flex;
+  gap: 0.5rem;
+  border-radius: 0.8rem;
+  padding: 1.5rem;
+  background-color: var(--secondary);
+  color: rgb(59, 89, 89);
+  flex-direction: column;
+}
+#laki,
+#perempuan {
+  width: 2.2rem;
+  height: 1rem;
+}
+.btn_action {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 350px) {
+  .data .row form .form-group {
+    width: 30rem;
+  }
+}
+@media (min-width: 550px) {
+  .data .row form .form-group {
+    width: 40rem;
+  }
+}
+@media (min-width: 800px) {
+  .data .row form .form-group {
+    width: 45rem;
+  }
+}

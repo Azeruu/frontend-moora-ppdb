@@ -1,0 +1,66 @@
+.contact{
+    padding: 8rem 7% 1.4rem;
+}
+.contact h2{
+    font-size: 2.6rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+}
+.contact h2 span{
+    color: var(--primary);
+}
+.contact p{
+    text-align: ccenter;
+    max-width: 40rem;
+    margin:auto;
+    font-weight: 200;
+    line-height: 1.6rem;
+}
+.contact .row{
+    display: flex;
+    margin-top: 2rem;
+    background-color: #344162;
+}
+.contact .row .map{
+    flex: 1 1 45rem;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    object-fit: cover;
+}
+.contact .row form{
+    flex: 1 1 45rem;
+    padding: 5rem 2rem;
+    text-align: center;
+}
+.contact .row form .input-group {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  background-color: var(--bg);
+  border: 1px solid var(--Primary);
+  padding-left: 2rem;
+  border-radius: 0.5rem;
+}
+.contact .row form .input-group input {
+    width: 100%;
+    background: none;
+    font-size: 1.3rem;
+    padding: 0.8rem;
+    color: var(--primary);
+}
+.contact .row form button{
+    margin-top: 2.5rem;
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--bg);
+    background-color: var(--primary);
+    border-radius: 2rem;
+    border: 1px solid var(--tertiary);
+    cursor: pointer;
+}
+.contact .row form button:hover{
+    background-color: var(--tertiary);
+}

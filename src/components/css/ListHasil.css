@@ -1,0 +1,16 @@
+.pengumuman-page{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg);
+    height: 100vh;
+}
+.pengumuman{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.pengumuman h1{
+    font-size: 2rem;
+}

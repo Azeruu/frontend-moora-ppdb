@@ -1,0 +1,30 @@
+.footer{
+    background-color: var(--secondary);
+    padding:1rem 0;
+    margin-top: 3rem;
+    text-align: center;
+    color:#000;
+}
+.footer .links{
+    margin-bottom: 1.4rem;
+}
+.footer .links a{
+    font-size: 1.2rem;
+    padding: 0.7rem 1rem;
+    color: #000;
+}
+.footer .links a:hover,
+.footer .social a:hover{
+ color: var(--primary);   
+}
+.footer .copy{
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+.footer .social{
+    padding: 1rem 0;
+}
+.footer .social a{
+    color: #000;
+    margin: 1rem;
+}
