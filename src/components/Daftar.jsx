@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'feather-icons-react/build/IconComponents';
+import DaftarInputUserTextNumber from './DaftarInputUserTextNumber';
 
 export default function Daftar() {
   const { handleSubmit, register, formState:{errors},} = useForm();
@@ -28,6 +29,7 @@ export default function Daftar() {
         {step === 1 && (
           <div>
             <h1 className={DaftarCss.formJudul}>Form 1 : Data Diri</h1>
+
             <div>
               <label className={DaftarCss.label}>Jalur Pendaftaran</label>
               <select {...register("nama_jalur")}>
@@ -36,20 +38,10 @@ export default function Daftar() {
                 <option value="Prestasi">Prestasi</option>
               </select>
             </div>
-            <div>
-              <label className={DaftarCss.label}>NISN</label>
-              <input type="number"name="NISN" className={DaftarCss.input} {...register("NISN", { required: true })}/>
-              {errors.NISN && (
-                <span className={DaftarCss.span}>NISN wajib diisi</span>
-              )}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Nama Lengkap</label>
-              <input type="text"name="nama" className={DaftarCss.input} {...register("nama", { required: true })}/>
-              {errors.nama && (
-                <span className={DaftarCss.span}>Nama wajib diisi</span>
-              )}
-            </div>
+
+              {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="NISN" input_type="text"/>}
+              {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Nama Lengkap" input_type="number" />}
+
             <div>
               <label className={DaftarCss.label}>Jenis Kelamin</label>
               <select {...register("jenis_kelamin")}>
@@ -57,41 +49,13 @@ export default function Daftar() {
                 <option value="Perempuan">Perempuan</option>
               </select>
             </div>
-            <div>
-              <label className={DaftarCss.label}>NIK</label>
-              <input type="number" name="NIK" className={DaftarCss.input} {...register("NIK", { required: true })} />
-              {errors.NIK && (
-                <span className={DaftarCss.span}>NIK wajib diisi</span>
-              )}
-            </div>
-            <div>
-              <label className={DaftarCss.label}> Tempat Lahir</label>
-              <input type="text" name="tempat_lahir" className={DaftarCss.input} {...register("tempat_lahir", { required: true })}/>
-              {errors.tempat_lahir && (
-                <span className={DaftarCss.span}>Tempat Lahir wajib diisi</span>
-              )}
-            </div>
-            <div>
-              <label className={DaftarCss.label}> Tanggal Lahir</label>
-              <input type="number" name="tanggal_lahir" className={DaftarCss.input} {...register("tanggal_lahir", { required: true})}/>
-              {errors.tanggal_lahir && (
-                <span className={DaftarCss.span}>Tanggal Lahir wajib diisi</span>
-              )}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Usia</label>
-              <input type="number" name="usia" className={DaftarCss.input} {...register("usia", { required: true })}/>
-              {errors.usia && (
-                <span className={DaftarCss.span}>Usia wajib diisi</span>
-              )}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Asal Sekolah</label>
-              <input type="text" name="asal_sekolah" className={DaftarCss.input} {...register("asal_sekolah", { required: true })}/>
-              {errors.asal_sekolah && (
-                <span className={DaftarCss.span}>Asal Sekolah wajib diisi</span>
-              )}
-            </div>
+
+              {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="NIK" input_type="number" />}
+              {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Tempat Lahir" input="text" />}
+              {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Tanggal Lahir" input_type="number" />}
+              {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Usia" input_type="number" />}
+              {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Asal Sekolah" input_type="text" />}
+
           </div>
         )}
         {/* Langkah Ke Dua */}
