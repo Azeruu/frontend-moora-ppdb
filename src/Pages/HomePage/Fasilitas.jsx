@@ -1,5 +1,7 @@
 import './Fasilitas.css'
 import facility from '../../image/f1.jpg';
+import facility2 from '../../image/sekolah2.jpg';
+import facility3 from '../../image/sekolah3.jpg';
 
 const Fasilitas = () => {
   return (
@@ -12,25 +14,25 @@ const Fasilitas = () => {
       </p>
       <div className="row">
         <div className="card">
-          <img src={facility} alt="fasilitas"></img>
+          <img src={facility} width="550" height="500" alt="fasilitas"></img>
           <p className="card-title">
             - <span>Koridor</span> -
           </p>
           <p>dilengkapi dengan koridor yang nyaman</p>
         </div>
         <div className="card">
-          <img src={facility} alt="fasilitas"></img>
+          <img src={facility2} width="550" height="500" alt="fasilitas"></img>
           <p className="card-title">
-            - <span>Koridor</span> -
+            - <span>Mushole</span> -
           </p>
-          <p>dilengkapi dengan koridor yang nyaman</p>
+          <p>Terdapat Mushola untuk umat muslim beribadah</p>
         </div>
         <div className="card">
-          <img src={facility} alt="fasilitas"></img>
+          <img src={facility3} width="550" height="500" alt="fasilitas"></img>
           <p className="card-title">
-            - <span>Koridor</span> -
+            - <span>Ekstra kulikuler</span> -
           </p>
-          <p>dilengkapi dengan koridor yang nyaman</p>
+          <p>Terdapat banyak pilihan Extra Kulikuler untuk siswa mengembangkan bakatnya</p>
         </div>
       </div>
     </div>

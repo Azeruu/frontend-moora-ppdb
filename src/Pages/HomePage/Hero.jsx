@@ -1,10 +1,9 @@
 import "./Hero.css";
-import bg from "../../image/hero-bg.jpg";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="hero" id="hero" name="hero" style={{ backgroundImage: `url(${bg})` }}>
+    <div className="hero" id="hero" name="hero">
       <div className="content">
         <h1>
           Penerimaan Murid Baru <span>SMPN 1 Cisoka</span>.

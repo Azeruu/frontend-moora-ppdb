@@ -57,6 +57,7 @@ const ListUser = () => {
               <tr>
                 <th>No</th>
                 <th>ID User</th>
+                <th>UUID User</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Password</th>
@@ -68,6 +69,7 @@ const ListUser = () => {
               {users.slice(0, banyakData).map((user, index) => (
                 <tr key={user.uuid}>
                   <td>{index + 1}</td>
+                  <td>{user.id}</td>
                   <td>{user.uuid}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td>

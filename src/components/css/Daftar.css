@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.Daftar-container {
+    display: flex ;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+.daftar-navbar{
+    position: fixed;
+    width: 100%;
+    height: 12rem;
+    border: 1px solid #fff;
+    border-radius: .3rem;
+    backdrop-filter: blur(2rem);
+    box-shadow: 0 0 1.2rem rgb(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.daftar-judul {
+    margin-top: 0;
+    font-size: 2.5rem;
+}
+.daftar-step{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 70rem;
+    color: #fff;
+}
+.step{
+    margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.step p{
+    text-shadow: 0 0 2rem#0c6ef8;
+}
+.step-line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.daftar-indicator{
+    /* position: fixed; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    margin-top: 2rem;
+    width: 20px;
+    height: 20px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.daftar-indicator-active{
+    background-color: tomato;
+}
+/* .indicator-line{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    height: 20px;
+    color: #000;
+    background-color: #fff;
+    margin-bottom: 10px;
+    transition: background-color .5s linear;
+} */
+.indicator-line-active{
+    background-color: tomato;
+}
+.daftar-btn-back{
+    position: fixed;
+    top: 12rem;
+    left: 0;
+    width: 55px;
+    height: 55px;
+    background: aliceblue;
+    font-size: 2rem;
+    color: #2f3842;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+}
+.daftar-btn-back:hover{
+    background-color: rgb(64, 116, 161);
+}
+.daftar-form{
+    margin-top: 11rem;
+    margin-bottom: 2rem;
+}
+.daftar-judul-form{
+    text-align: center;
+    padding: 2rem;
+}
+.daftar-input-box{
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.3rem;
+    width: 70rem;
+    /* border: 1px solid tomato; */
+    margin: .5rem;
+}
+.daftar-input-box input, select{
+    padding: .5rem;
+    font-size: 1.3rem;
+    border: 1px solid #0c6ef8;
+    border-radius: .5rem;
+    width: 68rem;
+}
+.btnNextPrev{
+    border: 1px solid #000;
+    border-radius: 1rem;
+    width: 8rem;
+    height: 4rem;
+    margin-bottom: 5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: tomato;
+    box-shadow: 0 0 1.2rem#0c6ef8;
+    margin-right: 1rem;
+}
+
+

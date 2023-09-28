@@ -18,6 +18,7 @@
 .about .row .about-image img{
     width: 100%;
     height: auto;
+    border-radius: 1rem;
 }
 .about .row .about-text{
     flex: 1 1 35rem;

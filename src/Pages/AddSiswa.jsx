@@ -1,12 +1,12 @@
 import Layout from "./Layout";
-import AddSiswa from "../components/AddSiswaForm";
+import AddSiswa2 from "../components/AddSiswaForm";
 
-const AddUser = () => {
+const AddSiswa = () => {
   return (
     <Layout>
-      <AddSiswa />
+      <AddSiswa2 />
     </Layout>
   );
 };
 
-export default AddUser;
+export default AddSiswa;

@@ -11,6 +11,7 @@ import AddSiswa from "./Pages/AddSiswa";
 import EditSiswa from "./Pages/EditSiswa";
 import Dashboard from "./Pages/PageDashboard";
 import PageAspek from "./Pages/PageAspek";
+import AddAspek from "./Pages/AddAspek";
 import Daftar from "./components/Daftar";
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
           <Route path="/pendaftaran" element={<Pendaftaran />} />
           <Route path="/login" element={<Login />} />
           <Route path="/aspek" element={<PageAspek />} />
+          <Route path="/aspek/addjalur" element={<AddAspek />} />
+          <Route path="/aspek/editjalur/:id" element={<PageAspek />} />
           <Route path="/daftar" element={<Daftar />} />
           <Route path="/hasil" element={<HasilPage />} />
           <Route path="/userlist" element={<UserList />} />

@@ -11,9 +11,9 @@
 }
 .vismis .row{
     display: flex;
+    flex-direction: column;
 }
 .vismis .row .visi-text, .misi-text{
-    flex: 1 1 35rem;
     padding: 0 1rem;
 }
 .vismis .row .visi-text h3, .misi-text h3{
@@ -21,10 +21,18 @@
     text-align: center;
     margin-bottom: 1rem;
 }
-.vismis .row .visi-text p, .misi-text p{
+.vismis .row .visi-text p{
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.8rem;
+    font-weight: 200;
+    text-align: center;
+}
+.vismis .row .misi-text p, ul, li{
     font-size: 1.3rem;
     margin-bottom: 0.8rem;
     line-height: 1.8rem;
     font-weight: 200;
     text-align: left;
+    list-style-type: disc;
 }

@@ -1,16 +1,25 @@
 import { useForm } from 'react-hook-form';
-import DaftarCss from './css/Daftar.module.css';
+import './css/Daftar.css';
 import React, { useState } from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'feather-icons-react/build/IconComponents';
 import DaftarInputUserTextNumber from './DaftarInputUserTextNumber';
+import {DaftarInputNilaiMapel, DaftarInputNilaiMapel2, DaftarInputNilaiMapel3, DaftarInputNilaiMapel4, DaftarInputNilaiMapel5} from './DaftarInputNilaiMapel';
 
 export default function Daftar() {
   const { handleSubmit, register, formState:{errors},} = useForm();
   const [step, setStep] = useState(1);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post("/data_siswa", data);
+      console.log("Data Berhasil di input : ", response.data);
+    } catch (e) {
+      console.log("error dalam submit data :", e);
+    }
+  };
+
   const nextStep = () =>{
     setStep(step + 1);
   }
@@ -19,33 +28,67 @@ export default function Daftar() {
   }
 
   return (
-    <div className={DaftarCss.container}>
-      <Link to="/" className="btn-back-1">
-        <ArrowLeft />
-      </Link>
-      <h2 className={DaftarCss.judul}>Formulir Pendaftaran PPDB</h2>
-      <form className={DaftarCss.formCont} onSubmit={handleSubmit(onSubmit)}>
+    <div className="Daftar-container">
+      <div className="daftar-navbar">
+        <h2 className="daftar-judul">Formulir Pendaftaran PPDB</h2>
+        <div className='daftar-step'>
+          <div className="step">
+            <button className={`daftar-indicator ${step === 1 ?'daftar-indicator-active':''}`} onClick={()=>setStep(step - 1)}>1</button>
+            <p>Data Diri</p>
+          </div>
+          <div className="step">
+          {/* <p className={`indicator-line ${step === 2 ?'indicator-line-active':''}`}></p> */}
+              <p className={`daftar-indicator ${step === 2 ?'daftar-indicator-active':''}`}>2</p>
+            <p>Alamat </p>
+          </div>
+          <div className="step">
+            <p className={`daftar-indicator ${step === 3 ?'daftar-indicator-active':''}`}>3</p>
+            <p>Nilai 1</p>
+          </div>
+          <div className="step">
+            <p className={`daftar-indicator ${step === 4 ?'daftar-indicator-active':''}`}>4</p>
+            <p>Nilai 2</p>
+          </div>
+          <div className="step">
+            <p className={`daftar-indicator ${step === 5 ?'daftar-indicator-active':''}`}>5</p>
+            <p>Nilai 3</p>
+          </div>
+          <div className="step">
+            <p className={`daftar-indicator ${step === 6 ?'daftar-indicator-active':''}`}>6</p>
+            <p>Nilai 4</p>
+          </div>
+          <div className="step">
+            <p className={`daftar-indicator ${step === 7 ?'daftar-indicator-active':''}`}>7</p>
+            <p>Nilai 5</p>
+          </div>
+        </div>
+      </div>
+        <Link to="/" className="daftar-btn-back">
+          <ArrowLeft />
+        </Link>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
         {/* Langkah Pertama */}
         {step === 1 && (
-          <div>
-            <h1 className={DaftarCss.formJudul}>Form 1 : Data Diri</h1>
+          <div className='daftar-form'>
+            <h2 className="daftar-judul-form">Form 1 : Data Diri</h2>
 
-            <div>
-              <label className={DaftarCss.label}>Jalur Pendaftaran</label>
-              <select {...register("nama_jalur")}>
+            <div className='daftar-input-box'>
+              <label className="daftar-label">Jalur Pendaftaran</label>
+              <select className='daftar-input'{...register("nama_jalur", {required:true})}>
                 <option value="Zonasi">Zonasi</option>
                 <option value="Afirmasi">Afirmasi</option>
                 <option value="Prestasi">Prestasi</option>
               </select>
             </div>
 
-              {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="NISN" input_type="text"/>}
-              {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Nama Lengkap" input_type="number" />}
+              {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="NISN" input_type="number"/>}
+              {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Nama Lengkap" input_type="text" />}
 
-            <div>
-              <label className={DaftarCss.label}>Jenis Kelamin</label>
-              <select {...register("jenis_kelamin")}>
-                <option value="Laki - Laki">Laki - Laki</option>
+            <div className='daftar-input-box'>
+              <label className="daftar-label">Jenis Kelamin</label>
+              <select {...register("jenis_kelamin", {required:true})} >
+                <option value="Laki - Laki"> Laki - Laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
             </div>
@@ -60,288 +103,85 @@ export default function Daftar() {
         )}
         {/* Langkah Ke Dua */}
         {step === 2 && (
-          <div>
-            <h2 className={DaftarCss.formJudul}>Form 2 : Alamat </h2>
-            <div>
-              <label className={DaftarCss.label}>Nama Jalan</label>
-              <input type="text" name="nama_jalan" className={DaftarCss.input} {...register("nama_jalan", { required: true })}/>
-              {errors.nama_jalan && <span className={DaftarCss.span}>Nama Jalan harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Nomor Rumah</label>
-              <input type="number" name="no_rumah" className={DaftarCss.input} {...register("no_rumah", { required: true })}/>
-              {errors.no_rumah && <span className={DaftarCss.span}>NO. rumah harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>RT</label>
-              <input type="number" name="RT" className={DaftarCss.input} {...register("RT", { required: true })}/>
-              {errors.RT && <span className={DaftarCss.span}>RT harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>RW</label>
-              <input type="number" name="RW" className={DaftarCss.input} {...register("RW", { required: true })}/>
-              {errors.RW && <span className={DaftarCss.span}>RW harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Desa/Kelurahan</label>
-              <input type="text" name="desa" className={DaftarCss.input} {...register("desa", { required: true })}/>
-              {errors.desa && <span className={DaftarCss.span}>Desa Jalan harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Kecamatan</label>
-              <input type="text" name="kecamatan" className={DaftarCss.input} {...register("kecamatan", { required: true })}/>
-              {errors.kecamatan && <span className={DaftarCss.span}>kecamatan Jalan harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Jarak Rumah Ke Sekolah</label>
-              <input type="number" name="jarak" className={DaftarCss.input} {...register("jarak", { required: true })}/>
-              {errors.jarak && <span className={DaftarCss.span}>Jarak harus Diisi</span>}
-            </div>
+          <div className='daftar-form'>
+            <h2 className="daftar-judul-form">Form 2 : Alamat </h2>
+            {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Nama Jalan" input_type="text" />}
+            {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Nomor Rumah" input_type="text" />}
+            {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="RT" input_type="text" />}
+            {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="RW" input_type="text" />}
+            {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Desa " input_type="text" />}
+            {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Kecamatan " input_type="text" />}
+            {<DaftarInputUserTextNumber errors={errors} register={register} label_msg="Jarak " input_type="text" />}
           </div>
         )}
         {/* Langkah Ke Tiga */}
         {step === 3 && (
-          <div>
-            <h1 className={DaftarCss.formJudul}>Form 3 : Nilai</h1>
-            <h2 className={DaftarCss.formJudul}>Nilai Rapor Semester 7 (Kelas 4 semester ganjil)</h2>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi PKN</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"PKN"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"4"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi B.Indonesia</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"B.Indonesia"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"4"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi Matematika</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"Matematika"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"4"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi IPS</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"IPS"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"4"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi IPA</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"IPA"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"4"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
+          <div className='daftar-form'>
+            <h1 className="daftar-judul-form">Form 3 : Nilai</h1>
+            <h2 className="daftar-judul-form">Nilai Rapor Semester 7 (Kelas 4 semester ganjil)</h2>
+            {<DaftarInputNilaiMapel errors={errors} register={register} label_msg="Bidang Studi PKN" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} label_msg="Bidang Studi B.Indonesia" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} label_msg="Bidang Studi Matematika" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} label_msg="Bidang Studi IPS" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} label_msg="Bidang Studi IPA" input_type="text" />}
           </div>
         )}
         {step === 4 && (
-          <div>
-            <h1 className={DaftarCss.formJudul}>Form 3 : Nilai</h1>
-            <h2 className={DaftarCss.formJudul}>Nilai Rapor Semester 8 (Kelas 4 semester genap)</h2>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi PKN</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"PKN"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"4"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"2"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi B.Indonesia</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"B.Indonesia"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"4"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"2"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi Matematika</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"Matematika"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"4"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"2"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi IPS</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"IPS"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"4"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"2"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi IPA</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"IPA"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"4"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"2"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
+          <div className='daftar-form'>
+            <h1 className="daftar-judul-form">Form 3 : Nilai</h1>
+            <h2 className="daftar-judul-form">Nilai Rapor Semester 8 (Kelas 4 semester genap)</h2>
+            {<DaftarInputNilaiMapel2 errors={errors} register={register} label_msg="Bidang Studi PKN" input_type="text" />}
+            {<DaftarInputNilaiMapel2 errors={errors} register={register} label_msg="Bidang Studi B.Indonesia" input_type="text" />}
+            {<DaftarInputNilaiMapel2 errors={errors} register={register} label_msg="Bidang Studi Matematika" input_type="text" />}
+            {<DaftarInputNilaiMapel2 errors={errors} register={register} label_msg="Bidang Studi IPS" input_type="text" />}
+            {<DaftarInputNilaiMapel2 errors={errors} register={register} label_msg="Bidang Studi IPA" input_type="text" />}
           </div>
         )}
         {step === 5 && (
-          <div>
-            <h1 className={DaftarCss.formJudul}>Form 3 : Nilai</h1>
-            <h2 className={DaftarCss.formJudul}>Nilai Rapor Semester 9 (Kelas 5 semester ganjil)</h2>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi PKN</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"PKN"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"5"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi B.Indonesia</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"B.Indonesia"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"5"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi Matematika</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"Matematika"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"5"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi IPS</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"IPS"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"5"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi IPA</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"IPA"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"5"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
+          <div className='daftar-form'>
+            <h1 className="daftar-judul-form">Form 3 : Nilai</h1>
+            <h2 className="daftar-judul-form">Nilai Rapor Semester 9 (Kelas 5 semester ganjil)</h2>
+            {<DaftarInputNilaiMapel3 errors={errors} register={register} label_msg="Bidang Studi PKN" input_type="text" />}
+            {<DaftarInputNilaiMapel3 errors={errors} register={register} label_msg="Bidang Studi B.Indonesia" input_type="text" />}
+            {<DaftarInputNilaiMapel3 errors={errors} register={register} label_msg="Bidang Studi Matematika" input_type="text" />}
+            {<DaftarInputNilaiMapel3 errors={errors} register={register} label_msg="Bidang Studi IPS" input_type="text" />}
+            {<DaftarInputNilaiMapel3 errors={errors} register={register} label_msg="Bidang Studi IPA" input_type="text" />}
           </div>
         )}
         {step === 6 && (
-          <div>
-            <h1 className={DaftarCss.formJudul}>Form 3 : Nilai</h1>
-            <h2 className={DaftarCss.formJudul}>Nilai Rapor Semester 10 (Kelas 5 semester genap)</h2>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi PKN</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"PKN"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"5"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"2"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi B.Indonesia</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"B.Indonesia"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"5"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"2"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi Matematika</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"Matematika"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"5"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"2"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi IPS</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"IPS"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"5"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"2"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi IPA</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"IPA"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"5"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"2"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
+          <div className='daftar-form'>
+            <h1 className="daftar-judul-form">Form 3 : Nilai</h1>
+            <h2 className="daftar-judul-form">Nilai Rapor Semester 10 (Kelas 5 semester genap)</h2>
+            {<DaftarInputNilaiMapel4 errors={errors} register={register} label_msg="Bidang Studi PKN" input_type="text" />}
+            {<DaftarInputNilaiMapel4 errors={errors} register={register} label_msg="Bidang Studi B.Indonesia" input_type="text" />}
+            {<DaftarInputNilaiMapel4 errors={errors} register={register} label_msg="Bidang Studi Matematika" input_type="text" />}
+            {<DaftarInputNilaiMapel4 errors={errors} register={register} label_msg="Bidang Studi IPS" input_type="text" />}
+            {<DaftarInputNilaiMapel4 errors={errors} register={register} label_msg="Bidang Studi IPA" input_type="text" />}
           </div>
         )}
         {step === 7 && (
-          <div>
-            <h1 className={DaftarCss.formJudul}>Form 3 : Nilai</h1>
-            <h2 className={DaftarCss.formJudul}>Nilai Rapor Semester 11 (Kelas 6 semester ganjil)</h2>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi PKN</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"PKN"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"6"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi B.Indonesia</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"B.Indonesia"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"6"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi Matematika</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"Matematika"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"6"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi IPS</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"IPS"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"6"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
-            <div>
-              <label className={DaftarCss.label}>Bidang Studi IPA</label>
-              <input type="hidden" name='nama_mapel' {...register("nama_mapel",{value:"IPA"})}/>
-              <input type="hidden" name='kelas' {...register("kelas",{value:"6"})}/>
-              <input type="hidden" name='semester_ke' {...register("semester_ke",{value:"1"})}/>
-              <input type="number" name="nilai" className={DaftarCss.input} {...register("nilai", { required: true })}/>
-              {errors.nilai && <span className={DaftarCss.span}>Nilai harus Diisi</span>}
-            </div>
+          <div className='daftar-form'>
+            <h1 className="daftar-judul-form">Form 3 : Nilai</h1>
+            <h2 className="daftar-judul-form">Nilai Rapor Semester 11 (Kelas 6 semester ganjil)</h2>
+            {<DaftarInputNilaiMapel5 errors={errors} register={register} label_msg="Bidang Studi PKN" input_type="text" />}
+            {<DaftarInputNilaiMapel5 errors={errors} register={register} label_msg="Bidang Studi B.Indonesia" input_type="text" />}
+            {<DaftarInputNilaiMapel5 errors={errors} register={register} label_msg="Bidang Studi Matematika" input_type="text" />}
+            {<DaftarInputNilaiMapel5 errors={errors} register={register} label_msg="Bidang Studi IPS" input_type="text" />}
+            {<DaftarInputNilaiMapel5 errors={errors} register={register} label_msg="Bidang Studi IPA" input_type="text" />}
           </div>
         )}
 
         <div>
           {step > 1 && (
-            <button type="button" className={DaftarCss.button} onClick={prevStep}>Kembali</button>
+            <button type="button" className="btnNextPrev"onClick={prevStep}>Kembali</button>
           )}
           {step < 7 && (
-            <button type="button" className={DaftarCss.button} onClick={nextStep}>Selanjutnya</button>
+            <button type="button" className="btnNextPrev"onClick={nextStep}>Selanjutnya</button>
           )}
-          {step === 7 && <button type="submit" className={DaftarCss.button} >Submit</button>}
+          {step === 7 && <button type="submit" className="btnNextPrev">Submit</button>}
         </div>
       </form>
-    </div>
+      </div>
   );
 }
 

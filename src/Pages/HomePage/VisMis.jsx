@@ -12,12 +12,7 @@ const VisMis = () => {
             Visi 
           </h3>
           <p>
-            SMPN 1 cisoka adalah salah satu sekolah favorit di kecamatan cisoka
-            yang tentunya telah memiliki banyak prestasi baik di bidang akademik
-            maupun non- akademik, SMPN 1 Cisoka juga banyak melahirkan talenta -
-            talenta dan orang - orang yang dpata berperan penting dalam
-            masayarakat karena di didik untuk bersosialisasi dan hdu
-            bermasayarakat.
+            Religius Cerdas dan Berwawasan Lingkungan
           </p>
         </div>
         <div className="misi-text">
@@ -25,8 +20,29 @@ const VisMis = () => {
              Misi
           </h3>
           <p>
-            1. mencerdaskan kehidupan bangsa
-            2. sksksk
+            <ul>
+              <li>Membentuk Warga Sekolah Yang beriman, bertaqwa, berakhlak mulia dan berbudi pekerti luhur
+                dengan mengembangkan sikap dan perilaku religius baik di dalam 
+                sekolah maupun duluar sekolah.
+              </li>
+              <li>Mengembangkan budaya gemar membaca, rasa ingin tahu, bertoleransi,
+                bekerja sama, saling menghargai, disiplin, jujur, kerja keras, kreatif dan inovatif.
+              </li>
+              <li>Meningkatkan nilai kecerdasan, cinta ilmu dan keingin tahuan peserta didik 
+                dalam bidang akademik maupun non-akademik
+              </li>
+              <li>Menciptakan suasana pembelajaran yang menantang, menyenangkan, komunikatif,
+                inovatif dan demkratis
+              </li>
+              <li>Mengupayakan pemanfaatan waktu belajar, sumber daya fisik dan manusia agar
+                memberikan hasil yang terbaik bagi perkembangan peserta didik.
+              </li>
+              <li>Menanamkan kepedulian sosial, cinta damai, cinta tanah air, semangat kebangsaan
+                dan hidup demokratis.
+              </li>
+              <li>Menanamkan jiwa peduli lingkungan kepada warga sekolah</li>
+              <li>Menciptakan lingkungan sekolah yang bersih, sehat dan indah.</li>
+            </ul>
           </p>
         </div>
       </div>

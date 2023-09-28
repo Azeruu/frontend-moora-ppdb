@@ -1,12 +1,12 @@
-import DaftarCss from './css/Daftar.module.css';
+import './css/Daftar.css';
 
 export default function DaftarInputUserTextNumber({ errors, register, label_msg, input_type }) {
     return (
-        <div>
-            <label className={DaftarCss.label}>{label_msg}</label>
-            <input type={input_type} className={DaftarCss.input} {...register(label_msg, { required: true })} />
+        <div className='daftar-input-box'>
+            <label className="daftar-label">{label_msg}</label>
+            <input type={input_type} className="daftar-input"{...register(label_msg, { required: true })} />
             {errors.label_msg && (
-                <span className={DaftarCss.span}>{label_msg} wajib diisi</span>
+                <span className="daftar-span">{label_msg} wajib diisi</span>
             )}
         </div>
     );
