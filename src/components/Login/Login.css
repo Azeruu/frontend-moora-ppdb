@@ -1,0 +1,333 @@
+:root {
+    --primary: #317ac7;
+    --bg: #21293e;
+    --tertiary: #7cf6fd;
+    --secondary: #fcf9bf;
+}
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+/* HEADER */
+.Navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 7%;
+    background-color:transparent;
+    /* border-bottom: 1px solid #4b546a; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+.Navbar .nav-logo1 {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0.5rem;
+    margin-left: -2rem;
+}
+.Navbar .nav-logo2 {
+    color: var(--secondary);
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: italic;
+    flex: 1;
+}
+.Navbar .nav-logo2 span {
+    color: var(--primary);
+}
+.login-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid tomato; */
+    left: 0;
+    right: 0;
+    position: fixed;
+}
+.login-header-logo{
+    position: relative;
+    width: 70px;
+    height: 70px;
+    margin: .8rem;
+    left: -50rem;
+}
+.login-header h1{
+    position: relative;
+    color: var(--primary);
+    left: -50rem;
+}
+.login-header span{
+    position: relative;
+    color: #fff;
+}
+
+/* LOGIN ISI */
+.body-login {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(90deg, rgba(33, 41, 62, 1)8%, rgba(255, 255, 255, 0)110%), url(../../image/sekolah5.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.body-login::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 25%;
+    bottom: -5rem;
+    background: linear-gradient(0deg, rgba(33, 41, 62, 1)40%, rgba(255, 255, 255, 0)80%);
+}
+.wc-word{
+    margin-left: -20rem;
+    padding: 1.4rem 7%;
+    max-width: 70rem;
+    text-align: center;
+}
+.wc-word h1 {
+    font-size: 3rem;
+    color: var(--secondary);
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+    line-height: 1.2;
+}
+
+.wc-word h1 span {
+    color: var(--primary);
+    text-shadow: 1px 1px 3px rgba(33, 41, 62, 0.8);
+}
+
+.wc-word p {
+    color: var(--secondary);
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+.judul{
+    display: flex;
+    justify-content: center;
+}
+.wrap{
+    position: relative;
+    width: 25rem;
+    height: 33rem;
+    background:transparent;
+    border: 2px solid rgba(225, 225, 225, .5);
+    border-radius: 1rem;
+    backdrop-filter: blur(1rem);
+    box-shadow: 0 0 1.2rem rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    transition: height 0.2s ease;
+    margin-right: -12rem;
+}
+.wrap.active{
+    height: 40rem;
+}
+
+.wrap .form-box.login{
+    transition: transform 0.2s ease;
+    transform: translateX(0);
+}
+.wrap.active .form-box.login{
+    transition: none;
+    transform: translateX(-400px);
+}
+.wrap .form-box.register{
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+.wrap.active .form-box.register{
+    transition: transform 0.2s ease;
+    transform: translateX(0);
+}
+.form-box.login{
+    width: 100%;
+    padding: 2rem;
+}
+.form-box.register{
+    margin-top: 4rem;
+    width: 100%;
+    padding: 2rem;
+}
+
+.form-box-login h1{
+    font-size: 2rem;
+    color: aliceblue;
+    text-align: center;
+}
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 2.5rem;
+    border-bottom: 2px solid aliceblue;
+    margin: 1.5rem 0;
+}
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 0.2rem ;
+    transform: translateY(-50%);
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top: -5px;
+}
+.input-box .label-role{
+    position: absolute;
+    top: -5px;
+    left: 0.2rem ;
+    transform: translateY(-50%);
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    padding: 0 35px 0 5px;
+}
+.input-box .icon{
+    position: absolute;
+    right:0.5rem;
+    font-size: 1rem;
+    line-height: 3rem;
+}
+.remember{
+    font-size: .9rem;
+    font-weight: 500;
+    margin: -15px  0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.remember label input {
+    margin-right: 3px;
+}
+.remember a{
+    color: aliceblue;
+    text-decoration: none;
+}
+.remember a:hover{
+    text-decoration: underline;
+}
+.btn-login{
+    width: 100%;
+    height: 2.5rem;
+    background:var(--primary);
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--bg);
+    font-weight: 600;
+    margin-top: 1rem;
+}
+.login-register{
+    font-size: .9rem;
+    color: aliceblue;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+.login-register p .register-link{
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-register p .register-link:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.login-register p .login-link{
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-register p .login-link:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.pesan-error{
+   text-align: center;
+   background-color: var(--primary);
+   border-radius: 2rem; 
+   color: #fff;
+}
+
+/* LOGIN FOOTER */
+.footer {
+    background-color: transparents;
+    padding: 1rem 0;
+    margin-top: 3rem;
+    text-align: center;
+    color: #fff;
+}
+
+.footer .links {
+    margin-bottom: 1.4rem;
+}
+
+.footer .links a {
+    font-size: 1.2rem;
+    padding: 0.7rem 1rem;
+    color: #fff;
+}
+
+.footer .links a:hover,
+.footer .social a:hover {
+    color: var(--primary);
+}
+
+.footer .copy {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.footer .social {
+    padding: 1rem 0;
+}
+
+.footer .social a {
+    color: #fff;
+    margin: 1rem;
+}
+
+
+@keyframes putar {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

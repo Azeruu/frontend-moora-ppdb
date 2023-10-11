@@ -1,0 +1,148 @@
+import { useForm } from 'react-hook-form';
+import './Daftar.css';
+import React, { useState } from 'react';
+import axios from "axios";
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'feather-icons-react/build/IconComponents';
+import {DaftarInputNilaiMapel} from './DaftarInputNilaiMapel';
+
+export default function Daftar2() {
+  const { handleSubmit, register, formState:{errors},} = useForm();
+  const [step, setStep] = useState(1);
+  // const [siswa, setSiswa] = useState([]);
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   getSiswa();
+  // }, []);
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post("http://localhost:5000/rekap_nilai", data);
+      console.log("Data Berhasil di input : ", response.data);
+      navigate("/daftar",{replace:true})
+    } catch (e) {
+      console.log("error dalam submit data :", e);
+    }
+  };
+
+  // const getSiswa = async () => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:5000/data_siswa`);
+  //     console.log("data dpat", response.data);
+  //     setSiswa(response.data);
+  //   } catch (error) {
+  //     console.log("error dalam submit data :", error);
+  //   }
+  // };
+
+  const nextStep = () =>{
+    setStep(step + 1);
+  }
+  const prevStep = () =>{
+    setStep(step - 1);
+  }
+
+  return (
+    <div className="Daftar-container">
+      <div className="daftar-navbar">
+        <h2 className="daftar-judul">Formulir Pendaftaran PPDB</h2>
+        <div className='daftar-step'>
+          <div className="step">
+            <p className={`daftar-indicator ${step === 1 ?'daftar-indicator-active':''}`}>1</p>
+            <p>Nilai 1</p>
+          </div>
+          <div className="step">
+            <p className={`daftar-indicator ${step === 2 ?'daftar-indicator-active':''}`}>2</p>
+            <p>Nilai 2</p>
+          </div>
+          <div className="step">
+            <p className={`daftar-indicator ${step === 3 ?'daftar-indicator-active':''}`}>3</p>
+            <p>Nilai 3</p>
+          </div>
+          <div className="step">
+            <p className={`daftar-indicator ${step === 4 ?'daftar-indicator-active':''}`}>4</p>
+            <p>Nilai 4</p>
+          </div>
+          <div className="step">
+            <p className={`daftar-indicator ${step === 5 ?'daftar-indicator-active':''}`}>5</p>
+            <p>Nilai 5</p>
+          </div>
+        </div>
+      </div>
+        <Link to="/" className="daftar-btn-back">
+          <ArrowLeft />
+        </Link>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* Langkah Ke Tiga */}
+        {step === 1 && (
+          <div className='daftar-form'>
+            <h1 className="daftar-judul-form">Form 3 : Nilai</h1>
+            <h2 className="daftar-judul-form">Nilai Rapor Semester 7 (Kelas 4 semester ganjil)</h2>
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="pkn1" kelas="4" semester="1" mapel="PKN" label_msg="Bidang Studi PKN" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="bindo1" kelas="4" semester="1" mapel="B.Indonesia" label_msg="Bidang Studi B.Indonesia" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="mtk1" kelas="4" semester="1" mapel="Matematika" label_msg="Bidang Studi Matematika" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="ips1" kelas="4" semester="1" mapel="IPS" label_msg="Bidang Studi IPS" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="ipa1" kelas="4" semester="1" mapel="IPA" label_msg="Bidang Studi IPA" input_type="text" />}
+          </div>
+        )}
+        {step === 2 && (
+          <div className='daftar-form'>
+            <h1 className="daftar-judul-form">Form 3 : Nilai</h1>
+            <h2 className="daftar-judul-form">Nilai Rapor Semester 8 (Kelas 4 semester genap)</h2>
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="pkn2" kelas="4" semester="2" mapel="PKN" label_msg="Bidang Studi PKN" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="bindo2" kelas="4" semester="2" mapel="B.Indonesia" label_msg="Bidang Studi B.Indonesia" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="mtk2" kelas="4" semester="2" mapel="Matematika" label_msg="Bidang Studi Matematika" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="ips2" kelas="4" semester="2" mapel="IPS" label_msg="Bidang Studi IPS" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="ipa2" kelas="4" semester="2" mapel="IPA" label_msg="Bidang Studi IPA" input_type="text" />}
+          </div>        
+          )}
+        {step === 3 && (
+          <div className='daftar-form'>
+            <h1 className="daftar-judul-form">Form 3 : Nilai</h1>
+            <h2 className="daftar-judul-form">Nilai Rapor Semester 9 (Kelas 5 semester ganjil)</h2>
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="pkn3" kelas="5" semester="1" mapel="PKN" label_msg="Bidang Studi PKN" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="bindo3" kelas="5" semester="1" mapel="B.Indonesia" label_msg="Bidang Studi B.Indonesia" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="mtk3" kelas="5" semester="1" mapel="Matematika" label_msg="Bidang Studi Matematika" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="ips3" kelas="5" semester="1" mapel="IPS" label_msg="Bidang Studi IPS" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="ipa3" kelas="5" semester="1" mapel="IPA" label_msg="Bidang Studi IPA" input_type="text" />}
+          </div>
+          )}
+        {step === 4 && (
+          <div className='daftar-form'>
+            <h1 className="daftar-judul-form">Form 3 : Nilai</h1>
+            <h2 className="daftar-judul-form">Nilai Rapor Semester 10 (Kelas 5 semester genap)</h2>
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="pkn4" kelas="5" semester="2" mapel="PKN" label_msg="Bidang Studi PKN" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="bindo4" kelas="5" semester="2" mapel="B.Indonesia" label_msg="Bidang Studi B.Indonesia" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="mtk4" kelas="5" semester="2" mapel="Matematika" label_msg="Bidang Studi Matematika" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="ips4" kelas="5" semester="2" mapel="IPS" label_msg="Bidang Studi IPS" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="ipa4" kelas="5" semester="2" mapel="IPA" label_msg="Bidang Studi IPA" input_type="text" />}
+          </div>
+        )}
+        {step === 5 && (
+          <div className='daftar-form'>
+            <h1 className="daftar-judul-form">Form 3 : Nilai</h1>
+            <h2 className="daftar-judul-form">Nilai Rapor Semester 11 (Kelas 6 semester ganjil)</h2>
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="pkn5" kelas="6" semester="1" mapel="PKN" label_msg="Bidang Studi PKN" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="bindo5" kelas="6" semester="1" mapel="B.Indonesia" label_msg="Bidang Studi B.Indonesia" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="mtk5" kelas="6" semester="1" mapel="Matematika" label_msg="Bidang Studi Matematika" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="ips5" kelas="6" semester="1" mapel="IPS" label_msg="Bidang Studi IPS" input_type="text" />}
+            {<DaftarInputNilaiMapel errors={errors} register={register} regist_nilai="ipa5" kelas="6" semester="1" mapel="IPA" label_msg="Bidang Studi IPA" input_type="text" />}
+          </div>
+        )}
+
+        <div>
+          {step > 1 && (
+            <button type="button" className="btnNextPrev"onClick={prevStep}>Kembali</button>
+          )}
+          {step < 5 && (
+            <button type="button" className="btnNextPrev"onClick={nextStep}>Selanjutnya</button>
+          )}
+          {step === 5 && <button type="submit" className="btnNextPrev">Submit</button>}
+        </div>
+      </form>
+      </div>
+  );
+}
+

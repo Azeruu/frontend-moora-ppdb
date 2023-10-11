@@ -1,0 +1,14 @@
+.layout-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15rem;
+    margin-right: 0;
+    background-color: rgba(8, 117, 212, 0.826);
+}
+
+.layout-content{
+    flex: 2;
+    padding: 20px;
+}
