@@ -4,13 +4,27 @@
   color: #fff;
   padding: 10px 0;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
-  border: 1px solid#fff;
+  /* border: 1px solid#fff; */
   width: 100%;
   height: auto;
 }
 
+.navbar-menu-openbtn {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  margin-right: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.navbar-menu-openbtn:hover {
+  color: var(--primary);
+  border-radius: .5rem;
+}
 .navbar-profile-openbtn {
   background-color: transparent;
   border: none;

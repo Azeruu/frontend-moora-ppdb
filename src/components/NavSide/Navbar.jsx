@@ -4,11 +4,9 @@ import { Menu } from "feather-icons-react/build/IconComponents";
 import "./Navbar.css";
 import logo from "../../image/profile1.png";
 import ModalProfil from "./ModalProfil";
-import Sidebar from "./Sidebar";
 
-const Navbar = () => {
+const Navbar = ({toggleSidebar}) => {
   const [modal, setModal] = useState(false);
-  const [sidebar, setSidebar] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const Huruf = (user) => {
     return user.charAt(0).toUpperCase() + user.slice(1);
@@ -20,21 +18,11 @@ const Navbar = () => {
   const closeModal = () => {
     setModal(false);
   }
-  const openSidebar = () =>{
-    setSidebar(true);
-  }
-  const closeSidebar = () => {
-    setSidebar(false);
-  }
-  const toggleSidebar = () => {
-    setSidebar(!sidebar);
-  };
   
 
   return (
     <div className="navbar">
-      <Sidebar toggleSidebar={sidebar} />
-      <button className="navbar-profile-openbtn" onClick={toggleSidebar}><Menu/></button>
+      <button className="navbar-menu-openbtn" onClick={toggleSidebar}><Menu/></button>
       <button className="navbar-profile-openbtn" onClick={openModal}>
         <div className="navbar-btn-content">
           <img className="foto-user-navbar" src={logo} alt="foto user"></img>

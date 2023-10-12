@@ -45,19 +45,18 @@ const ListUser = () => {
   }
 
   return (
-    <div className="columns">
-      <div className="column">
-        <h1 className="daftaruser">Daftar User</h1>
+    <div className="list-user-container">
+      <div className="list-user-grid">
+        <h1 className="list-user-judul">Daftar User</h1>
         <Link to={`/userlist/adduser`} className="btnadd">
           Tambah User
         </Link>
-        <div className="table-container">
+        <div className="list-user-table-container">
           <table className="table">
             <thead>
               <tr>
                 <th>No</th>
                 <th>ID User</th>
-                <th>UUID User</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Password</th>
@@ -70,7 +69,6 @@ const ListUser = () => {
                 <tr key={user.uuid}>
                   <td>{index + 1}</td>
                   <td>{user.id}</td>
-                  <td>{user.uuid}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
                   <td>{user.password}</td>
