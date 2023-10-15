@@ -16,9 +16,11 @@ export default function Daftar() {
     try {
       const response = await axios.post("http://localhost:5000/data_siswa", data);
       console.log("Data Berhasil Di Input", response.data);
+      alert("Data Siswa Berhasil Di Input, Silahkan Lanjutkan Ke Input Nilai")
       navigate("/daftar2");
     } catch (e) {
       console.log("error dalam submit data :", e);
+      alert(e);
     }
   };
 
@@ -91,7 +93,7 @@ export default function Daftar() {
 
               {<DaftarInputUserTextNumber errors={errors} register={register} regist_msg="NIK" label_msg="NIK" input_type="number" />}
               {<DaftarInputUserTextNumber errors={errors} register={register} regist_msg="tempat_lahir" label_msg="Tempat Lahir" input="text" />}
-              {<DaftarInputUserTextNumber errors={errors} register={register} regist_msg="tgl_lahir" label_msg="Tanggal Lahir" input_type="number" />}
+              {<DaftarInputUserTextNumber errors={errors} register={register} regist_msg="tgl_lahir" label_msg="Tanggal Lahir" input_type="date" />}
               {<DaftarInputUserTextNumber errors={errors} register={register} regist_msg="usia" label_msg="Usia" input_type="number" />}
               {<DaftarInputUserTextNumber errors={errors} register={register} regist_msg="asal_sekolah" label_msg="Asal Sekolah" input_type="text" />}
 

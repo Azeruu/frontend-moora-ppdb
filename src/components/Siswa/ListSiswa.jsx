@@ -6,7 +6,6 @@ import axios from "axios";
 const ListSiswa = () => {
   const [siswa, setSiswa] = useState([]);
   const [jmlData, setJmlData] = useState(0);
-  const [banyakData, setBanyakData] = useState(5);
 
   useEffect(() => {
     getSiswa();
@@ -15,12 +14,23 @@ const ListSiswa = () => {
     jumlahData();
   }, []);
 
-  const tambahbatas = () => {
-    setBanyakData(banyakData + 1);
+  // Batas
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
+  const totalPages = Math.ceil(siswa.length / itemsPerPage);
+
+  const handleClick = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    } else if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
-  const kurangibatas = () => {
-    setBanyakData(banyakData - 1);
-  };
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const currentData = siswa.slice(startIndex, endIndex);
+  // Batas
 
   const getSiswa = async () => {
     const response = await axios.get("http://localhost:5000/data_siswa");
@@ -43,16 +53,14 @@ const ListSiswa = () => {
     }
   };
   return (
-    <div className="pendaftaran">
-      <div className="pendaftaran-c1">
-        <div className="daftar-atas">
-          <h1 className="daftarsiswa">Daftar Siswa</h1>
-          <Link to={`/pendaftaran/addsiswa`} className="btnadd">
-            Daftar
-          </Link>
-        </div>
-        <div className="table-container-siswa">
-          <table className="table-pendaftaran">
+    <div className="list-siswa-container">
+      <div className="list-siswa-grid">
+        <h1 className="list-siswa-judul">Daftar Siswa</h1>
+        <Link to={`/pendaftaran/addsiswa`} className="btnadd">
+          Daftar
+        </Link>
+        <div className="list-siswa-table-container">
+          <table className="table">
             <thead>
               <tr>
                 <th>Action</th>
@@ -77,7 +85,7 @@ const ListSiswa = () => {
               </tr>
             </thead>
             <tbody>
-              {siswa.slice(0, banyakData).map((sis, index) => (
+              {currentData.map((sis, index) => (
                 <tr key={sis.uuid}>
                   <td>
                     <Link
@@ -116,22 +124,21 @@ const ListSiswa = () => {
             </tbody>
           </table>
         </div>
-        <p className="jumlah-data">Jumlah Data : {jmlData}</p>
-        <label className="VLabel">View List</label>
-        <div className="atur-jumlah">
-          <button className="btn-data" onClick={kurangibatas}>
-            -
-          </button>
-          <input
-            className="input-banyakdata"
-            onChange={(e) => setBanyakData(e.target.value)}
-            value={banyakData}
-            type="number"
-          ></input>
-          <button className="btn-data" onClick={tambahbatas}>
-            +
-          </button>
+        <div class="pagination">
+          <button onClick={() => handleClick("prev")} class="page-button">Prev</button>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+            key={index}
+            onClick={() => handleClick(index + 1)}
+            className={currentPage === index + 1 ? "page-button-active" : "page-button-nonactive"}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button onClick={() => handleClick("next")} class="page-button">Next</button>
         </div>
+          <p className="jumlah-data">Jumlah Data : {jmlData}</p>
+          <p className="jumlah-data">Jumlah Page : {totalPages}</p>
       </div>
     </div>
   );

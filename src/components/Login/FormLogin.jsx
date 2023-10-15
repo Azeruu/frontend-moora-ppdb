@@ -50,15 +50,18 @@ const Login = () => {
 
   return (
     <div className="body-login">
-      <div className="wc-word">
-        <h1>
-            SELAMAT DATANG di Website PPDB <span> SMPN 1 Cisoka</span>.
-        </h1>
-        <p>
-          Website penerimaan murid baru smpn 1 cisoka yang dibuat untuk
-          memudahkan para calon siswa untuk medaftar secara online
-        </p>
+      <div className="login-row">
+        <div className="hero">
+          <h1>
+              SELAMAT DATANG di Website PPDB <span> SMPN 1 Cisoka</span>.
+          </h1>
+          <p>
+            Website penerimaan murid baru smpn 1 cisoka yang dibuat untuk
+            memudahkan para calon siswa untuk medaftar secara online
+          </p>
+        </div>
       </div>
+      <div className="login-row">
         {/* Bagian Box Form Loginnya */}
         <div className={`wrap ${toggle ? "active" : ""}`}>
           <div className="form-box login">
@@ -203,6 +206,7 @@ const Login = () => {
               </div>
             </form>
           </div>
+        </div>
       </div>
     </div>
   );

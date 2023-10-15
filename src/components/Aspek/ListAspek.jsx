@@ -4,78 +4,103 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ListAspek = () => {
-  const [jalur, setJalur] = useState([]);
+  const [Aspek, setAspek] = useState([]);
   const [jmlData, setJmlData] = useState(0);
-  const [banyakData, setBanyakData] = useState(5);
 
   useEffect(() => {
-    getJalur();
+    getAspek();
   }, []);
   useEffect(() => {
     jumlahData();
   }, []);
 
-  const tambahbatas = () => {
-    setBanyakData(banyakData + 1);
-  };
-  const kurangibatas = () => {
-    setBanyakData(banyakData - 1);
-  };
+  // Batas
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
+  const totalPages = Math.ceil(Aspek.length / itemsPerPage);
 
-  const getJalur = async () => {
-    const response = await axios.get("http://localhost:5000/jalur");
-    setJalur(response.data);
+  const handleClick = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    } else if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
-  const hapusJalur = async (uuid) => {
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = Aspek.slice(startIndex, endIndex);
+  
+  // Batas
+  const getAspek = async () => {
+    const response = await axios.get("http://localhost:5000/rekap_nilai");
+    setAspek(response.data);
+  };
+  const hapusAspek = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/jalur/${uuid}`);
-      getJalur();
+      await axios.delete(`http://localhost:5000/rekap_nilai/${id}`);
+      getAspek();
     } catch (error) {
       console.log(error);
     }
   };
   const jumlahData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/jalur");
+      const response = await axios.get("http://localhost:5000/rekap_nilai");
       setJmlData(response.data.length);
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div className="pendaftaran">
-      <div className="pendaftaran-c1">
-        <div className="daftar-atas">
-          <h1 className="daftarsiswa">Jalur Masuk</h1>
-          <Link to={`/aspek/addjalur`} className="btnadd">
-            Tambah Jalur
+    <div className="list-jalur-container">
+      <div className="list-jalur-grid">
+          <h1 className="list-jalur-judul">Aspek </h1>
+          <Link to={`/Aspek/addAspek`} className="btnadd">
+            Tambah Aspek
           </Link>
-        </div>
-        <div className="table-container">
-          <table className="table-pendaftaran">
+        <div className="list-jalur-table-container">
+          <table className="table">
             <thead>
               <tr>
                 <th>No</th>
-                <th>ID Jalur</th>
-                <th>Nama Jalur</th>
+                <th>ID Aspek</th>
+                <th>User ID</th>
+                <th>Siswa ID</th>
+                <th>Nama Siswa</th>
+                <th>Rata - Rata Nilai PKN</th>
+                <th>Rata - Rata Nilai B.indo</th>
+                <th>Rata - Rata Nilai MTK</th>
+                <th>Rata - Rata Nilai IPS</th>
+                <th>Rata - Rata Nilai IPA</th>
+                <th>Jarak Ke sekolah "KM"</th>
+                <th>Usia</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {jalur.slice(0, banyakData).map((jal, index) => (
-                <tr key={jal.uuid}>
+              {currentData.map((jal, index) => (
+                <tr key={jal.id}>
                     <td>{index + 1}</td>
                     <td>{jal.id}</td>
-                    <td>{jal.nama_jalur}</td>
+                    <td>{jal.userId}</td>
+                    <td>{jal.dataSiswaId}</td>
+                    <td>{jal.nama_lengkap}</td>
+                    <td>{jal.avrg_nilai_pkn}</td>
+                    <td>{jal.avrg_nilai_bindo}</td>
+                    <td>{jal.avrg_nilai_mtk}</td>
+                    <td>{jal.avrg_nilai_ips}</td>
+                    <td>{jal.avrg_nilai_ipa}</td>
+                    <td>{jal.jarak}</td>
+                    <td>{jal.usia}</td>
                     <td>
                       <Link
-                        to={`/aspek/editjalur/${jal.uuid}`}
+                        to={`/Aspek/editAspek/${jal.uuid}`}
                         className="btnEdit"
                       >
                         Edit
                       </Link>
                       <button
-                        onClick={() => hapusJalur(jal.uuid)}
+                        onClick={() => hapusAspek(jal.uuid)}
                         className="btnHapus"
                       >
                         Hapus
@@ -86,22 +111,21 @@ const ListAspek = () => {
             </tbody>
           </table>
         </div>
-        <p className="jumlah-data">Jumlah Data : {jmlData}</p>
-        <label className="VLabel">View List</label>
-        <div className="atur-jumlah">
-          <button className="btn-data" onClick={kurangibatas}>
-            -
-          </button>
-          <input
-            className="input-banyakdata"
-            onChange={(e) => setBanyakData(e.target.value)}
-            value={banyakData}
-            type="number"
-          ></input>
-          <button className="btn-data" onClick={tambahbatas}>
-            +
-          </button>
+        <div class="pagination">
+          <button onClick={() => handleClick("prev")} class="page-button">Prev</button>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => handleClick(index + 1)}
+              className={currentPage === index + 1 ? "page-button-active" : "page-button-nonactive"}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button onClick={() => handleClick("next")} class="page-button">Next</button>
         </div>
+        <p className="jumlah-data">Jumlah Data : {jmlData}</p>
+        <p className="jumlah-data">Jumlah Page : {totalPages}</p>
       </div>
     </div>
   );

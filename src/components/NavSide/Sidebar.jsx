@@ -21,10 +21,6 @@ const Sidebar = () => {
       <div className="sidebar-content">
         <div className="sidebar-pp-container">
           <img src={logo} alt="logo" className="pp" />
-          <div className="sidebar-profil">
-            <p className="username">{user.username}</p>
-            <p className="profil">{user.role}</p>
-          </div>
         </div>
         <label className="sidebar-label">GENERAL</label>
         <div className="grid-container">

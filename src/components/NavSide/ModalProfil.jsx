@@ -31,10 +31,12 @@ const ModalProfil = ({ isOpen, isClose }) => {
             </button>
           </div>
           <div className="modal-content">
-            <img className="foto-user" src={logo} alt="foto user"></img>
-            <h4>{user && Huruf(user.username)}</h4>
-            <h4>{user && Huruf(user.role)}</h4>
-            <h4>{user && Huruf(user.email)}</h4>
+            <div className="profil-detail">
+              <img className="foto-user" src={logo} alt="foto user"></img>
+              <h4>{user && Huruf(user.username)}</h4>
+              <h4>{user && Huruf(user.role)}</h4>
+              <h4>{user && Huruf(user.email)}</h4>
+            </div>
             <a href='/akun'><User/> User</a>
             <a href='/akun'><Settings/> Settings</a>
             <button onClick={logout}><LogOut/> Logout</button>

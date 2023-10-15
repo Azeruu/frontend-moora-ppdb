@@ -1,135 +1,127 @@
-.table-pendaftaran {
-    width: max-content;
+/* CSS untuk list-jalur-container */
+.list-jalur-container {
+    padding: 20px;
 }
 
-.pendaftaran {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-top: 10rem; */
-    margin-left: 1rem;
-    margin-right: 1rem;
+/* CSS untuk list-jalur-grid */
+.list-jalur-grid {
+    /* background-color: #fff; */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* .daftar-atas{
-    background-color: rgb(0, 0, 0, 0.2);
-    display: flex;
+/* CSS untuk list-jalur-judul */
+.list-jalur-judul {
+    font-size: 26px;
+    margin-bottom: 20px;
+    margin-left: 40%;
+}
+
+/* CSS untuk btnadd */
+.btnadd {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btnadd:hover {
+    background-color: #0056b3;
+}
+
+/* CSS untuk table */
+.table {
     width: 100%;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    margin-top: 5rem;
-    
-  }
-  .btnadd{
-  } */
-.daftarsiswa {
-    display: flex;
-    margin-right: 12rem;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 2px 2px 2px var(--primary);
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-.table-container-siswa {
-    overflow-y: auto;
-    overflow-x: auto;
-    border: 3px solid #ccc;
-    margin-bottom: 2rem;
-    height: 35rem;
-    /* margin-left: 70rem; */
+.table th,
+.table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
 }
 
-.table-pendaftaran {
-    table-layout: fixed;
-    width: 150%;
+.table th {
+    background-color: var(--quartenary);
 }
 
-th {
-    padding: 2rem;
-    border-bottom: 10px solid#8e8e8e;
-    border-right: 1px solid#8e8e8e;
+/* Style Untuk Pagination */
+.pagination {
     text-align: center;
+    margin-top: 20px;
 }
 
-td {
-    padding: 2rem;
-    border-right: 1px solid#8e8e8e;
-    border-bottom: 1px solid#8e8e8e;
-    text-align: center;
-}
-
-.btnEdit {
-    display: flex;
-    justify-content: center;
-    padding: 0.7rem;
-    /* padding-inline: 2rem; */
-    background-color: var(--primary);
-    border-radius: 1rem;
+.pagination .page-button {
+    padding: 10px 20px;
+    margin: 0 15px;
+    cursor: pointer;
+    background-color: transparent;
     color: #fff;
-    font-size: medium;
-    width: 6rem;
+    border: none;
 }
 
-.btnHapus {
-    display: flex;
-    justify-content: center;
-    padding: 0.7rem;
-    /* padding-inline: 2rem; */
-    background-color: rgb(210, 15, 15);
-    border-radius: 1rem;
+.pagination .page-button-active {
+    background-color: var(--hover);
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
     color: #fff;
-    font-size: medium;
-    margin-top: 1rem;
-    width: 6rem;
+    border-radius: 50%;
 }
 
-/* .jumlah-data{
-    margin-top: 2rem;
-  } */
+.pagination .page-button-nonactive {
+    background-color: transparent;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    color: #fff;
+}
 
+/* CSS untuk jumlah-data */
+.jumlah-data {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* CSS untuk VLabel */
+.VLabel {
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* CSS untuk atur-jumlah */
 .atur-jumlah {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    gap: 1rem;
-    background-color: transparent;
-    text-align: center;
+    margin-top: 10px;
 }
 
+/* CSS untuk btn-data */
 .btn-data {
-    display: block;
-    padding: 10px;
-    font-size: 2rem;
-    border-radius: 1rem;
-    border: none;
-    background-color: transparent;
+    background-color: #007bff;
     color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin: 0 5px;
 }
 
 .btn-data:hover {
-    background-color: rgb(255, 255, 255, 0.2);
+    background-color: #0056b3;
 }
 
-.VLabel {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 3rem;
-}
-
+/* CSS untuk input-banyakdata */
 .input-banyakdata {
-    font-size: 2rem;
-    width: 2.5rem;
-    background-color: transparent;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 50px;
     text-align: center;
-}
-
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 5px;
 }

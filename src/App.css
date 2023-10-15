@@ -1,10 +1,11 @@
 :root {
   --primary: #317ac7;
+  --secondary: #fcf9bf;
+  --tertiary: #7cf6fd;
+  --quartenary: rgb(122, 122, 122);
   --hover: rgb(49, 122, 199, 0.5);
   --bg: #21293e;
   --bghov:#ffffffd6;
-  --tertiary: #7cf6fd;
-  --secondary: #fcf9bf;
 }
 * {
   margin: 0;

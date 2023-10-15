@@ -11,30 +11,18 @@ export default function Daftar2() {
   const [step, setStep] = useState(1);
   // const [siswa, setSiswa] = useState([]);
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   getSiswa();
-  // }, []);
-
+  
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:5000/rekap_nilai", data);
+      const response = await axios.post("http://localhost:5000/data_nilai", data);
       console.log("Data Berhasil di input : ", response.data);
+      alert("Data Nilai Berhasil Di Input")
       navigate("/daftar",{replace:true})
     } catch (e) {
       console.log("error dalam submit data :", e);
+      alert(e.response.data.msg)
     }
   };
-
-  // const getSiswa = async () => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:5000/data_siswa`);
-  //     console.log("data dpat", response.data);
-  //     setSiswa(response.data);
-  //   } catch (error) {
-  //     console.log("error dalam submit data :", error);
-  //   }
-  // };
 
   const nextStep = () =>{
     setStep(step + 1);

@@ -5,11 +5,11 @@ import "./Login.css"
 
 const Base = () => {
   return (
-    <>
+    <div className="login-container">
     <Header/>
     <FormLogin/>
     <Footer/>
-    </>
+    </div>
   )
 }
 

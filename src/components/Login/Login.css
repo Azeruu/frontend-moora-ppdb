@@ -1,20 +1,5 @@
-:root {
-    --primary: #317ac7;
-    --bg: #21293e;
-    --tertiary: #7cf6fd;
-    --secondary: #fcf9bf;
-}
-* {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-}
-html {
-    scroll-behavior: smooth;
+.login-container{
+    display: grid;
 }
 
 /* HEADER */
@@ -75,8 +60,8 @@ html {
 
 /* LOGIN ISI */
 .body-login {
-    position: relative;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -94,25 +79,32 @@ html {
     bottom: -5rem;
     background: linear-gradient(0deg, rgba(33, 41, 62, 1)40%, rgba(255, 255, 255, 0)80%);
 }
-.wc-word{
-    margin-left: -20rem;
-    padding: 1.4rem 7%;
+.login-row{
+    display: flex;
+    width: 40%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.hero{
+    /* margin-left: -20rem; */
+    /* padding: 1.4rem 7%; */
     max-width: 70rem;
     text-align: center;
 }
-.wc-word h1 {
+.hero h1 {
     font-size: 3rem;
     color: var(--secondary);
     text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
     line-height: 1.2;
 }
 
-.wc-word h1 span {
+.hero h1 span {
     color: var(--primary);
     text-shadow: 1px 1px 3px rgba(33, 41, 62, 0.8);
 }
 
-.wc-word p {
+.hero p {
     color: var(--secondary);
     font-size: 1.4rem;
     margin-top: 1rem;
@@ -135,10 +127,9 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-
     overflow: hidden;
     transition: height 0.2s ease;
-    margin-right: -12rem;
+    /* margin-right: -12rem; */
 }
 .wrap.active{
     height: 40rem;
@@ -322,12 +313,8 @@ html {
     margin: 1rem;
 }
 
-
-@keyframes putar {
-    0% {
-      transform: rotate(0deg);
+@media (max-width: 768px) {
+    .login-row{
+        width: 60%;
     }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+}

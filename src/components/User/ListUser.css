@@ -13,8 +13,9 @@
 
 /* CSS untuk list-user-judul */
 .list-user-judul {
-  font-size: 24px;
+  font-size: 26px;
   margin-bottom: 20px;
+  margin-left: 40%;
 }
 
 /* CSS untuk btnadd */
@@ -46,31 +47,37 @@
 }
 
 .table th {
-  /* background-color: #f0f0f0; */
+  background-color: var(--quartenary);
 }
 
-/* CSS untuk tbody tr */
-.table tbody tr:nth-child(even) {
-  /* background-color: #f9f9f9; */
+/* Style Untuk Pagination */
+.pagination {
+  text-align: center;
+  margin-top: 20px;
 }
 
-/* CSS untuk btnEdit dan btnHapus */
-.btnEdit,
-.btnHapus {
-  display: inline-block;
-  padding: 6px 12px;
-  margin: 4px;
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  border: none;
-  border-radius: 4px;
+.pagination .page-button {
+  padding: 10px 20px;
+  margin: 0 15px;
   cursor: pointer;
+  background-color: transparent;
+  color: #fff;
+  border: none;
 }
-
-.btnEdit:hover,
-.btnHapus:hover {
-  background-color: #0056b3;
+.pagination .page-button-active {
+  background-color: var(--hover);
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%;
+}
+.pagination .page-button-nonactive {
+  background-color: transparent;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  color: #fff;
 }
 
 /* CSS untuk jumlah-data */

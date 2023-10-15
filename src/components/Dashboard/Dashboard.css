@@ -1,10 +1,76 @@
-.welcome{
+/* Gaya umum */
+.dashboard-container {
+    max-width: auto;
+    margin: 0 auto;
+    padding: 20px;
+    /* border: 1px solid #ddd; */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Gaya judul */
+.dashboard-judul {
+    color: var(--hover);
+    font-size: 24px;
+    margin-top: 0;
+}
+
+/* Gaya untuk setiap judul h1 */
+.dashboard-container h1 {
+    color: var(--secondary);
+    font-size: 30px;
+    margin-top: 20px;
     text-align: center;
 }
-.subtittle{
-    margin-top: 2rem;
-    color: var(--tertiary);
+/* Gaya untuk setiap judul h2 */
+.dashboard-container h2 {
+    color: #007bff;
+    font-size: 20px;
+    margin-top: 20px;
 }
-.nama-user{
-    color: var(--primary);
+
+/* Gaya untuk setiap judul h3 */
+.dashboard-container h3 {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Gaya untuk daftar dengan nomor */
+.dashboard-container ol {
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+/* Gaya untuk setiap elemen dalam daftar dengan nomor */
+.dashboard-container ol li {
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+/* Gaya untuk daftar dengan bullet (unordered list) */
+.dashboard-container ul {
+    list-style-type: disc;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+/* Gaya untuk setiap elemen dalam daftar dengan bullet (unordered list) */
+.dashboard-container ul li {
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+/* Gaya untuk teks yang ditebalkan */
+.dashboard-container strong {
+    font-weight: bold;
+}
+
+/* Gaya untuk tautan (link) */
+.dashboard-container a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.dashboard-container a:hover {
+    text-decoration: underline;
 }
