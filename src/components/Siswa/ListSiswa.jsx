@@ -56,7 +56,7 @@ const ListSiswa = () => {
     <div className="list-siswa-container">
       <div className="list-siswa-grid">
         <h1 className="list-siswa-judul">Daftar Siswa</h1>
-        <Link to={`/pendaftaran/addsiswa`} className="btnadd">
+        <Link to={`/siswalist/addsiswa`} className="btnadd">
           Daftar
         </Link>
         <div className="list-siswa-table-container">
@@ -86,16 +86,16 @@ const ListSiswa = () => {
             </thead>
             <tbody>
               {currentData.map((sis, index) => (
-                <tr key={sis.uuid}>
+                <tr key={sis.id}>
                   <td>
                     <Link
-                      to={`/pendaftaran/editsiswa/${sis.uuid}`}
+                      to={`/siswalist/editsiswa/${sis.id}`}
                       className="btnEdit"
                     >
                       Edit
                     </Link>
                     <button
-                      onClick={() => hapusSiswa(sis.uuid)}
+                      onClick={() => hapusSiswa(sis.id)}
                       className="btnHapus"
                     >
                       Hapus

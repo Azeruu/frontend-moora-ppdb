@@ -13,7 +13,7 @@ const ListHasil = () => {
     try {
       const response = await axios.get('http://localhost:5000/rekap_nilai');
       setRekap(response.data)
-      console.log(rekap);
+      // console.log(rekap);
     } catch (error) {
       console.error('Gagal mengambil data dari API:', error);
     }
@@ -21,12 +21,12 @@ const ListHasil = () => {
 
 
   // Bobot kriteria
-  const bobotNilaiPkn = 0.4;
-  const bobotNilaiBindo = 0.4;
-  const bobotNilaiMtk = 0.4;
-  const bobotNilaiIps = 0.4;
-  const bobotNilaiIpa = 0.4;
-  const bobotJarak = 0.6;
+  const bobotNilaiPkn = 0.1;
+  const bobotNilaiBindo = 0.1;
+  const bobotNilaiMtk = 0.1;
+  const bobotNilaiIps = 0.1;
+  const bobotNilaiIpa = 0.1;
+  const bobotJarak = 0.3;
   const bobotUmur = 0.2;
 
   // Normalisasi kriteria 
@@ -66,12 +66,12 @@ const ListHasil = () => {
     };
   });
   total_normalisasi.sort((a, b) => b.skor_akhir - a.skor_akhir);
-console.log(total_normalisasi);
+// console.log(total_normalisasi);
 
   return (
     <div className="list-jalur-container">
       <div className="list-jalur-grid">
-          <h1 className="list-jalur-judul">Aspek </h1>
+          <h1 className="list-jalur-judul">Hasil Perhitungan MOORA </h1>
           {/* <Link to={`/Aspek/addAspek`} className="btnadd">
             Tambah Hasil
           </Link> */}
@@ -101,13 +101,13 @@ console.log(total_normalisasi);
                     <td>{index+1}</td>
                     {/* <td>
                       <Link
-                        to={`/Aspek/editAspek/${jal.uuid}`}
+                        to={`/Aspek/editAspek/${jal.user_id}`}
                         className="btnEdit"
                       >
                         Edit
                       </Link>
                       <button
-                        onClick={() => hapusAspek(jal.uuid)}
+                        onClick={() => hapusAspek(jal.user_id)}
                         className="btnHapus"
                       >
                         Hapus
@@ -118,21 +118,6 @@ console.log(total_normalisasi);
             </tbody>
           </table>
         </div>
-        {/* <div class="pagination">
-          <button onClick={() => handleClick("prev")} class="page-button">Prev</button>
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index}
-              onClick={() => handleClick(index + 1)}
-              className={currentPage === index + 1 ? "page-button-active" : "page-button-nonactive"}
-            >
-              {index + 1}
-            </button>
-          ))}
-          <button onClick={() => handleClick("next")} class="page-button">Next</button>
-        </div>
-        <p className="jumlah-data">Jumlah Data : {jmlData}</p>
-        <p className="jumlah-data">Jumlah Page : {totalPages}</p> */}
       </div>
     </div>
   );

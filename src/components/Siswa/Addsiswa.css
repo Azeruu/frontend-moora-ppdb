@@ -1,130 +1,131 @@
-.data {
-  display: inline;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.nav2{
-  position: fixed;
-  display: flex;
-  /* background-color: var(--tertiary); */
+.Daftar-container {
+    display: flex ;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
 }
-.proccess1{
-  background-color: #3b60bd;
-  display: flex;
+.daftar-navbar{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 12rem;
+    /* border: 1px solid #fff; */
+    border-radius: .3rem;
+    backdrop-filter: blur(2rem);
+    box-shadow: 0 0 1.2rem rgb(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
-.proccess2{
-  background-color: #3b60bd;
+.daftar-judul {
+    margin-top: 0;
+    font-size: 2.5rem;
 }
-.data h2 {
-  padding-top: 2rem;
-  margin-top: 2rem;
-  font-size: 2rem;
-  text-align: center;
-  font-weight: 400;
+.daftar-step{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 70rem;
+    color: #fff;
 }
-.data .row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.step{
+    margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-.data .row form {
-  padding: 2rem 2rem;
+.step p{
+    text-shadow: 0 0 2rem#0c6ef8;
 }
-.data .row form .form-group {
-  display: flex;
-  width: 50rem;
-  margin-top: 2rem;
-  padding-left: 2rem;
-  border-radius: 0.5rem;
-  flex-wrap: wrap;
-  flex-direction: column;
+.step-line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
-.data .row form .form-group label {
-  font-size: 1.2rem;
-  padding: 0.2rem;
-}
-.data .row form .form-group input {
-  width: 100%;
-  font-size: 1.3rem;
-  padding: 0.8rem;
-  color: var(--bg);
-  background-color: var(--secondary);
-  border-radius: 1rem;
-}
-.btn-back {
-  margin: 3rem;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--bg);
-  background-color: var(--tertiary);
-  border: 1px solid var(--secondary);
-  border-radius: 1.5rem;
-  box-shadow: 2px 2px 4px var(--primary);
-}
-.btn-back:hover {
-  background-color: #3b60bd;
-}
-.btn-back-1 {
-  background-color: #fff;
-  color: #000;
-  border: 2px solid #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 2rem;
-  width: 5rem;
-  padding: 10px;
-  margin-left: 1.8rem;
-  margin-right: 98rem;
-  margin-top: 6rem;
-}
-.btn-back-1:hover {
-  background-color: #3b60bd;
-}
-.btn-daftar {
-  margin: 3rem;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--bg);
-  background-color: var(--tertiary);
-  border: 1px solid var(--secondary);
-  border-radius: 1.5rem;
-  box-shadow: 2px 2px 4px var(--primary);
-}
-.btn-daftar:hover {
-  background-color: #3b60bd;
-}
-.form-group .jk {
-  display: flex;
-  gap: 0.5rem;
-  border-radius: 0.8rem;
-  padding: 1.5rem;
-  background-color: var(--secondary);
-  color: rgb(59, 89, 89);
-  flex-direction: column;
-}
-#laki,
-#perempuan {
-  width: 2.2rem;
-  height: 1rem;
-}
-.btn_action {
-  display: flex;
-  justify-content: center;
+.daftar-indicator{
+    /* position: fixed; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    margin-top: 2rem;
+    width: 20px;
+    height: 20px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
-@media (min-width: 350px) {
-  .data .row form .form-group {
-    width: 30rem;
-  }
+.daftar-indicator-active{
+    background-color: tomato;
 }
-@media (min-width: 550px) {
-  .data .row form .form-group {
-    width: 40rem;
-  }
+/* .indicator-line{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    height: 20px;
+    color: #000;
+    background-color: #fff;
+    margin-bottom: 10px;
+    transition: background-color .5s linear;
+} */
+/* .indicator-line-active{
+    background-color: tomato;
+} */
+.daftar-form{
+    margin-top: 0;
+    margin-bottom: 2rem;
 }
-@media (min-width: 800px) {
-  .data .row form .form-group {
-    width: 45rem;
-  }
+.daftar-judul-form{
+    text-align: center;
+    padding: 2rem;
+}
+.daftar-input-box{
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.3rem;
+    width: 70rem;
+    /* border: 1px solid tomato; */
+    margin: .5rem;
+}
+.daftar-input-box input, select{
+    padding: .5rem;
+    font-size: 1.3rem;
+    border: 1px solid #0c6ef8;
+    border-radius: .5rem;
+    width: 68rem;
+}
+.btnNextPrev{
+    border: 1px solid #000;
+    border-radius: 1rem;
+    width: 8rem;
+    height: 4rem;
+    margin-bottom: 5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: tomato;
+    box-shadow: 0 0 1.2rem#0c6ef8;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+.daftar-span{
+    color: rgb(219, 63, 63);
+    text-shadow: 0 0 .2rem #000000;
 }

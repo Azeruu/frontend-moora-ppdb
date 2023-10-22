@@ -1,16 +1,13 @@
 import "./Login.css";
 import logosmp from "../../image/react.png"
-// import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginUser, RegisterUser, reset } from "../../features/authSlice";
 import {
   User,
-  ArrowLeft,
   Mail,
   Key,
-  Facebook, Instagram, Globe, Twitter
 } from "feather-icons-react/build/IconComponents";
 
 const Login = () => {
@@ -35,13 +32,15 @@ const Login = () => {
     if (user || isSuccess) {
       navigate("/dashboard");
     }
+    if(isError){
+      alert(`pesan error : ${message}`);
+    }
     dispatch(reset());
   }, [user, isSuccess, dispatch, navigate]);
 
   const saveUser = async (e) => {
     e.preventDefault();
     dispatch(RegisterUser({ username, email, password, confirmPassword, role}));
-    alert("Register Berhasil, Silahkan Login Kembali");
   };
   const Auth = (e) => {
     e.preventDefault();

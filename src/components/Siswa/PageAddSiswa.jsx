@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../../features/authSlice";
-import Daftar2 from "./Daftar2";
+import AddSiswa from "./AddSiswa.jsx";
+import Layout from "../Layout";
 
-const PageDaftar2 = () => {
+const PageDaftar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -20,8 +21,10 @@ const PageDaftar2 = () => {
     dispatch(getMe());
   }, [isError, navigate]);
   return (
-      <Daftar2 />
+      <Layout>
+        <AddSiswa />
+      </Layout>
   );
 };
 
-export default PageDaftar2;
+export default PageDaftar;

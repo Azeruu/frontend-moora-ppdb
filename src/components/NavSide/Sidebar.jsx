@@ -31,7 +31,7 @@ const Sidebar = () => {
                 <Link to="/jalur" className="sidebar-menu-list"><FileText/>Jalur Penerimaan</Link>
               </div>
             )}
-            <Link to="/pendaftaran" className="sidebar-menu-list"><UserPlus/>Daftar</Link>
+            <Link to="/siswalist" className="sidebar-menu-list"><UserPlus/>Daftar</Link>
             <Link to="/hasil" className="sidebar-menu-list"><Award/>Hasil</Link>
         </div>
         {user && user.role === "admin" &&(

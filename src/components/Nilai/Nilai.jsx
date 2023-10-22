@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import './Daftar.css';
+import '../Siswa/AddSiswa.css';
 import React, { useState } from 'react';
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,15 +9,14 @@ import {DaftarInputNilaiMapel} from './DaftarInputNilaiMapel';
 export default function Daftar2() {
   const { handleSubmit, register, formState:{errors},} = useForm();
   const [step, setStep] = useState(1);
-  // const [siswa, setSiswa] = useState([]);
   const navigate = useNavigate();
   
   const onSubmit = async (data) => {
     try {
       const response = await axios.post("http://localhost:5000/data_nilai", data);
-      console.log("Data Berhasil di input : ", response.data);
+      // console.log("Data Berhasil di input : ", response.data);
       alert("Data Nilai Berhasil Di Input")
-      navigate("/daftar",{replace:true})
+      navigate("/siswalist")
     } catch (e) {
       console.log("error dalam submit data :", e);
       alert(e.response.data.msg)
@@ -58,10 +57,6 @@ export default function Daftar2() {
           </div>
         </div>
       </div>
-        <Link to="/" className="daftar-btn-back">
-          <ArrowLeft />
-        </Link>
-
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Langkah Ke Tiga */}
         {step === 1 && (
@@ -127,7 +122,7 @@ export default function Daftar2() {
           {step < 5 && (
             <button type="button" className="btnNextPrev"onClick={nextStep}>Selanjutnya</button>
           )}
-          {step === 5 && <button type="submit" className="btnNextPrev">Submit</button>}
+          {step === 5 && <button type="submit" className="btnNextPrev">Submit</button> }
         </div>
       </form>
       </div>

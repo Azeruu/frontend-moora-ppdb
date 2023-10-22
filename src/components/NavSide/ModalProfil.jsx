@@ -24,23 +24,30 @@ const ModalProfil = ({ isOpen, isClose }) => {
     isOpen && (
       <div className="modal-overlay">
         <div className="modal">
+          {/* Header */}
           <div className="modal-header">
             <h2>Profil Pengguna</h2>
             <button className="modal-close" onClick={isClose}>
               &times;
             </button>
           </div>
+          {/* konten */}
           <div className="modal-content">
             <div className="profil-detail">
-              <img className="foto-user" src={logo} alt="foto user"></img>
-              <h4>{user && Huruf(user.username)}</h4>
-              <h4>{user && Huruf(user.role)}</h4>
-              <h4>{user && Huruf(user.email)}</h4>
+              <div>
+                <img className="foto-user" src={logo} alt="foto user"></img>
+              </div>
+              <div>
+                <h4>{user && Huruf(user.username)}</h4>
+                <h4>{user && Huruf(user.role)}</h4>
+                <h4>{user && Huruf(user.email)}</h4>
+              </div>
             </div>
-            <a href='/akun'><User/> User</a>
-            <a href='/akun'><Settings/> Settings</a>
-            <button onClick={logout}><LogOut/> Logout</button>
+              <div className="modal-user-settings"><a href='/akun'><User className='modal-user-icon'/> User</a></div>
+              <div className="modal-user-settings"><a href='/akun'><Settings className='modal-user-icon'/> Settings</a></div>
+              <button className='modal-btn-logout' onClick={logout}><LogOut/> Logout</button>
           </div>
+          {/* Footer */}
           <div className="modal-footer">
           </div>
         </div>
