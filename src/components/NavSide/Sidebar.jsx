@@ -1,5 +1,5 @@
 import "./Sidebar.css"
-import { Link, useNavigate} from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout, reset } from "../../features/authSlice";
 import {Home, FileText, UserPlus, Award, User, LogOut} from "feather-icons-react/build/IconComponents";
@@ -24,22 +24,22 @@ const Sidebar = () => {
         </div>
         <label className="sidebar-label">GENERAL</label>
         <div className="grid-container">
-            <Link to="/dashboard" className="sidebar-menu-list" ><Home/>Beranda</Link>
+            <NavLink to="/dashboard" activeClassName="sidebar-menu-list.active" className="sidebar-menu-list" ><Home/>Beranda</NavLink>
             {user && user.role === "admin" &&(
               <div>
-                <Link to="/aspek" className="sidebar-menu-list"><FileText/>Aspek Penilaian</Link>
-                <Link to="/jalur" className="sidebar-menu-list"><FileText/>Jalur Penerimaan</Link>
+                <NavLink to="/aspek" className="sidebar-menu-list"><FileText/>Aspek Penilaian</NavLink>
+                <NavLink to="/jalur" className="sidebar-menu-list"><FileText/>Jalur Penerimaan</NavLink>
               </div>
             )}
-            <Link to="/siswalist" className="sidebar-menu-list"><UserPlus/>Daftar</Link>
-            <Link to="/hasil" className="sidebar-menu-list"><Award/>Hasil</Link>
+            <NavLink to="/siswalist" className="sidebar-menu-list"><UserPlus/>Daftar</NavLink>
+            <NavLink to="/hasil" className="sidebar-menu-list"><Award/>Hasil</NavLink>
         </div>
         {user && user.role === "admin" &&(
           <div>
             <label className="sidebar-label">ADMIN</label>
             <div className="grid-container">
                 <div>
-                  <Link to="/userlist" className="sidebar-menu-list"><User/>User</Link>
+                  <NavLink to="/userlist" className="sidebar-menu-list"><User/>User</NavLink>
                 </div>
             </div>
           </div>

@@ -40,6 +40,11 @@
   border: 1px solid #fff;
   border-radius: .5rem;
 }
+.navbar-profile-openbtn-active {
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: .5rem;
+}
 
 .navbar-btn-content{
   display: flex;

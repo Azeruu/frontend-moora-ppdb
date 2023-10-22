@@ -19,11 +19,12 @@ const Navbar = ({toggleSidebar}) => {
     setModal(false);
   }
   
+  const buttonClass = modal ? 'navbar-profile-openbtn-active' : 'navbar-profile-openbtn';
 
   return (
     <div className="navbar">
       <button className="navbar-menu-openbtn" onClick={toggleSidebar}><Menu/></button>
-      <button className="navbar-profile-openbtn" onClick={openModal}>
+      <button className={buttonClass} onClick={openModal}>
         <div className="navbar-btn-content">
           <img className="foto-user-navbar" src={logo} alt="foto user"></img>
           <p>Hi, {user && Huruf(user.username)}</p>
