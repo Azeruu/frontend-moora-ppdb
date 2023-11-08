@@ -1,10 +1,10 @@
-/* CSS untuk list-siswa-container */
-.list-siswa-container {
+/* CSS untuk list-rekap-container */
+.list-rekap-container {
   padding: 20px;
 }
 
-/* CSS untuk list-siswa-grid */
-.list-siswa-grid {
+/* CSS untuk list-rekap-grid */
+.list-rekap-grid {
   /* background-color: #fff; */
   text-align: center;
   padding: 20px;
@@ -12,32 +12,17 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* CSS untuk list-siswa-judul */
-.list-siswa-judul {
+/* CSS untuk list-rekap-judul */
+.list-rekap-judul {
   font-size: 26px;
   margin-bottom: 20px;
 }
-.list-siswa-subjudul {
+.list-rekap-subjudul {
   margin-bottom: 20px;
   color: var(--secondary);
 }
-
-/* CSS untuk btnadd */
-.btnadd {
-  display: inline-block;
-  margin-right: 100%;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-.btnadd:hover {
-  background-color: #0056b3;
-}
-.list-siswa-table-container{
-  margin-top: 3rem;
+.list-rekap-table-container{
+  margin-top: 5rem;
 }
 /* CSS untuk table */
 .table {

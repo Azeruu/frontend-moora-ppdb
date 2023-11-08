@@ -1,10 +1,10 @@
-/* CSS untuk list-siswa-container */
-.list-siswa-container {
+/* CSS untuk list-nilai-container */
+.list-nilai-container {
   padding: 20px;
 }
 
-/* CSS untuk list-siswa-grid */
-.list-siswa-grid {
+/* CSS untuk list-nilai-grid */
+.list-nilai-grid {
   /* background-color: #fff; */
   text-align: center;
   padding: 20px;
@@ -12,12 +12,12 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* CSS untuk list-siswa-judul */
-.list-siswa-judul {
+/* CSS untuk list-nilai-judul */
+.list-nilai-judul {
   font-size: 26px;
   margin-bottom: 20px;
 }
-.list-siswa-subjudul {
+.list-nilai-subjudul {
   margin-bottom: 20px;
   color: var(--secondary);
 }
@@ -25,7 +25,6 @@
 /* CSS untuk btnadd */
 .btnadd {
   display: inline-block;
-  margin-right: 100%;
   padding: 8px 16px;
   background-color: #007bff;
   color: #fff;
@@ -36,8 +35,8 @@
 .btnadd:hover {
   background-color: #0056b3;
 }
-.list-siswa-table-container{
-  margin-top: 3rem;
+.list-nilai-table-container{
+  margin-top: 5rem;
 }
 /* CSS untuk table */
 .table {

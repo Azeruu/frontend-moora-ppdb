@@ -7,13 +7,7 @@ const ListSiswa = () => {
   const [siswa, setSiswa] = useState([]);
   const [jmlData, setJmlData] = useState(0);
 
-  useEffect(() => {
-    getSiswa();
-  }, []);
-  useEffect(() => {
-    jumlahData();
-  }, []);
-
+  
   // Batas
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
@@ -28,17 +22,27 @@ const ListSiswa = () => {
   };
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-
+  
   const currentData = siswa.slice(startIndex, endIndex);
   // Batas
+
+  useEffect(() => {
+    getSiswa();
+  }, []);
+  useEffect(() => {
+    jumlahData();
+  }, []);
 
   const getSiswa = async () => {
     const response = await axios.get("http://localhost:5000/data_siswa");
     setSiswa(response.data);
   };
-  const hapusSiswa = async (uuid) => {
+  const hapusSiswa = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/data_siswa/${uuid}`);
+      await axios.delete(`http://localhost:5000/hasil/${id}`);
+      await axios.delete(`http://localhost:5000/rekap_nilai/${id}`);
+      await axios.delete(`http://localhost:5000/data_nilai/${id}`);
+      await axios.delete(`http://localhost:5000/data_siswa/${id}`);
       getSiswa();
     } catch (error) {
       console.log(error);
@@ -56,10 +60,11 @@ const ListSiswa = () => {
     <div className="list-siswa-container">
       <div className="list-siswa-grid">
         <h1 className="list-siswa-judul">Daftar Siswa</h1>
+        <p className="list-siswa-subjudul">Daftar calon siswa pendaftar</p>
+        <div className="list-siswa-table-container">
         <Link to={`/siswalist/addsiswa`} className="btnadd">
           Daftar
         </Link>
-        <div className="list-siswa-table-container">
           <table className="table">
             <thead>
               <tr>

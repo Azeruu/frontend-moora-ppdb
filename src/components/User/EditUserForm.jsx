@@ -1,57 +1,72 @@
-import {useState, useEffect} from 'react';
-import axios from 'axios';
-import { useNavigate, useParams,Link } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
-// import DashboardMenu from '../Dashboard/DashboardMenu';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 const EditUser = () => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [role, setRole] = useState('Admin');
-    const [msg, setMsg] = useState("");
-    const navigate = useNavigate();
-    const {id} = useParams();
+  const navigate = useNavigate();
+  const [msg, setMsg] = useState("");
+  const { id } = useParams();
+  const [user, setUser] = useState({
+    username:'',
+    email:'',
+    password:'',
+    confirmPassword:'',
+    role:''
+  });
 
-    useEffect(() => {
-        const getUserById = async () => {
-        try {
-          const response = await axios.get(`http://localhost:5000/users/${id}`);
-          setUsername(response.data.username);
-          setEmail(response.data.email);
-          setRole(response.data.role);
-        } catch (error) {
-          if(error.response){
-            setMsg(error.response.data.msg);
-          }
+  useEffect(() => {
+    const getUserById = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/users/${id}`);
+        setUser(response.data);
+
+      } catch (error) {
+        if (error.response) {
+          setMsg(error.response.data.msg);
         }
+      }
     };
     getUserById();
-    },[id]);
+  }, [id]);
 
-    const updateUser = async (e) =>{
-        e.preventDefault();
-        try {
-            await axios.patch(`http://localhost:5000/users/${id}`, {
-              username: username,
-              email: email,
-              password: password,
-              confirmPassword: confirmPassword,
-              role: role,
-            });
-            navigate("/userlist");
-        } catch (error) {
-            if (error.response) {
-              setMsg(error.response.data.msg);
-            }
-        }
+  const setUsername = (newValue) => {
+    setUser({ ...user, username: newValue });
+  };
+  const setEmail = (newValue) => {
+    setUser({ ...user, email: newValue });
+  };
+  const setPassword = (newValue) => {
+    setUser({ ...user, password: newValue });
+  };
+  const setConfirmPassword = (newValue) => {
+    setUser({ ...user, confirmPassword: newValue });
+  };
+  const setRole = (newValue) => {
+    setUser({ ...user, role: newValue });
+  };
+
+  const updateUser = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.patch(`http://localhost:5000/users/${id}`, {
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        confirmPassword: user.confirmPassword,
+        role: user.role,
+      });
+      navigate("/userlist");
+    } catch (error) {
+      if (error.response) {
+        setMsg(error.response.data.msg);
+      }
     }
+  };
 
   return (
-    <div className="columns">
-      <div className="column">
-        <h1 className="daftaruser">Edit User</h1>
+    <div className="edit-user-column">
+      <div className="form-column">
+        <h1 className="edit-user-judul">Edit User</h1>
         <form onSubmit={updateUser}>
           <p>{msg}</p>
           <div className="field">
@@ -60,7 +75,7 @@ const EditUser = () => {
               <input
                 type="text"
                 className="input"
-                value={username}
+                value={user.username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username"
               ></input>
@@ -72,7 +87,7 @@ const EditUser = () => {
               <input
                 type="email"
                 className="input"
-                value={email}
+                value={user.email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
               ></input>
@@ -84,7 +99,7 @@ const EditUser = () => {
               <input
                 type="text"
                 className="input"
-                value={password}
+                value={user.password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
               ></input>
@@ -96,7 +111,7 @@ const EditUser = () => {
               <input
                 type="text"
                 className="input"
-                value={confirmPassword}
+                value={user.confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirm Password"
               ></input>
@@ -108,7 +123,7 @@ const EditUser = () => {
               <div className="select">
                 <select
                   className="option"
-                  value={role}
+                  value={user.role}
                   onChange={(e) => setRole(e.target.value)}
                 >
                   <option value="admin">Admin</option>
@@ -117,11 +132,11 @@ const EditUser = () => {
               </div>
             </div>
           </div>
-          <div className="field">
-            <Link to={`/userlist`} className="save">
+          <div className="btn-field">
+            <Link to={`/userlist`} className="action-btn">
               Kembali
             </Link>
-            <button type="submit" className="save">
+            <button type="submit" className="action-btn">
               Update
             </button>
           </div>
@@ -129,6 +144,6 @@ const EditUser = () => {
       </div>
     </div>
   );
-}
+};
 
-export default EditUser
+export default EditUser;

@@ -15,3 +15,17 @@ export function DaftarInputNilaiMapel({ errors, register, label_msg, input_type,
         </div>
     );
 }
+export function EditInputNilaiMapel({ errors, register, label_msg, input_type, regist_nilai, defaultValue }) {
+    return (
+        <div>
+            <div className='daftar-input-box'>
+                <label className="daftar-label">{label_msg}</label>
+                <input type={input_type} name="nilai" className="daftar-input" {...register(regist_nilai, { required: true })} value={defaultValue} />
+                {errors.label_msg && (
+                    <span className="daftar-span">{label_msg} wajib diisi</span>
+                )}
+            </div>
+        </div>
+    );
+}
+

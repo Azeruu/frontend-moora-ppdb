@@ -1,14 +1,14 @@
-import Layout from "../Layout";
-import AddUsers from "./AddUserForm";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../../features/authSlice";
+import Layout from "../Layout";
+import RekapNilai from "./ListRekapNilai";
 
-const AddUser = () => {
+const PageRekapNilai = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError, user } = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -18,14 +18,13 @@ const AddUser = () => {
     if (isError) {
       navigate("/login");
     }
-    if (user && user.role !== "admin") {
-      navigate("/dashboard");
-    }
-  }, [isError, user, navigate]);
-  
+    dispatch(getMe());
+  }, [isError, navigate]);
   return (
-    <Layout><AddUsers/></Layout>
-  )
-}
+    <Layout>
+      <RekapNilai />
+    </Layout>
+  );
+};
 
-export default AddUser
+export default PageRekapNilai;

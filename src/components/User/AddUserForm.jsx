@@ -1,9 +1,7 @@
 import {useState} from 'react';
+import "./ListUser.css";
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import Sidebar from '../NavSide/Sidebar';
-import Navbar from '../NavSide/Navbar';
-import ArrowLeft from "feather-icons-react/build/IconComponents/ArrowLeft";
 
 const AddUser = () => {
     const [username, setUsername] = useState('');
@@ -33,14 +31,9 @@ const AddUser = () => {
     }
 
   return (
-    <div className="columns">
-      <Navbar />
-      <Sidebar />
-      <Link to="/userlist" className="btn-back-1">
-        <ArrowLeft />
-      </Link>
-      <div className="column">
-        <h1 className="daftaruser">Tambah User</h1>
+    <div className="add-user-column">
+      <div className="form-column">
+        <h1 className="add-user-judul">Tambah User</h1>
         <form onSubmit={saveUser}>
           <p>{msg}</p>
           <div className="field">
@@ -106,11 +99,11 @@ const AddUser = () => {
               </div>
             </div>
           </div>
-          <div className="field">
-            <Link to={`/userlist`} className="save">
+          <div className="btn-field">
+            <Link to={`/userlist`} className="action-btn">
               Kembali
             </Link>
-            <button type="submit" className="save">
+            <button type="submit" className="action-btn">
               Save
             </button>
           </div>

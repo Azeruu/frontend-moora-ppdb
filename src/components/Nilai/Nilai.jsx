@@ -2,8 +2,7 @@ import { useForm } from 'react-hook-form';
 import '../Siswa/AddSiswa.css';
 import React, { useState } from 'react';
 import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'feather-icons-react/build/IconComponents';
+import {useNavigate } from 'react-router-dom';
 import {DaftarInputNilaiMapel} from './DaftarInputNilaiMapel';
 
 export default function Daftar2() {
@@ -14,13 +13,18 @@ export default function Daftar2() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post("http://localhost:5000/data_nilai", data);
-      // console.log("Data Berhasil di input : ", response.data);
       alert("Data Nilai Berhasil Di Input")
       navigate("/siswalist")
-    } catch (e) {
-      console.log("error dalam submit data :", e);
-      alert(e.response.data.msg)
-    }
+
+    await axios.post("http://localhost:5000/rekap_nilai");
+    console.log(response.data);
+
+    await axios.post("http://localhost:5000/hasil");
+    console.log(response.data);
+  } catch (e) {
+    console.log("error dalam submit data:", e);
+    alert(e.response.data.msg);
+  }
   };
 
   const nextStep = () =>{

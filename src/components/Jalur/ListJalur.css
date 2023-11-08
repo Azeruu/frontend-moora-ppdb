@@ -7,6 +7,7 @@
 .list-jalur-grid {
     /* background-color: #fff; */
     padding: 20px;
+    text-align: center;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -15,23 +16,26 @@
 .list-jalur-judul {
     font-size: 26px;
     margin-bottom: 20px;
-    margin-left: 40%;
 }
 
 /* CSS untuk btnadd */
-.btnadd {
+.btnadd-jalur {
     display: inline-block;
+    margin-right: 100%;
     padding: 8px 16px;
     background-color: #007bff;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
+    width: max-content;
 }
 
 .btnadd:hover {
     background-color: #0056b3;
 }
-
+.list-jalur-table-container{
+    margin-top: 3rem;
+}
 /* CSS untuk table */
 .table {
     width: 100%;
@@ -86,6 +90,7 @@
 .jumlah-data {
     margin-top: 20px;
     font-size: 16px;
+    text-align: left;
 }
 
 /* CSS untuk VLabel */
@@ -124,4 +129,86 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     margin: 0 5px;
+}
+
+/* BAGIAN ADD JALUR */
+.add-jalur-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    height: 70vh;
+    box-shadow: 10px 20px 40px rgba(8, 187, 211, 0.5);
+}
+
+.add-jalur-judul {
+    margin: 1rem;
+    margin-bottom: 2rem;
+}
+
+.label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.field {
+    margin-bottom: 10px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 1rem;
+}
+
+.action-btn {
+    /* align-items: center; */
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;
+}
+
+.select {
+    width: 100%;
+}
+
+/* error msg */
+.msg {
+    color: red;
+}
+
+.option {
+    width: 100%;
+    padding: 10px;
+}
+
+/* BAGIAN EDIT JALUR */
+.edit-jalur-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    height: 70vh;
+    box-shadow: 10px 20px 40px rgba(8, 187, 211, 0.5);
+}
+
+.edit-jalur-judul {
+    margin: 1rem;
+    margin-bottom: 2rem;
 }

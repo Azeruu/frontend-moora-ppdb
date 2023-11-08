@@ -27,6 +27,31 @@ body {
   background-color: var(--bg);
   color: #fff;
 }
+.btnEdit {
+  display: flex;
+  justify-content: center;
+  padding: 0.7rem;
+  /* padding-inline: 2rem; */
+  background-color: var(--primary);
+  border-radius: 1rem;
+  color: #fff;
+  font-size: medium;
+  width: 6rem;
+}
+
+.btnHapus {
+  display: flex;
+  justify-content: center;
+  padding: 0.7rem;
+  /* padding-inline: 2rem; */
+  background-color: rgb(210, 15, 15);
+  border-radius: 1rem;
+  color: #fff;
+  font-size: medium;
+  margin-top: 1rem;
+  width: 6rem;
+  cursor: pointer;
+}
 
 /* Media Query */
 /* Laptop */

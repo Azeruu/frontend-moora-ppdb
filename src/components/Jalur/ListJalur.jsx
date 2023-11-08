@@ -9,11 +9,8 @@ const ListJalur = () => {
 
   useEffect(() => {
     getJalur();
-  }, []);
-  useEffect(() => {
     jumlahData();
   }, []);
-
   // Batas
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
@@ -54,11 +51,12 @@ const ListJalur = () => {
   return (
     <div className="list-jalur-container">
       <div className="list-jalur-grid">
-          <h1 className="list-jalur-judul">Jalur Masuk</h1>
-          <Link to={`/jalur/addjalur`} className="btnadd">
+          <h1 className="list-jalur-judul">Jalur Pendaftaran</h1>
+          <p className="list-rekap-subjudul">Jalur pendaftaran yang dapat dipilih dengan batas kuota-nya masing - masing</p>
+        <div className="list-jalur-table-container">
+          <Link to={`/jalur/addjalur`} className="btnadd-jalur">
             Tambah Jalur
           </Link>
-        <div className="list-jalur-table-container">
           <table className="table">
             <thead>
               <tr>
@@ -76,13 +74,13 @@ const ListJalur = () => {
                     <td>{jal.nama_jalur}</td>
                     <td>
                       <Link
-                        to={`/jalur/editjalur/${jal.uuid}`}
+                        to={`/jalur/editjalur/${jal.id}`}
                         className="btnEdit"
                       >
                         Edit
                       </Link>
                       <button
-                        onClick={() => hapusJalur(jal.uuid)}
+                        onClick={() => hapusJalur(jal.id)}
                         className="btnHapus"
                       >
                         Hapus

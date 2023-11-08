@@ -2,7 +2,7 @@ import "./Sidebar.css"
 import { NavLink, useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout, reset } from "../../features/authSlice";
-import {Home, FileText, UserPlus, Award, User, LogOut} from "feather-icons-react/build/IconComponents";
+import {Home, FileText, UserPlus, Award, User, LogOut, PieChart, PenTool, Map} from "feather-icons-react/build/IconComponents";
 import logo from "../../image/profile1.png";
 
 const Sidebar = () => {
@@ -27,11 +27,13 @@ const Sidebar = () => {
             <NavLink to="/dashboard" activeClassName="sidebar-menu-list.active" className="sidebar-menu-list" ><Home/>Beranda</NavLink>
             {user && user.role === "admin" &&(
               <div>
-                <NavLink to="/aspek" className="sidebar-menu-list"><FileText/>Aspek Penilaian</NavLink>
-                <NavLink to="/jalur" className="sidebar-menu-list"><FileText/>Jalur Penerimaan</NavLink>
+                <NavLink to="/aspek" className="sidebar-menu-list"><PenTool/>Aspek Penilaian</NavLink>
+                <NavLink to="/jalur" className="sidebar-menu-list"><Map/>Jalur Penerimaan</NavLink>
               </div>
             )}
             <NavLink to="/siswalist" className="sidebar-menu-list"><UserPlus/>Daftar</NavLink>
+            <NavLink to="/nilailist" className="sidebar-menu-list"><FileText/>Nilai</NavLink>
+            <NavLink to="/rekapnilai" className="sidebar-menu-list"><PieChart/>Rekap Nilai</NavLink>
             <NavLink to="/hasil" className="sidebar-menu-list"><Award/>Hasil</NavLink>
         </div>
         {user && user.role === "admin" &&(

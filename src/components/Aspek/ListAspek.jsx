@@ -52,13 +52,14 @@ const ListAspek = () => {
     }
   };
   return (
-    <div className="list-jalur-container">
-      <div className="list-jalur-grid">
-          <h1 className="list-jalur-judul">Aspek </h1>
+    <div className="list-aspek-container">
+      <div className="list-aspek-grid">
+          <h1 className="list-aspek-judul">Aspek </h1>
+          <p className="list-aspek-subjudul">Aspek - aspek yang di nilai dalam penerimaan peserta didik baru </p>
+        <div className="list-aspek-table-container">
           <Link to={`/Aspek/addAspek`} className="btnadd">
             Tambah Aspek
           </Link>
-        <div className="list-jalur-table-container">
           <table className="table">
             <thead>
               <tr>

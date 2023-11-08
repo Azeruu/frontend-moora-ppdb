@@ -2,8 +2,7 @@ import { useForm } from 'react-hook-form';
 import './AddSiswa.css'
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'feather-icons-react/build/IconComponents';
+import { useNavigate } from 'react-router-dom';
 import DaftarInputUserTextNumber from './DaftarInputUserTextNumber';
 
 export default function Daftar() {

@@ -6,6 +6,7 @@
 /* CSS untuk list-aspek-grid */
 .list-aspek-grid {
   /* background-color: #fff; */
+  text-align: center;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -15,9 +16,14 @@
 .list-aspek-judul {
   font-size: 26px;
   margin-bottom: 20px;
-  margin-left: 40%;
 }
-
+.list-aspek-subjudul {
+  color: var(--secondary);
+  margin-bottom: 20px;
+}
+.list-aspek-table-container{
+  margin-top: 3rem;
+}
 /* CSS untuk btnadd */
 .btnadd {
   display: inline-block;
@@ -86,6 +92,7 @@
 .jumlah-data {
   margin-top: 20px;
   font-size: 16px;
+  text-align: left;
 }
 
 /* CSS untuk VLabel */

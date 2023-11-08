@@ -1,16 +1,134 @@
-.pengumuman-page{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--bg);
-    height: 100vh;
+/* CSS untuk list-hasil-container */
+.list-hasil-container {
+    padding: 20px;
 }
-.pengumuman{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+/* CSS untuk list-hasil-grid */
+.list-hasil-grid {
+    /* background-color: #fff; */
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* CSS untuk list-hasil-judul */
+.list-hasil-judul {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+.list-hasil-subjudul {
+    margin-bottom: 20px;
+}
+
+/* CSS untuk btnadd */
+.btnadd {
+    display: inline-block;
+    margin-right: 100%;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btnadd:hover {
+    background-color: #0056b3;
+}
+.list-hasil-table-container{
+    margin-top: 5rem;
+}
+/* CSS untuk table */
+.table {
     width: 100%;
-    height: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
-.pengumuman h1{
-    font-size: 2rem;
+
+.table th,
+.table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.table th {
+    background-color: var(--quartenary);
+}
+
+/* Style Untuk Pagination */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination .page-button {
+    padding: 10px 20px;
+    margin: 0 15px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+}
+
+.pagination .page-button-active {
+    background-color: var(--hover);
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.pagination .page-button-nonactive {
+    background-color: transparent;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* CSS untuk jumlah-data */
+.jumlah-data {
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* CSS untuk VLabel */
+.VLabel {
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* CSS untuk atur-jumlah */
+.atur-jumlah {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* CSS untuk btn-data */
+.btn-data {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.btn-data:hover {
+    background-color: #0056b3;
+}
+
+/* CSS untuk input-banyakdata */
+.input-banyakdata {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 5px;
 }

@@ -59,10 +59,10 @@ const ListUser = () => {
     <div className="list-user-container">
       <div className="list-user-grid">
         <h1 className="list-user-judul">Daftar User</h1>
+        <div className="list-user-table-container">
         <Link to={`/userlist/adduser`} className="btnadd">
           Tambah User
         </Link>
-        <div className="list-user-table-container">
           <table className="table" id="data-table">
             <thead>
               <tr>
@@ -70,7 +70,6 @@ const ListUser = () => {
                 <th>ID User</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>Role</th>
                 <th>Action</th>
               </tr>
@@ -82,7 +81,6 @@ const ListUser = () => {
                   <td>{user.id}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
-                  <td>{user.password}</td>
                   <td>{user.role}</td>
                   <td>
                     <Link
