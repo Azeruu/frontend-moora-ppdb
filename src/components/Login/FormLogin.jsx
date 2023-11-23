@@ -1,7 +1,6 @@
 import "./Login.css";
-import logosmp from "../../image/react.png"
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginUser, RegisterUser, reset } from "../../features/authSlice";
 import {
@@ -36,7 +35,7 @@ const Login = () => {
       alert(`pesan error : ${message}`);
     }
     dispatch(reset());
-  }, [user, isSuccess, dispatch, navigate]);
+  }, [user, isSuccess, dispatch, navigate, isError, message]);
 
   const saveUser = async (e) => {
     e.preventDefault();

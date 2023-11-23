@@ -1,11 +1,15 @@
 import "./ListSiswa.css";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 const ListSiswa = () => {
   const [siswa, setSiswa] = useState([]);
   const [jmlData, setJmlData] = useState(0);
+  const [isDataExists, setIsDataExists] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   
   // Batas
@@ -27,16 +31,54 @@ const ListSiswa = () => {
   // Batas
 
   useEffect(() => {
-    getSiswa();
-  }, []);
-  useEffect(() => {
-    jumlahData();
-  }, []);
+    const checkDataExistence = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/data_siswa", {
+          params: {
+            userId: user.id,
+          },
+        });
+        setIsDataExists(response.data.length > 0);
+      } catch (error) {
+        console.error('Error checking data existence:', error);
+      }
+    };
+
+    checkDataExistence();
+  }, [user.id]);
+
+  const handleDaftarButtonClick = () => {
+    if (user.role === "admin") {
+      navigate(`/siswalist/addsiswa`);
+    } else {
+      if (isDataExists) {
+        alert('Anda sudah melakukan input, tidak dapat melakukan input lebih dari 1 kali.');
+      } else {
+        navigate(`/siswalist/addsiswa`);
+      }
+    }
+  };
 
   const getSiswa = async () => {
     const response = await axios.get("http://localhost:5000/data_siswa");
     setSiswa(response.data);
   };
+  useEffect(() => {
+    getSiswa();
+  }, []);
+
+  useEffect(() => {
+    const jumlahData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/data_siswa");
+        setJmlData(response.data.length);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    jumlahData();
+  }, []);
+
   const hapusSiswa = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/hasil/${id}`);
@@ -48,23 +90,14 @@ const ListSiswa = () => {
       console.log(error);
     }
   };
-  const jumlahData = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/data_siswa");
-      setJmlData(response.data.length);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
   return (
     <div className="list-siswa-container">
       <div className="list-siswa-grid">
         <h1 className="list-siswa-judul">Daftar Siswa</h1>
         <p className="list-siswa-subjudul">Daftar calon siswa pendaftar</p>
         <div className="list-siswa-table-container">
-        <Link to={`/siswalist/addsiswa`} className="btnadd">
-          Daftar
-        </Link>
+        <button onClick={handleDaftarButtonClick} className="btnadd">Daftar</button>
           <table className="table">
             <thead>
               <tr>
@@ -100,7 +133,11 @@ const ListSiswa = () => {
                       Edit
                     </Link>
                     <button
-                      onClick={() => hapusSiswa(sis.id)}
+                      onClick={() => {
+                        if (window.confirm('Apakah Anda yakin ingin menghapus  data siswa ini?')) {
+                          hapusSiswa(sis.id);
+                        }
+                      }}
                       className="btnHapus"
                     >
                       Hapus

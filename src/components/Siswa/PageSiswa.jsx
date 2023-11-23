@@ -12,13 +12,15 @@ const PageSiswa = () => {
 
   useEffect(() => {
     dispatch(getMe());
-  }, [dispatch]);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
   useEffect(() => {
     if (isError) {
       navigate("/login");
     }
     dispatch(getMe());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, navigate]);
   return (
     <Layout>

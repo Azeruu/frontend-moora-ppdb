@@ -6,30 +6,34 @@ import { useNavigate } from 'react-router-dom';
 import DaftarInputUserTextNumber from './DaftarInputUserTextNumber';
 
 export default function Daftar() {
-  const { handleSubmit, register, formState:{errors}} = useForm();
+  const { handleSubmit, register, formState:{errors}, setValue} = useForm();
   const [step, setStep] = useState(1);
-  const [ jalur, setJalur] = useState([]);
+  const [jalur, setJalur] = useState([]);
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
       const response = await axios.post("http://localhost:5000/data_siswa", data);
-      console.log("Data Berhasil Di Input", response.data);
+      // console.log("Data Berhasil Di Input", response.data);
+      const newId = response.data.idSiswaBaru;
+      // console.log(newId);
       alert("Data Siswa Berhasil Di Input, Silahkan Lanjutkan Ke Input Nilai")
-      navigate("/siswalist/addnilai");
+      navigate(`/siswalist/addnilai/${newId}`);
     } catch (e) {
-      console.log("error dalam submit data :", e);
+      console.log("error dalam submit data :", e.response.msg);
       alert(e.response.data.msg);
     }
   };
-
-  const getJalur = async(data) =>{
+  
+  useEffect(() => {
+    const getJalur = async(data) =>{
       const response = await axios.get("http://localhost:5000/jalur", data);
       setJalur(response.data);
+      setValue('id', response.data.id);
+      setValue('nama_jalur', response.data.nama_jalur);
   }
-  useEffect(() => {
     getJalur();
-}, []);
+}, [setValue]);
 
   const nextStep = () =>{
     setStep(step + 1);
@@ -48,7 +52,6 @@ export default function Daftar() {
             <p>Data Diri</p>
           </div>
           <div className="step">
-          {/* <p className={`indicator-line ${step === 2 ?'indicator-line-active':''}`}></p> */}
               <p className={`daftar-indicator ${step === 2 ?'daftar-indicator-active':''}`}>2</p>
             <p>Alamat </p>
           </div>
@@ -62,9 +65,10 @@ export default function Daftar() {
 
             <div className='daftar-input-box'>
               <label className="daftar-label">Jalur Pendaftaran</label>
-              <select className='daftar-input'{...register("nama_jalur", {required:true})}>
+              <select className='daftar-input' {...register("nama_jalur", {required:true})} >
+              <option value="" disabled selected>---- Pilih Jalur ----</option>
                 {jalur.map((path) => (
-                  <option key={path.id} value={path.nama_jalur}>
+                  <option  key={path.id} value={path.nama_jalur}>
                     {path.nama_jalur}
                   </option>
                 ))}
@@ -77,6 +81,7 @@ export default function Daftar() {
             <div className='daftar-input-box'>
               <label className="daftar-label">Jenis Kelamin</label>
               <select {...register("jenis_kelamin", {required:true})} >
+                <option value="" disabled selected>---- Pilih Jenis Kelamin ----</option>
                 <option value="Laki - Laki"> Laki - Laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>

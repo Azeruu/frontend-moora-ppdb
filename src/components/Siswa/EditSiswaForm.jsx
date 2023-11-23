@@ -1,180 +1,150 @@
-import { useState, useEffect } from "react";
-import "./EditSiswa.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useForm } from 'react-hook-form';
+import './EditSiswa.css'
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { getMe } from "../../features/authSlice";
+import { useNavigate, useParams } from 'react-router-dom';
+import {EditUserTextNumber} from './DaftarInputUserTextNumber';
 
-const Daftar = () => {
-  const dispatch = useDispatch();
+export default function Daftar() {
+  const { handleSubmit, register, formState:{errors}, setValue} = useForm();
+  const [step, setStep] = useState(1);
+  const [ jalur, setJalur] = useState([]);
   const navigate = useNavigate();
-  const { isError } = useSelector((state) => state.auth);
+  const {id} = useParams();
 
   useEffect(() => {
-    dispatch(getMe());
-  }, [dispatch]);
+    // Fungsi untuk mengambil data siswa yang sudah ada
+    const fetchData = async () => {
+      try {
+      const response = await axios.get(`http://localhost:5000/data_siswa/${id}`);
+        setValue('nama_jalur', response.data.nama_jalur);
+        setValue('NISN', response.data.NISN);
+        setValue('nama_lengkap', response.data.nama_lengkap);
+        setValue('jenis_kelamin', response.data.jenis_kelamin);
+        setValue('NIK', response.data.NIK);
+        setValue('tempat_lahir', response.data.tempat_lahir);
+        setValue('tgl_lahir', response.data.tgl_lahir);
+        setValue('usia', response.data.usia);
+        setValue('asal_sekolah', response.data.asal_sekolah);
+        setValue('nama_jalan', response.data.nama_jalan);
+        setValue('no_rumah', response.data.no_rumah);
+        setValue('RT', response.data.RT);
+        setValue('RW', response.data.RW);
+        setValue('Desa', response.data.Desa);
+        setValue('Kecamatan', response.data.Kecamatan);
+        setValue('jarak', response.data.jarak);
+      } catch (e) {
+        console.log("error dalam mengambil data siswa:", e);
+      }
+    };
+    fetchData();
+}, []);
 
-  useEffect(() => {
-    if (isError) {
-      navigate("/login");
-    }
-    dispatch(getMe());
-  }, [isError, navigate]);
-
-  const [nama_lengkap, setNama] = useState("");
-  const [tempat_lahir, setTtl] = useState("");
-  const [tgl_lahir, setTgl] = useState("");
-  const [alamat, setAlamat] = useState("");
-  const [kota, setKota] = useState("");
-  const [jenis_kelamin, setJk] = useState("Laki-Laki");
-  const [no_telp, setTelp] = useState("");
-  const [email, setEmail] = useState("");
-  const [nama_wali, setWali] = useState("");
-  const [asal_sekolah, setAsal] = useState("");
-  const [agama, setAgama] = useState("");
-
-  const saveSiswa = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     try {
-      await axios.post("http://localhost:5000/data_siswa", {
-        nama_lengkap,
-        tempat_lahir,
-        tgl_lahir,
-        alamat,
-        kota,
-        jenis_kelamin,
-        no_telp,
-        email,
-        nama_wali,
-        asal_sekolah,
-        agama,
-      });
-      navigate("/pendaftaran");
-    } catch (error) {
-      console.log(error);
+      const response = await axios.patch(`http://localhost:5000/data_siswa/${id}`, data);
+      // console.log("Data Berhasil Di Input", response.data);
+      await axios.patch(`http://localhost:5000/rekap_nilai/${id}`, data)
+      await axios.patch(`http://localhost:5000/hasil/${id}`, data)
+      alert("Data Siswa Berhasil Di Ubah")
+      navigate("/siswalist");
+    } catch (e) {
+      console.log("error dalam submit data :", e);
+      alert(e.response.msg);
     }
   };
 
+useEffect(() => {
+  const getJalur = async(data) =>{
+      const response = await axios.get("http://localhost:5000/jalur", data);
+      setJalur(response.data);
+  }
+    getJalur();
+}, []);
+
+  const nextStep = () =>{
+    setStep(step + 1);
+  }
+  const prevStep = () =>{
+    setStep(step - 1);
+  }
+
   return (
-    <div className="data">
-      <h2>Formulir Data Diri</h2>
-      <div className="row">
-        <form onSubmit={saveSiswa}>
-          <div className="form-group">
-            <label>Nama Lengkap</label>
-            <input
-              type="text"
-              placeholder="Nama Lengkap"
-              value={nama_lengkap}
-              onChange={(e) => setNama(e.target.value)}
-            />
+    <div className="Daftar-container">
+      <div className="daftar-navbar">
+        <h2 className="daftar-judul">Edit Data Pendaftar</h2>
+        <div className='daftar-step'>
+          <div className="step">
+            <button className={`daftar-indicator ${step === 1 ?'daftar-indicator-active':''}`} onClick={()=>setStep(step - 1)}>1</button>
+            <p>Data Diri</p>
           </div>
-          <div className="form-group">
-            <label>Tempat Lahir</label>
-            <input
-              type="text"
-              placeholder="Tempat Lahir"
-              value={tempat_lahir}
-              onChange={(e) => setTtl(e.target.value)}
-            />
+          <div className="step">
+          {/* <p className={`indicator-line ${step === 2 ?'indicator-line-active':''}`}></p> */}
+              <p className={`daftar-indicator ${step === 2 ?'daftar-indicator-active':''}`}>2</p>
+            <p>Alamat </p>
           </div>
-          <div className="form-group">
-            <label>Tanggal Lahir</label>
-            <input
-              type="date"
-              placeholder="Tanggal Lahir"
-              value={tgl_lahir}
-              onChange={(e) => setTgl(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Alamat</label>
-            <input
-              type="text"
-              placeholder="Alamat"
-              value={alamat}
-              onChange={(e) => setAlamat(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Kota/Kabupaten </label>
-            <input
-              type="text"
-              placeholder="Kota/kabupaten"
-              value={kota}
-              onChange={(e) => setKota(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Jenis Kelamin</label>
-            <div className="jk">
-              <select
-                className="option"
-                value={jenis_kelamin}
-                onChange={(e) => setJk(e.target.value)}
-              >
-                <option value="Laki-Laki">Laki - Laki</option>
+        </div>
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* Langkah Pertama */}
+        {step === 1 && (
+          <div className='daftar-form'>
+            <h2 className="daftar-judul-form">Form 1 : Data Diri</h2>
+
+            <div className='daftar-input-box'>
+              <label className="daftar-label">Jalur Pendaftaran</label>
+              <select className='daftar-input'{...register("nama_jalur", {required:true})}>
+                {jalur.map((path) => (
+                  <option key={path.id}>
+                    {path.nama_jalur}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+              {<EditUserTextNumber errors={errors} register={register} regist_msg="NISN" label_msg="NISN" input_type="number"/>}
+              {<EditUserTextNumber errors={errors} register={register} regist_msg="nama_lengkap" label_msg="Nama Lengkap" input_type="text" />}
+
+            <div className='daftar-input-box'>
+              <label className="daftar-label">Jenis Kelamin</label>
+              <select {...register("jenis_kelamin", {required:true})} >
+                <option value="Laki - Laki"> Laki - Laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
             </div>
-          </div>
-          <div className="form-group">
-            <label>No Hp/Telephone</label>
-            <input
-              type="text"
-              placeholder="No Handphone"
-              value={no_telp}
-              onChange={(e) => setTelp(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="text"
-              placeholder="E-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Nama Orang Tua Wali</label>
-            <input
-              type="text"
-              placeholder="Nama Orang Tua Wali"
-              value={nama_wali}
-              onChange={(e) => setWali(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Asal Sekolah</label>
-            <input
-              type="text"
-              placeholder="Asal Sekolah"
-              value={asal_sekolah}
-              onChange={(e) => setAsal(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Agama</label>
-            <input
-              type="text"
-              placeholder="Agama"
-              value={agama}
-              onChange={(e) => setAgama(e.target.value)}
-            />
-          </div>
-          <div className="btn_action">
-            <Link to="/pendaftaran" className="btn-back">
-              Kembali
-            </Link>
-            <button className="btn-daftar" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
 
-export default Daftar;
+              {<EditUserTextNumber errors={errors} register={register} regist_msg="NIK" label_msg="NIK" input_type="number" />}
+              {<EditUserTextNumber errors={errors} register={register} regist_msg="tempat_lahir" label_msg="Tempat Lahir"input="text" />}
+              {<EditUserTextNumber errors={errors} register={register} regist_msg="tgl_lahir" label_msg="Tanggal Lahir" input_type="date" />}
+              {<EditUserTextNumber errors={errors} register={register} regist_msg="usia" label_msg="Usia" input_type="number" />}
+              {<EditUserTextNumber errors={errors} register={register} regist_msg="asal_sekolah" label_msg="Asal Sekolah" input_type="text" />}
+
+          </div>
+        )}
+        {/* Langkah Ke Dua */}
+        {step === 2 && (
+          <div className='daftar-form'>
+            <h2 className="daftar-judul-form">Form 2 : Alamat </h2>
+            {<EditUserTextNumber errors={errors} register={register} regist_msg="nama_jalan" label_msg="Nama Jalan" input_type="text" />}
+            {<EditUserTextNumber errors={errors} register={register} regist_msg="no_rumah" label_msg="Nomor Rumah" input_type="text" />}
+            {<EditUserTextNumber errors={errors} register={register} regist_msg="RT" label_msg="RT"input_type="text" />}
+            {<EditUserTextNumber errors={errors} register={register} regist_msg="RW" label_msg="RW"input_type="text" />}
+            {<EditUserTextNumber errors={errors} register={register} regist_msg="Desa" label_msg="Desa " input_type="text" />}
+            {<EditUserTextNumber errors={errors} register={register} regist_msg="Kecamatan" label_msg="Kecamatan " input_type="text" />}
+            {<EditUserTextNumber errors={errors} register={register} regist_msg="jarak" label_msg="Jarak " input_type="text" />}
+          </div>
+        )}
+        <div>
+          {step > 1 && (
+            <button type="button" className="btnNextPrev"onClick={prevStep}>Kembali</button>
+          )}
+          {step < 2 && (
+            <button type="button" className="btnNextPrev"onClick={nextStep}>Selanjutnya</button>
+          )}
+          {step === 2 && <button type="submit" className="btnNextPrev">Simpan</button>}
+        </div>
+      </form>
+      </div>
+  );
+}
+

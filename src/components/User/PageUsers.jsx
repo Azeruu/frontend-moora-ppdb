@@ -12,7 +12,8 @@ const PageUsers = () => {
 
   useEffect(() => {
     dispatch(getMe());
-  }, [dispatch]);
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (isError) {

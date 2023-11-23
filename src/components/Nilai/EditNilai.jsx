@@ -9,31 +9,53 @@ export default function EditDaftar() {
     const { handleSubmit, register, formState: { errors }, setValue } = useForm();
     const [step, setStep] = useState(1);
     const navigate = useNavigate();
-    // Simpan data nilai yang sudah ada dalam state
-    const [existingNilai, setExistingNilai] = useState([]);
     const {id} = useParams();
 
-    // Fungsi untuk mengambil data nilai yang sudah ada
+    useEffect(() => {
+        // Fungsi untuk mengambil data nilai yang sudah ada
     const fetchData = async () => {
         try {
         const response = await axios.get(`http://localhost:5000/data_nilai/${id}`);
-        setExistingNilai(response.data);
-        console.log(existingNilai);
+        setValue('pkn1', response.data.pkn1);
+        setValue('pkn2', response.data.pkn1);
+        setValue('pkn3', response.data.pkn1);
+        setValue('pkn4', response.data.pkn1);
+        setValue('pkn5', response.data.pkn1);
+        setValue('bindo1', response.data.bindo1);
+        setValue('bindo2', response.data.bindo2);
+        setValue('bindo3', response.data.bindo3);
+        setValue('bindo4', response.data.bindo4);
+        setValue('bindo5', response.data.bindo5);
+        setValue('mtk1', response.data.mtk1);
+        setValue('mtk2', response.data.mtk2);
+        setValue('mtk3', response.data.mtk3);
+        setValue('mtk4', response.data.mtk4);
+        setValue('mtk5', response.data.mtk5);
+        setValue('ips1', response.data.ips1);
+        setValue('ips2', response.data.ips2);
+        setValue('ips3', response.data.ips3);
+        setValue('ips4', response.data.ips4);
+        setValue('ips5', response.data.ips5);
+        setValue('ipa1', response.data.ipa1);
+        setValue('ipa2', response.data.ipa2);
+        setValue('ipa3', response.data.ipa3);
+        setValue('ipa4', response.data.ipa4);
+        setValue('ipa5', response.data.ipa5);
         } catch (e) {
         console.log("error dalam mengambil data nilai:", e);
         }
     };
-
-    useEffect(() => {
         fetchData();
-    }, []);
+    }, [setValue]);
 
     const onSubmit = async (data) => {
         try {
         // Proses pengiriman data nilai yang diubah
-        await axios.patch(`http://localhost:5000/data_nilai/${id}`, data); // Ganti URL sesuai dengan endpoint yang sesuai
+        await axios.patch(`http://localhost:5000/data_nilai/${id}`, data);
+        await axios.patch(`http://localhost:5000/rekap_nilai/${id}`, data)
+        await axios.patch(`http://localhost:5000/hasil/${id}`, data) // Ganti URL sesuai dengan endpoint yang sesuai
         alert("Data Nilai Berhasil Diubah");
-        navigate("/siswalist");
+        navigate("/nilailist");
         } catch (e) {
         console.log("error dalam submit data:", e);
         alert(e.response.data.msg);
@@ -58,51 +80,51 @@ export default function EditDaftar() {
             {step === 1 && (
             <div className='daftar-form'>
                 <h2 className="daftar-judul-form">Nilai Rapor Semester 7 (Kelas 4 semester ganjil)</h2>
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="pkn1" label_msg="Bidang Studi PKN" defaultValue={existingNilai.pkn1} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="bindo1" label_msg="Bidang Studi B.INDO" defaultValue={existingNilai.bindo1} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="mtk1" label_msg="Bidang Studi MTK" defaultValue={existingNilai.mtk1} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ips1" label_msg="Bidang Studi IPS" defaultValue={existingNilai.ips1} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ipa1" label_msg="Bidang Studi IPA" defaultValue={existingNilai.ipa1} input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="pkn1" label_msg="Bidang Studi PKN" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="bindo1" label_msg="Bidang Studi B.INDO" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="mtk1" label_msg="Bidang Studi MTK" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ips1" label_msg="Bidang Studi IPS" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ipa1" label_msg="Bidang Studi IPA" input_type="text" />}
             </div>
             )}
             {step === 2 && (
             <div className='daftar-form'>
                 <h2 className="daftar-judul-form">Nilai Rapor Semester 8 (Kelas 4 semester genap)</h2>
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="pkn2" label_msg="Bidang Studi PKN" defaultValue={existingNilai.pkn2} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="bindo2" label_msg="Bidang Studi B.INDO" defaultValue={existingNilai.bindo2} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="mtk2" label_msg="Bidang Studi MTK" defaultValue={existingNilai.mtk2} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ips2" label_msg="Bidang Studi IPS" defaultValue={existingNilai.ips2} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ipa2" label_msg="Bidang Studi IPA" defaultValue={existingNilai.ipa2} input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="pkn2" label_msg="Bidang Studi PKN" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="bindo2" label_msg="Bidang Studi B.INDO" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="mtk2" label_msg="Bidang Studi MTK" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ips2" label_msg="Bidang Studi IPS" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ipa2" label_msg="Bidang Studi IPA" input_type="text" />}
             </div>
             )}
             {step === 3 && (
             <div className='daftar-form'>
                 <h2 className="daftar-judul-form">Nilai Rapor Semester 9 (Kelas 5 semester ganjil)</h2>
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="pkn3" label_msg="Bidang Studi PKN" defaultValue={existingNilai.pkn3} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="bindo3" label_msg="Bidang Studi B.INDO" defaultValue={existingNilai.bindo3} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="mtk3" label_msg="Bidang Studi MTK" defaultValue={existingNilai.mtk3} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ips3" label_msg="Bidang Studi IPS" defaultValue={existingNilai.ips3} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ipa3" label_msg="Bidang Studi IPA" defaultValue={existingNilai.ipa3} input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="pkn3" label_msg="Bidang Studi PKN" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="bindo3" label_msg="Bidang Studi B.INDO" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="mtk3" label_msg="Bidang Studi MTK" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ips3" label_msg="Bidang Studi IPS" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ipa3" label_msg="Bidang Studi IPA" input_type="text" />}
             </div>
             )}
             {step === 4 && (
             <div className='daftar-form'>
                 <h2 className="daftar-judul-form">Nilai Rapor Semester 10 (Kelas 5 semester genap)</h2>
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="pkn4" label_msg="Bidang Studi PKN" defaultValue={existingNilai.pkn4} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="bindo4" label_msg="Bidang Studi B.INDO" defaultValue={existingNilai.bindo4} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="mtk4" label_msg="Bidang Studi MTK" defaultValue={existingNilai.mtk4} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ips4" label_msg="Bidang Studi IPS" defaultValue={existingNilai.ips4} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ipa4" label_msg="Bidang Studi IPA" defaultValue={existingNilai.ipa4} input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="pkn4" label_msg="Bidang Studi PKN" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="bindo4" label_msg="Bidang Studi B.INDO" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="mtk4" label_msg="Bidang Studi MTK" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ips4" label_msg="Bidang Studi IPS" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ipa4" label_msg="Bidang Studi IPA" input_type="text" />}
             </div>
             )}
             {step === 5 && (
             <div className='daftar-form'>
                 <h2 className="daftar-judul-form">Nilai Rapor Semester 11 (Kelas 6 semester ganjil)</h2>
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="pkn5" label_msg="Bidang Studi PKN" defaultValue={existingNilai.pkn5} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="bindo5" label_msg="Bidang Studi B.INDO" defaultValue={existingNilai.bindo5} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="mtk5" label_msg="Bidang Studi MTK" defaultValue={existingNilai.mtk5} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ips5" label_msg="Bidang Studi IPS" defaultValue={existingNilai.ips5} input_type="text" />}
-                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ipa5" label_msg="Bidang Studi IPA" defaultValue={existingNilai.ipa5} input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="pkn5" label_msg="Bidang Studi PKN" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="bindo5" label_msg="Bidang Studi B.INDO" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="mtk5" label_msg="Bidang Studi MTK" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ips5" label_msg="Bidang Studi IPS" input_type="text" />}
+                {<EditInputNilaiMapel errors={errors} register={register} regist_nilai="ipa5" label_msg="Bidang Studi IPA" input_type="text" />}
             </div>
             )}
             {/* ... Sisakan langkah-langkah berikutnya hingga selesai */}

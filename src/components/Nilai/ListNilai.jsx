@@ -35,7 +35,6 @@ const ListNilai = () => {
     const getNilai = async () => {
         const response = await axios.get("http://localhost:5000/data_nilai");
         setNilai(response.data);
-        console.log(nilai);
     };
     // const hapusNilai = async (id) => {
     //     try {
@@ -101,7 +100,7 @@ const ListNilai = () => {
                     <tr key={nil.id}>
                     <td>
                         <Link
-                        to={`/nilailist/editnilai/${nil.id}`}
+                        to={`/nilailist/editnilai/${nil.dataSiswaId}`}
                         className="btnEdit"
                         >
                         Edit

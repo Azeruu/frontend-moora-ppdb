@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const {user} = useSelector((state) => state.auth);
-  const Huruf = (user) => {
-    return user.charAt(0).toUpperCase() + user.slice(1);
-  };
+  // const {user} = useSelector((state) => state.auth);
+  // const Huruf = (user) => {
+  //   return user.charAt(0).toUpperCase() + user.slice(1);
+  // };
 
   return (
     <div className="dashboard-container">

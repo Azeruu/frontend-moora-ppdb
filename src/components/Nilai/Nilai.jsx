@@ -2,25 +2,23 @@ import { useForm } from 'react-hook-form';
 import '../Siswa/AddSiswa.css';
 import React, { useState } from 'react';
 import axios from "axios";
-import {useNavigate } from 'react-router-dom';
+import {useNavigate, useParams } from 'react-router-dom';
 import {DaftarInputNilaiMapel} from './DaftarInputNilaiMapel';
 
 export default function Daftar2() {
-  const { handleSubmit, register, formState:{errors},} = useForm();
+  const { handleSubmit, register, formState:{errors}} = useForm();
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
-  
+  const {id} =  useParams();
+
   const onSubmit = async (data) => {
     try {
       const response = await axios.post("http://localhost:5000/data_nilai", data);
       alert("Data Nilai Berhasil Di Input")
       navigate("/siswalist")
-
-    await axios.post("http://localhost:5000/rekap_nilai");
-    console.log(response.data);
-
-    await axios.post("http://localhost:5000/hasil");
-    console.log(response.data);
+      await axios.post("http://localhost:5000/rekap_nilai");
+      await axios.post("http://localhost:5000/hasil");
+      console.log(response.data);
   } catch (e) {
     console.log("error dalam submit data:", e);
     alert(e.response.data.msg);
@@ -62,6 +60,13 @@ export default function Daftar2() {
         </div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
+      <div className='daftar-input-box'>
+        <label className="daftar-label">Siswa ID</label>
+          <input type='text' name="nilai" className="daftar-input" {...register('dataSiswaId')} value={id} readOnly />
+          {errors&& (
+              <span className="daftar-span">wajib diisi</span>
+          )}
+      </div>
         {/* Langkah Ke Tiga */}
         {step === 1 && (
           <div className='daftar-form'>
