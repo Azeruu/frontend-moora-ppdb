@@ -19,6 +19,8 @@ import ListNilai from "./components/Nilai/PageListNilai";
 import RekapNilai from "./components/RekapNilai/PageRekapNilai";
 import EditNilai from "./components/Nilai/PageEditNilai";
 import PageBukti from "./components/Bukti/PageBukti";
+import PageAddBukti from "./components/Bukti/PageAddBukti";
+import PageEditBukti from "./components/Bukti/PageEditBukti";
 
 function App() {
   return (
@@ -37,6 +39,9 @@ function App() {
           <Route path="/siswalist/addsiswa" element={<AddSiswa />} />
           <Route path="/siswalist/addnilai/:id" element={<AddNilai />} />
           <Route path="/siswalist/editsiswa/:id" element={<EditSiswa />} />
+          <Route path="/siswalist/addbukti/:id" element={<PageAddBukti />} />
+          <Route path="/bukti/editbukti/:id" element={<PageEditBukti />} />
+          <Route path="/bukti" element={<PageBukti />} />
           <Route path="/rekapnilai" element={<RekapNilai />} />
           <Route path="/aspek" element={<Aspek />} />
           <Route path="/aspek/addaspek" element={<AddAspek />} />
@@ -45,7 +50,6 @@ function App() {
           <Route path="/jalur/addjalur" element={<AddJalur />} />
           <Route path="/jalur/editjalur/:id" element={<EditJalur />} />
           <Route path="/hasil" element={<Hasil />} />
-          <Route path="/bukti" element={<PageBukti />} />
         </Routes>
       </Router>
     </div>

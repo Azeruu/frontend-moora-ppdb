@@ -12,6 +12,7 @@ const PageListNilai = () => {
 
     useEffect(() => {
         dispatch(getMe());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
     useEffect(() => {
@@ -19,6 +20,7 @@ const PageListNilai = () => {
         navigate("/login");
         }
         dispatch(getMe());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isError, navigate]);
     return (
         <Layout>

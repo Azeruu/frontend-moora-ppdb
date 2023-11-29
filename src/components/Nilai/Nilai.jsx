@@ -14,8 +14,9 @@ export default function Daftar2() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post("http://localhost:5000/data_nilai", data);
+      const newId = response.data.idSiswaBaru;
       alert("Data Nilai Berhasil Di Input")
-      navigate("/siswalist")
+      navigate(`/bukti/${newId}`);
       await axios.post("http://localhost:5000/rekap_nilai");
       await axios.post("http://localhost:5000/hasil");
       console.log(response.data);
