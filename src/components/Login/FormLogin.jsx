@@ -40,6 +40,7 @@ const Login = () => {
   const saveUser = async (e) => {
     e.preventDefault();
     dispatch(RegisterUser({ username, email, password, confirmPassword, role}));
+    navigate("/login");
   };
   const Auth = (e) => {
     e.preventDefault();

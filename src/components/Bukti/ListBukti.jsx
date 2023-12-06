@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { IMAGE_URL } from "../../lib/helper"
 import "./bukti.css";
 
 const ListBukti = () => {
@@ -84,10 +85,10 @@ const ListBukti = () => {
                         <td>{index + 1}</td>
                         <td>{bukti.id}</td>
                         <td>{bukti.dataSiswaId}</td>
-                        <td><img className="bukti-gambar" src={bukti.url_ijazah} alt="ijazah_sk cuy" /></td>
-                        <td><img className="bukti-gambar"src={bukti.url_kk} alt="kartu_keluarga" /></td>
-                        <td><img className="bukti-gambar"src={bukti.url_akta} alt="akta_kelahiran" /></td>
-                        <td><img className="bukti-gambar"src={bukti.url_dapodik} alt="SS_lulus_dapodik" /></td>
+                        <td><img className="bukti-gambar" src={`${IMAGE_URL}/${bukti.ijazah_sk}`} alt="ijazah_sk cuy" /></td>
+                        <td><img className="bukti-gambar"src={`${IMAGE_URL}/${bukti.kartu_keluarga}`} alt="kartu_keluarga" /></td>
+                        <td><img className="bukti-gambar"src={`${IMAGE_URL}/${bukti.akta_kelahiran}`} alt="akta_kelahiran" /></td>
+                        <td><img className="bukti-gambar"src={`${IMAGE_URL}/${bukti.SS_lulus_dapodik}`} alt="SS_lulus_dapodik" /></td>
                         <td>
                         <Link
                             to={`/bukti/editbukti/${bukti.dataSiswaId}`}
