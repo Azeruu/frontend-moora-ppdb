@@ -1,4 +1,4 @@
-import './AddSiswa.css';
+// import './AddSiswa.css';
 
 export default function DaftarInputUserTextNumber({ errors, register, label_msg, regist_msg, input_type }) {
     return (

@@ -1,4 +1,3 @@
-import '../Siswa/AddSiswa.css';
 export function DaftarInputNilaiMapel({ errors, register, label_msg, input_type, regist_nilai }) {
     return (
         <div>

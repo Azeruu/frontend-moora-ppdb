@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import '../Siswa/AddSiswa.css';
+// import '../Siswa/AddSiswa.css';
 import React, { useState } from 'react';
 import axios from "axios";
 import {useNavigate, useParams } from 'react-router-dom';
