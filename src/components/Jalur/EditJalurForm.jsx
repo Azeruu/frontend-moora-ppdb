@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import axios from "../../lib/axios";
 
 const EditJalur = () => {
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ const EditJalur = () => {
     useEffect(() => {
         const getJalurById = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/jalur/${id}`);
+            const response = await axios.get(`/jalur/${id}`);
             setJalur(response.data);
         } catch (error) {
             if (error.response) {
@@ -28,7 +28,7 @@ const EditJalur = () => {
     const updateJalur = async (e) => {
         e.preventDefault();
         try {
-        await axios.patch(`http://localhost:5000/jalur/${id}`, {
+        await axios.patch(`/jalur/${id}`, {
             nama_jalur: jalur.nama_jalur,
         });
         navigate("/jalur");

@@ -77,7 +77,7 @@ const Login = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  autocomplete="off"
+                  autoComplete="off"
                   required
                 />
                 <label>Email</label>
@@ -128,7 +128,7 @@ const Login = () => {
                 <input
                   name="username"
                   type="text"
-                  autocomplete="off"
+                  autoComplete="off"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
@@ -142,7 +142,7 @@ const Login = () => {
                 <input
                   name="email"
                   type="email"
-                  autocomplete="off"
+                  autoComplete="off"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required

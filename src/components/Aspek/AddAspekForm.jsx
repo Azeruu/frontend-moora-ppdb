@@ -1,10 +1,10 @@
-import {useState} from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Sidebar from '../NavSide/Sidebar';
 import Navbar from '../NavSide/Navbar';
 import ArrowLeft from "feather-icons-react/build/IconComponents/ArrowLeft";
 import "./AddAspek.css";
+import axios from "../../lib/axios";
 
 const AddAspek = () => {
     const [jalur, setJalur] = useState('');
@@ -14,7 +14,7 @@ const AddAspek = () => {
     const saveUser = async (e) =>{
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/jalur',{
+            await axios.post('/jalur',{
                 nama_jalur : jalur,
             });
             navigate("/aspek");

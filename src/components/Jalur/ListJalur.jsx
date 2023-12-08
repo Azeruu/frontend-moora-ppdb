@@ -1,7 +1,7 @@
 import "./ListJalur.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../../lib/axios";
 
 const ListJalur = () => {
   const [jalur, setJalur] = useState([]);
@@ -29,12 +29,12 @@ const ListJalur = () => {
   
   // Batas
   const getJalur = async () => {
-    const response = await axios.get("http://localhost:5000/jalur");
+    const response = await axios.get("/jalur");
     setJalur(response.data);
   };
   const hapusJalur = async (uuid) => {
     try {
-      await axios.delete(`http://localhost:5000/jalur/${uuid}`);
+      await axios.delete(`/jalur/${uuid}`);
       getJalur();
     } catch (error) {
       console.log(error);
@@ -42,7 +42,7 @@ const ListJalur = () => {
   };
   const jumlahData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/jalur");
+      const response = await axios.get("/jalur");
       setJmlData(response.data.length);
     } catch (error) {
       console.log(error);

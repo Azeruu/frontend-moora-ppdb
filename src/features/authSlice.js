@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from "../lib/axios";
 
 const initialState = {
     user : null,
@@ -11,7 +11,7 @@ const initialState = {
 
 export const LoginUser = createAsyncThunk("user/Loginuser", async (user, thunkAPI) => {
     try {
-        const response = await axios.post("http://localhost:5000/login", {
+        const response = await axios.post("/login", {
             email : user.email,
             password : user.password
         });
@@ -25,7 +25,7 @@ export const LoginUser = createAsyncThunk("user/Loginuser", async (user, thunkAP
 });
 export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
     try {
-        const response = await axios.get("http://localhost:5000/me");
+        const response = await axios.get("/me");
         return response.data;
     } catch (error) {
         if(error.response){
@@ -35,12 +35,12 @@ export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
     }
 });
 export const Logout = createAsyncThunk("user/Logout", async() => {
-    await axios.delete("http://localhost:5000/logout");
+    await axios.delete("/logout");
 });
 
 export const RegisterUser = createAsyncThunk("user/registrasi", async (user, thunkAPI) => {
   try {
-    const response = await axios.post("http://localhost:5000/users", {
+    const response = await axios.post("/users", {
       username: user.username,
       email: user.email,
       password: user.password,

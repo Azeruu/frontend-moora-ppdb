@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import axios from "../../lib/axios";
 
 const EditUser = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const EditUser = () => {
   useEffect(() => {
     const getUserById = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/users/${id}`);
+        const response = await axios.get(`/users/${id}`);
         setUser(response.data);
 
       } catch (error) {
@@ -48,7 +48,7 @@ const EditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/users/${id}`, {
+      await axios.patch(`/users/${id}`, {
         username: user.username,
         email: user.email,
         password: user.password,

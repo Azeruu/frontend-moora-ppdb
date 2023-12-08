@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import './EditSiswa.css'
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
 import {EditUserTextNumber} from './DaftarInputUserTextNumber';
+import axios from "../../lib/axios";
 
 export default function Daftar() {
   const { handleSubmit, register, formState:{errors}, setValue} = useForm();
@@ -16,7 +16,7 @@ export default function Daftar() {
     // Fungsi untuk mengambil data siswa yang sudah ada
     const fetchData = async () => {
       try {
-      const response = await axios.get(`http://localhost:5000/data_siswa/${id}`);
+      const response = await axios.get(`/data_siswa/${id}`);
         setValue('nama_jalur', response.data.nama_jalur);
         setValue('NISN', response.data.NISN);
         setValue('nama_lengkap', response.data.nama_lengkap);
@@ -42,10 +42,10 @@ export default function Daftar() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.patch(`http://localhost:5000/data_siswa/${id}`, data);
+      const response = await axios.patch(`/data_siswa/${id}`, data);
       // console.log("Data Berhasil Di Input", response.data);
-      await axios.patch(`http://localhost:5000/rekap_nilai/${id}`, data)
-      await axios.patch(`http://localhost:5000/hasil/${id}`, data)
+      await axios.patch(`/rekap_nilai/${id}`, data)
+      await axios.patch(`/hasil/${id}`, data)
       alert("Data Siswa Berhasil Di Ubah")
       navigate("/siswalist");
     } catch (e) {
@@ -56,7 +56,7 @@ export default function Daftar() {
 
 useEffect(() => {
   const getJalur = async(data) =>{
-      const response = await axios.get("http://localhost:5000/jalur", data);
+      const response = await axios.get("/jalur", data);
       setJalur(response.data);
   }
     getJalur();

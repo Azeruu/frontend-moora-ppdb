@@ -2,7 +2,7 @@ import "./ListUser.css";
 // import DashboardMenu from "../Dashboard/DashboardMenu";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../../lib/axios";
 
 const ListUser = () => {
   const [users, setUsers] = useState([]);
@@ -18,7 +18,7 @@ const ListUser = () => {
   // Batas
   const jumlahData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/users");
+      const response = await axios.get("/users");
       setJmlData(response.data.length);
     } catch (error) {
       console.log(error);
@@ -43,12 +43,12 @@ const ListUser = () => {
 
   // Batas
   const getUsers = async() =>{
-    const response = await axios.get('http://localhost:5000/users');
+    const response = await axios.get('/users');
     setUsers(response.data);
   }
   const hapusUser = async (uuid) =>{
     try {
-      await axios.delete(`http://localhost:5000/users/${uuid}`);
+      await axios.delete(`/users/${uuid}`);
         getUsers();
     } catch (error) {
       console.log(error);

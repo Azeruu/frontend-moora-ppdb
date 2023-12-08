@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { IMAGE_URL } from "../../lib/helper"
 import "./bukti.css";
+import axios from "../../lib/axios";
 
 const ListBukti = () => {
     // const {id} = useParams();
@@ -36,7 +36,7 @@ const ListBukti = () => {
 
     const getBukti = async () => {
         try {
-        const response = await axios.get(`http://localhost:5000/bukti`);
+        const response = await axios.get(`/bukti`);
         setBukti(response.data);
         // console.log(bukti);
         } catch (error) {
@@ -45,7 +45,7 @@ const ListBukti = () => {
     };
     const hapusBukti = async (dataSiswaId) => {
         try {
-            await axios.delete(`http://localhost:5000/bukti/${dataSiswaId}`);
+            await axios.delete(`/bukti/${dataSiswaId}`);
             getBukti();
             } catch (error) {
             console.log(error);
@@ -53,7 +53,7 @@ const ListBukti = () => {
     };
     const jumlahData = async () => {
         try {
-        const response = await axios.get("http://localhost:5000/bukti");
+        const response = await axios.get("/bukti");
         setJmlData(response.data.length);
         } catch (error) {
         console.log(error);

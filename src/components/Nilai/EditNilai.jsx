@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 // import '../Siswa/AddSiswa.css';
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
 import { EditInputNilaiMapel } from './DaftarInputNilaiMapel';
+import axios from "../../lib/axios";
 
 export default function EditDaftar() {
     const { handleSubmit, register, formState: { errors }, setValue } = useForm();
@@ -15,7 +15,7 @@ export default function EditDaftar() {
         // Fungsi untuk mengambil data nilai yang sudah ada
     const fetchData = async () => {
         try {
-        const response = await axios.get(`http://localhost:5000/data_nilai/${id}`);
+        const response = await axios.get(`/data_nilai/${id}`);
         setValue('pkn1', response.data.pkn1);
         setValue('pkn2', response.data.pkn1);
         setValue('pkn3', response.data.pkn1);
@@ -51,9 +51,9 @@ export default function EditDaftar() {
     const onSubmit = async (data) => {
         try {
         // Proses pengiriman data nilai yang diubah
-        await axios.patch(`http://localhost:5000/data_nilai/${id}`, data);
-        await axios.patch(`http://localhost:5000/rekap_nilai/${id}`, data)
-        await axios.patch(`http://localhost:5000/hasil/${id}`, data) // Ganti URL sesuai dengan endpoint yang sesuai
+        await axios.patch(`/data_nilai/${id}`, data);
+        await axios.patch(`/rekap_nilai/${id}`, data)
+        await axios.patch(`/hasil/${id}`, data) // Ganti URL sesuai dengan endpoint yang sesuai
         alert("Data Nilai Berhasil Diubah");
         navigate("/nilailist");
         } catch (e) {

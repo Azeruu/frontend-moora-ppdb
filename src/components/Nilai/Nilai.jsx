@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 // import '../Siswa/AddSiswa.css';
 import React, { useState } from 'react';
-import axios from "axios";
 import {useNavigate, useParams } from 'react-router-dom';
 import {DaftarInputNilaiMapel} from './DaftarInputNilaiMapel';
+import axios from "../../lib/axios";
 
 export default function Daftar2() {
   const { handleSubmit, register, formState:{errors}} = useForm();
@@ -13,12 +13,12 @@ export default function Daftar2() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:5000/data_nilai", data);
+      const response = await axios.post("/data_nilai", data);
       const newId = response.data.idSiswaBaru;
       alert("Data Nilai Berhasil Di Input")
       navigate(`/bukti/${newId}`);
-      await axios.post("http://localhost:5000/rekap_nilai");
-      await axios.post("http://localhost:5000/hasil");
+      await axios.post("/rekap_nilai");
+      await axios.post("/hasil");
       console.log(response.data);
   } catch (e) {
     console.log("error dalam submit data:", e);

@@ -1,6 +1,6 @@
 import "./ListRekapNilai.css";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../lib/axios";
 
 const ListRekapNilai = () => {
   const [rekapNilai, setRekapNilai] = useState([]);
@@ -31,12 +31,12 @@ const ListRekapNilai = () => {
   
   // Batas
   const getRekapNilai = async () => {
-    const response = await axios.get("http://localhost:5000/rekap_nilai");
+    const response = await axios.get("/rekap_nilai");
     setRekapNilai(response.data);
   };
   // const hapusrekapNilai = async (id) => {
   //   try {
-  //     await axios.delete(`http://localhost:5000/rekap_nilai/${id}`);
+  //     await axios.delete(`/rekap_nilai/${id}`);
   //     getrekapNilai();
   //   } catch (error) {
   //     console.log(error);
@@ -44,7 +44,7 @@ const ListRekapNilai = () => {
   // };
   const jumlahData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/rekap_nilai");
+      const response = await axios.get("/rekap_nilai");
       setJmlData(response.data.length);
     } catch (error) {
       console.log(error);
