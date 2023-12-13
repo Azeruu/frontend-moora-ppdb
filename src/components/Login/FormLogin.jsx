@@ -2,7 +2,7 @@ import "./Login.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { LoginUser, RegisterUser, reset } from "../../features/authSlice";
+import { LoginUser, RegisterUser, reset, resetError } from "../../features/authSlice";
 import {
   User,
   Mail,
@@ -33,6 +33,7 @@ const Login = () => {
     }
     if(isError){
       alert(`pesan error : ${message}`);
+      dispatch(resetError());
     }
     dispatch(reset());
   }, [user, isSuccess, dispatch, navigate, isError, message]);
