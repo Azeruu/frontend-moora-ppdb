@@ -58,10 +58,10 @@ const Login = () => {
   return (
     <div className="body-login">
       <div className="login-row">
-        <button className="btnadd" onClick={()=>ping()}>pencet akuhhh</button>
         <div className="hero">
           <h1>
-              COOOOK SELAMAT DATANG di Website PPDB <span> SMPN 1 Cisoka</span>.
+              SELAMAT DATANG di Website PPDB <span> SMPN 1 Cisoka</span>.
+              <button className="btnadd" onClick={()=>ping()}>pencet akuhhh</button>
           </h1>
           <p>
             Website penerimaan murid baru smpn 1 cisoka yang dibuat untuk
