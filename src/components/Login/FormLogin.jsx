@@ -47,14 +47,14 @@ const Login = () => {
     e.preventDefault();
     dispatch(LoginUser({ email, password }));
   };
-  const ping = async() => {
+  const ping = async () => {
     try{
       const response = await axios.get("/ping");
       console.log(response);
     }catch(e){
       console.log(e.message);
-    }
-
+    };
+  }
   return (
     <div className="body-login">
       <div className="login-row">
