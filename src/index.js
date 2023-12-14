@@ -4,7 +4,9 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import "./index.css";
 import App from "./App";
-import axios from "axios"
+import axios from "axios";
+
+axios.WithCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
