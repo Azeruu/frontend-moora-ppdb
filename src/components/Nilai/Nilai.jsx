@@ -16,7 +16,7 @@ export default function Daftar2() {
       const response = await axios.post("/data_nilai", data);
       const newId = response.data.idSiswaBaru;
       alert("Data Nilai Berhasil Di Input")
-      navigate(`/bukti/${newId}`);
+      navigate(`/siswalist/addbukti/${newId}`);
       await axios.post("/rekap_nilai");
       await axios.post("/hasil");
       console.log(response.data);
