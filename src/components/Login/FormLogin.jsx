@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginUser, RegisterUser, reset } from "../../features/authSlice";
+import axios from '../../lib/axios'; 
 import {
   User,
   Mail,
@@ -46,6 +47,13 @@ const Login = () => {
     e.preventDefault();
     dispatch(LoginUser({ email, password }));
   };
+  const ping = async() => {
+    try{
+      const response = await axios.get("/ping");
+      console.log(response);
+    }catch(e){
+      console.log(e.message);
+    }
 
   return (
     <div className="body-login">
@@ -54,6 +62,7 @@ const Login = () => {
           <h1>
               SELAMAT DATANG di Website PPDB <span> SMPN 1 Cisoka</span>.
           </h1>
+          <button onClick={()=>ping()}>pencet akuhhh</button>
           <p>
             Website penerimaan murid baru smpn 1 cisoka yang dibuat untuk
             memudahkan para calon siswa untuk medaftar secara online
