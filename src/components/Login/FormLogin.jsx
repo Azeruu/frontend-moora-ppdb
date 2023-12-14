@@ -61,7 +61,7 @@ const Login = () => {
         <button className="btnadd" onClick={()=>ping()}>pencet akuhhh</button>
         <div className="hero">
           <h1>
-              SELAMAT DATANG di Website PPDB <span> SMPN 1 Cisoka</span>.
+              COOOOK SELAMAT DATANG di Website PPDB <span> SMPN 1 Cisoka</span>.
           </h1>
           <p>
             Website penerimaan murid baru smpn 1 cisoka yang dibuat untuk
