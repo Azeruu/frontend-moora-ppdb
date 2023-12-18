@@ -47,21 +47,13 @@ const Login = () => {
     e.preventDefault();
     dispatch(LoginUser({ email, password }));
   };
-  const ping = async () => {
-    try{
-      const response = await axios.get("/ping");
-      console.log(response);
-    }catch(e){
-      console.log(e.message);
-    };
-  }
+  
   return (
     <div className="body-login">
       <div className="login-row">
         <div className="hero">
           <h1>
               SELAMAT DATANG di Website PPDB <span> SMPN 1 Cisoka</span>.
-              <button className="btnadd" onClick={()=>ping()}>pencet akuhhh</button>
           </h1>
           <p>
             Website penerimaan murid baru smpn 1 cisoka yang dibuat untuk
