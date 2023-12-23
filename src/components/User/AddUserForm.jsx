@@ -15,7 +15,7 @@ const AddUser = () => {
     const saveUser = async (e) =>{
         e.preventDefault();
         try {
-            await axios.post('/users',{
+            await axios.post(`/users`,{
                 username : username,
                 email : email,
                 password : password,

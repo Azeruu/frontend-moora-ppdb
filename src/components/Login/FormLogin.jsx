@@ -141,7 +141,7 @@ const Login = () => {
                   <Mail className="icon" />
                 </span>
                 <input
-                  name="email"
+                  name="registerEmail"
                   type="email"
                   autoComplete="off"
                   value={email}
@@ -155,7 +155,7 @@ const Login = () => {
                   <Key className="icon" />
                 </span>
                 <input
-                  name="password"
+                  name="registerPassword"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
