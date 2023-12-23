@@ -29,11 +29,13 @@ const ListUser = () => {
   const itemsPerPage = 3;
   const totalPages = Math.ceil(users.length / itemsPerPage);
 
-  const handleClick = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    } else if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
+  const handleClick = (value) => {
+    if (value === "prev" && currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    } else if (value === "next" && currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    } else if (typeof value === "number" && value >= 1 && value <= totalPages) {
+      setCurrentPage(value);
     }
   };
   const startIndex = (currentPage - 1) * itemsPerPage;
