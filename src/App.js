@@ -12,8 +12,6 @@ import AddNilai from "./components/Nilai/PageNilai"
 import Jalur from "./components/Jalur/PageJalur";
 import AddJalur from "./components/Jalur/AddJalur";
 import EditJalur from "./components/Jalur/EditJalur";
-import Aspek from "./components/Aspek/PageAspek";
-import AddAspek from "./components/Aspek/AddAspek";
 import Hasil from "./components/Hasil/PageHasil";
 import ListNilai from "./components/Nilai/PageListNilai";
 import RekapNilai from "./components/RekapNilai/PageRekapNilai";
@@ -43,9 +41,6 @@ function App() {
           <Route path="/bukti/editbukti/:id" element={<PageEditBukti />} />
           <Route path="/bukti" element={<PageBukti />} />
           <Route path="/rekapnilai" element={<RekapNilai />} />
-          <Route path="/aspek" element={<Aspek />} />
-          <Route path="/aspek/addaspek" element={<AddAspek />} />
-          {/* <Route path="/aspek/editaspek/:id" element={<Aspek />} /> */}
           <Route path="/jalur" element={<Jalur />} />
           <Route path="/jalur/addjalur" element={<AddJalur />} />
           <Route path="/jalur/editjalur/:id" element={<EditJalur />} />

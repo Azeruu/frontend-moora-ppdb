@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "https://api.azeru.live",
+    baseURL: "http://localhost:3001",
     withCredentials: true
 });
