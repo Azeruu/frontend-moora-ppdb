@@ -1,67 +1,25 @@
-import React,{useEffect, useState} from 'react'
-import { useNavigate, useParams} from "react-router-dom";
+import React, { useState} from 'react'
+import { useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout, reset } from "../../features/authSlice";
 import { User, LogOut, Settings } from 'feather-icons-react/build/IconComponents';
 import logo from "../../image/react.png";
-import "./ModalProfil.css"
-import Modal from 'react-modal';
-import axios from "../../lib/axios";
+import "./ModalProfil.css";
+import ModalEditProfil from './ModalEditProfil';
 
 const ModalProfil = ({ isOpen, isClose }) => {
+    const [modal, setModal] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [msg, setMsg] = useState("");
-    const { id } = useParams();
     const { user } = useSelector((state) => state.auth);
-    const [users, setUsers] = useState({
-      username:'',
-      email:'',
-      password:'',
-      confirmPassword:'',
-      role:''
-    });
-    const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    useEffect(() => {
-      const getUserById = async () => {
-        try {
-          const response = await axios.get(`/users/${id}`);
-          setUsers(response.data);
-        } catch (error) {
-          if (error.response) {
-            setMsg(error.response.data.msg);
-          }
-        }
-      };
-      getUserById();
-    }, [id]);
-    //UPDATE USER
-    const updateUser = async (e) => {
-      e.preventDefault();
-      try {
-        await axios.patch(`/users/${id}`, {
-          username: user.username,
-          email: user.email,
-          password: user.password,
-          confirmPassword: user.confirmPassword,
-          role: user.role,
-        });
-        navigate("/userlist");
-      } catch (error) {
-        if (error.response) {
-          setMsg(error.response.data.msg);
-        }
-      }
-    };
-// START open close Modal
     const openModal = () => {
-      setModalIsOpen(true);
-    }
+      setModal(true);
+    };
     const closeModal = () => {
-      setModalIsOpen(false);
-    }
-// END open close modal
+      setModal(false);
+    };
+
     const logout = () => {
         dispatch(Logout());
         dispatch(reset());
@@ -95,29 +53,11 @@ const ModalProfil = ({ isOpen, isClose }) => {
               </div>
             </div>
               <div className="modal-user-settings"><a href='/akun'><User className='modal-user-icon'/> User</a></div>
-              <div className="modal-user-settings"><button onClick={openModal}><Settings className='modal-user-icon'/> Settings</button></div>
+              <div className="modal-user-settings"><button className='modal-button-setting' onClick={openModal}><Settings className='modal-user-icon'/>Settings</button></div>
               <button className='modal-btn-logout' onClick={logout}><LogOut/> Logout</button>
           </div>
-
-          {/* Modal */}
-          <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            contentLabel="Edit User Modal"
-          >
-            <div>
-              <h2> User Setting</h2>
-              <form onSubmit={updateUser}>
-                {/* ... (code form lainnya) */}
-                <button type="button" onClick={closeModal}>Close Modal</button>
-              </form>
-            </div>
-          </Modal>
-
-          {/* Footer */}
-          <div className="modal-footer">
-          </div>
         </div>
+        <ModalEditProfil isOpen={modal} isClose={closeModal}/>
       </div>
     )
   )

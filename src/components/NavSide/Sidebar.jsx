@@ -27,7 +27,6 @@ const Sidebar = () => {
             <NavLink to="/dashboard" activeClassName="sidebar-menu-list.active" className="sidebar-menu-list" ><Home/>Beranda</NavLink>
             {user && user.role === "admin" &&(
               <div>
-                <NavLink to="/aspek" className="sidebar-menu-list"><PenTool/>Aspek Penilaian</NavLink>
                 <NavLink to="/jalur" className="sidebar-menu-list"><Map/>Jalur Penerimaan</NavLink>
               </div>
             )}

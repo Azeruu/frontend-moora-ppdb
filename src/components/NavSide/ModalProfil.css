@@ -80,6 +80,16 @@
     color: var(--secondary);
     font-size: 1.5rem;
 }
+.modal-user-settings .modal-button-setting{
+    background-color: transparent;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--secondary);
+    font-size: 1.5rem;
+    gap: 1rem;
+    cursor:pointer;
+}
 .modal-user-icon{
     color: var(--primary);
     background-color: var(--secondary);
