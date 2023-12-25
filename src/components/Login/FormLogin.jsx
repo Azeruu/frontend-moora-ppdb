@@ -1,5 +1,5 @@
 import "./Login.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginUser, RegisterUser, reset } from "../../features/authSlice";
@@ -28,15 +28,20 @@ const Login = () => {
     (state) => state.auth
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (user || isSuccess) {
-      navigate("/dashboard");
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      tuker();
+
     }
     if(isError){
       alert(`pesan error : ${message}`);
     }
     dispatch(reset());
-  }, [user, isSuccess, dispatch, navigate, isError, message]);
+  }, [user]);
 
   const saveUser = async (e) => {
     e.preventDefault();

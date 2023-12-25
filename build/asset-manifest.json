@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e6266b29.css",
+    "main.js": "/static/js/main.b2cab200.js",
+    "static/media/profile1.png": "/static/media/profile1.e134f37141c2572d85e5.png",
+    "static/media/react.png": "/static/media/react.2f2532db663fd5ec5f95.png",
+    "static/media/sekolah5.jpg": "/static/media/sekolah5.b4124dc04fbf4549387f.jpg",
+    "index.html": "/index.html",
+    "main.e6266b29.css.map": "/static/css/main.e6266b29.css.map",
+    "main.b2cab200.js.map": "/static/js/main.b2cab200.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6266b29.css",
+    "static/js/main.b2cab200.js"
+  ]
+}
