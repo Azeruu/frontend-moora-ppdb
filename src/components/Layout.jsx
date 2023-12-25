@@ -13,14 +13,14 @@ const Layout = ({children}) => {
   return (
     <>
       <div className={`layout-container ${sidebar ? 'sidebar-open' : 'sidebar-closed'}`}>
-      <div className="sidebar">
-        <Sidebar/>
-      </div>
-      <div className="kanan-container">
-        <div className='navbar'>
-          <Navbar toggleSidebar={toggleSidebar}/>
+        <div className="sidebar">
+          <Sidebar/>
         </div>
-          <main className='layout-content'>{children}</main>
+        <div className="kanan-container">
+          <div className='navbar'>
+            <Navbar toggleSidebar={toggleSidebar}/>
+          </div>
+            <main className='layout-content'>{children}</main>
         </div>
       </div>
     </>

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Logout, reset } from "../../features/authSlice";
 import {
   User,
-  LogOut,
-  Settings,
+  Mail,
+  Lock,
 } from "feather-icons-react/build/IconComponents";
 import "./ModalEditProfil.css";
 import axios from "../../lib/axios";
@@ -82,7 +82,7 @@ const ModalEditProfil = ({ isOpen, isClose }) => {
         <div className="modal-edit">
           {/* START Header */}
           <div className="modal-edit-header">
-            <h2>Edit User</h2>
+            <h1>Edit User</h1>
             <button className="modal-close" onClick={isClose}>
               &times;
             </button>
@@ -91,65 +91,68 @@ const ModalEditProfil = ({ isOpen, isClose }) => {
 
           {/* START konten */}
           <div className="modal-edit-content">
-            <div className="edit-user-column">
-              <div className="form-column">
-                <h1 className="edit-user-judul">Edit User</h1>
+              <div className="modal-edit-container">
                 <form onSubmit={updateUser}>
                   <p>{msg}</p>
-                  <div className="field">
-                    <label className="label">Username</label>
+                  <div className="field-edit">
+                  <User/>
+                    <label className="label-edit">Username</label>
                     <div className="control">
                       <input
                         type="text"
-                        className="input"
+                        className="input-edit"
                         value={user.username}
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder="Username"
                       ></input>
                     </div>
                   </div>
-                  <div className="field">
-                    <label className="label">Email</label>
+                  <div className="field-edit">
+                    <Mail/>
+                    <label className="label-edit">Email</label>
                     <div className="control">
                       <input
                         type="email"
-                        className="input"
+                        className="input-edit"
                         value={user.email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email"
                       ></input>
                     </div>
                   </div>
-                  <div className="field">
-                    <label className="label">Password</label>
+                  <div className="field-edit">
+                    <Lock/>
+                    <label className="label-edit">Password</label>
                     <div className="control">
                       <input
                         type="text"
-                        className="input"
+                        className="input-edit"
                         value={user.password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
                       ></input>
                     </div>
                   </div>
-                  <div className="field">
-                    <label className="label">Confirm Password</label>
+                  <div className="field-edit">
+                  <Lock/>
+                    <label className="label-edit">Confirm Password</label>
                     <div className="control">
                       <input
                         type="text"
-                        className="input"
+                        className="input-edit"
                         value={user.confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         placeholder="Confirm Password"
                       ></input>
                     </div>
                   </div>
-                  <div className="field">
-                    <label className="label">Role</label>
+                  <div className="field-edit">
+                    <User/>
+                    <label className="label-edit">Role</label>
                     <div className="control">
-                      <div className="select">
+                      <div className="select-edit">
                         <select
-                          className="option"
+                          className="option-edit"
                           value={user.role}
                           onChange={(e) => setRole(e.target.value)}
                         >
@@ -166,7 +169,6 @@ const ModalEditProfil = ({ isOpen, isClose }) => {
                   </div>
                 </form>
               </div>
-            </div>
           </div>
           {/* END Konten */}
         </div>

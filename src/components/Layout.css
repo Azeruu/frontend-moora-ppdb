@@ -42,7 +42,7 @@
     grid-area: content;
     background-color: transparent;
     padding: 16px;
-    height: 92vh;
+    min-height: 100vh;
 }
 .kanan-container{
     overflow-y: auto;

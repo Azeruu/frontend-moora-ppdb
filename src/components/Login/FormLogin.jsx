@@ -1,5 +1,5 @@
 import "./Login.css";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginUser, RegisterUser, reset } from "../../features/authSlice";
@@ -20,6 +20,8 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [LoginEmail, setLoginEmail] = useState("");
+  const [LoginPassword, setLoginPassword] = useState("");
   const [role, setRole] = useState("user");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
@@ -34,8 +36,9 @@ const Login = () => {
       setEmail('');
       setPassword('');
       setConfirmPassword('');
-      tuker();
-
+      setLoginEmail('');
+      setLoginPassword('');
+      navigate("/dashboard");
     }
     if(isError){
       alert(`pesan error : ${message}`);
@@ -46,11 +49,11 @@ const Login = () => {
   const saveUser = async (e) => {
     e.preventDefault();
     dispatch(RegisterUser({ username, email, password, confirmPassword, role}));
-    navigate("/login");
+    tuker();
   };
   const Auth = (e) => {
     e.preventDefault();
-    dispatch(LoginUser({ email, password }));
+    dispatch(LoginUser({ LoginEmail, LoginPassword }));
   };
   
   return (
@@ -81,8 +84,8 @@ const Login = () => {
                 <input
                   name="email"
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={LoginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
                   autoComplete="off"
                   required
                 />
@@ -95,8 +98,8 @@ const Login = () => {
                 <input
                   name="password"
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={LoginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
                   required
                 />
                 <label>Password</label>
