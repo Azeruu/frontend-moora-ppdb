@@ -1,1 +1,1 @@
-export const IMAGE_URL = "https://api.azeru.live/images";
+export const IMAGE_URL = "http://localhost:3001/images";

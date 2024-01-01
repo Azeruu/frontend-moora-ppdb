@@ -62,34 +62,30 @@ const ListRekapNilai = () => {
             <thead>
               <tr>
                 <th>No</th>
-                <th>ID Rekap</th>
-                <th>User ID</th>
-                <th>Siswa ID</th>
+                <th>Kode</th>
                 <th>Nama Siswa</th>
-                <th>Rata - Rata Nilai PKN</th>
-                <th>Rata - Rata Nilai B.indo</th>
-                <th>Rata - Rata Nilai MTK</th>
-                <th>Rata - Rata Nilai IPS</th>
-                <th>Rata - Rata Nilai IPA</th>
-                <th>Jarak Ke sekolah "KM"</th>
-                <th>Usia</th>
+                <th>Usia <tr>(C1)</tr></th>
+                <th>Jarak Ke sekolah "KM"<tr>(C2)</tr></th>
+                <th>Rata - Rata Nilai PKN<tr>(C3)</tr></th>
+                <th>Rata - Rata Nilai B.indo<tr>(C4)</tr></th>
+                <th>Rata - Rata Nilai MTK<tr>(C5)</tr></th>
+                <th>Rata - Rata Nilai IPS<tr>(C6)</tr></th>
+                <th>Rata - Rata Nilai IPA<tr>(C7)</tr></th>
               </tr>
             </thead>
             <tbody>
               {currentData.map((jal, index) => (
                 <tr key={jal.id}>
                     <td>{index + 1}</td>
-                    <td>{jal.id}</td>
-                    <td>{jal.userId}</td>
-                    <td>{jal.dataSiswaId}</td>
+                    <td>A{index + 1}</td>
                     <td>{jal.nama_lengkap}</td>
+                    <td>{jal.usia}</td>
+                    <td>{jal.jarak}</td>
                     <td>{jal.avrg_nilai_pkn}</td>
                     <td>{jal.avrg_nilai_bindo}</td>
                     <td>{jal.avrg_nilai_mtk}</td>
                     <td>{jal.avrg_nilai_ips}</td>
                     <td>{jal.avrg_nilai_ipa}</td>
-                    <td>{jal.jarak}</td>
-                    <td>{jal.usia}</td>
                 </tr>
               ))}
             </tbody>

@@ -29,6 +29,11 @@ const ListHasil = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = hasil.slice(startIndex, endIndex);
+  currentData.sort((a, b) => a.skor_akhir - b.skor_akhir);
+
+  for (let i = 0; i < currentData.length; i++) {
+    currentData[i].peringkat = i + 1;
+  }
 
   const getRekapNilai = async() =>{
     try {
@@ -38,6 +43,7 @@ const ListHasil = () => {
       console.error('Gagal mengambil data dari API:', error);
     }
   }
+  
   // const hapusRekapNilai = async (id) => {
   //   try {
   //     await axios.delete(`/hasil/${id}`);
@@ -65,11 +71,9 @@ const ListHasil = () => {
             <thead>
               <tr>
                 <th>No</th>
-                <th>ID Hasil</th>
-                <th>User ID</th>
-                <th>Siswa ID</th>
                 <th>Nama Siswa</th>
                 <th>Skor Akhir</th>
+                <th>Status</th>
                 <th>Peringkat</th>
               </tr>
             </thead>
@@ -77,12 +81,10 @@ const ListHasil = () => {
               {currentData.map((jal, index) => (
                 <tr key={jal.id}>
                     <td>{index + 1}</td>
-                    <td>{jal.id}</td>
-                    <td>{jal.userId}</td>
-                    <td>{jal.dataSiswaId}</td>
                     <td>{jal.nama_lengkap}</td>
                     <td>{jal.skor_akhir}</td>
-                    <td>{index+1}</td>
+                    <td>{jal.skor_akhir}</td>
+                    <td>{jal.peringkat}</td>
                 </tr>
               ))}
             </tbody>
