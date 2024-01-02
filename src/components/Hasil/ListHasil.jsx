@@ -29,7 +29,7 @@ const ListHasil = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = hasil.slice(startIndex, endIndex);
-  currentData.sort((a, b) => a.skor_akhir - b.skor_akhir);
+  currentData.sort((a, b) => b.skor_akhir - a.skor_akhir);
 
   for (let i = 0; i < currentData.length; i++) {
     currentData[i].peringkat = i + 1;
@@ -84,7 +84,7 @@ const ListHasil = () => {
                     <td>{jal.nama_lengkap}</td>
                     <td>{jal.skor_akhir}</td>
                     <td>{jal.skor_akhir}</td>
-                    <td>{jal.peringkat}</td>
+                    <td>ke -{jal.peringkat}</td>
                 </tr>
               ))}
             </tbody>
