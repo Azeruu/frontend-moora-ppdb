@@ -31,10 +31,6 @@ const ListHasil = () => {
   const currentData = hasil.slice(startIndex, endIndex);
   currentData.sort((a, b) => b.skor_akhir - a.skor_akhir);
 
-  for (let i = 0; i < currentData.length; i++) {
-    currentData[i].peringkat = i + 1;
-  }
-
   const getRekapNilai = async() =>{
     try {
       const response = await axios.get('/hasil');
@@ -84,7 +80,7 @@ const ListHasil = () => {
                     <td>{jal.nama_lengkap}</td>
                     <td>{jal.skor_akhir}</td>
                     <td>{jal.skor_akhir}</td>
-                    <td>ke -{jal.peringkat}</td>
+                    <td>ke -{index + 1}</td>
                 </tr>
               ))}
             </tbody>
