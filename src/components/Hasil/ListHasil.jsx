@@ -79,7 +79,7 @@ const ListHasil = () => {
                     <td>{index + 1}</td>
                     <td>{jal.nama_lengkap}</td>
                     <td>{jal.skor_akhir}</td>
-                    <td>{jal.skor_akhir}</td>
+                    <td>Lolos</td>
                     <td>ke -{index + 1}</td>
                 </tr>
               ))}
