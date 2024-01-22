@@ -26,7 +26,7 @@ const ListUser = () => {
     }
   };
   // Batas
-  const itemsPerPage = 3;
+  const itemsPerPage = 4;
   const totalPages = Math.ceil(users.length / itemsPerPage);
 
   const handleClick = (value) => {
@@ -63,7 +63,7 @@ const ListUser = () => {
       <div className="list-user-grid">
         <h1 className="list-user-judul">Daftar User</h1>
         <div className="list-user-table-container">
-        <Link to={`/userlist/adduser`} className="btnadd">
+        <Link to={`/userlist/adduser`} className="btnadd-user">
           Tambah User
         </Link>
           <table className="table" id="data-table">
@@ -80,21 +80,21 @@ const ListUser = () => {
             <tbody>
               {currentData.map((user, index) => (
                 <tr key={user.uuid}>
-                  <td>{index + 1}</td>
+                  <td>{startIndex+index + 1}</td>
                   <td>{user.id}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
                   <td>{user.role}</td>
-                  <td>
+                  <td className="button-action">
                     <Link
                       to={`/userlist/edituser/${user.uuid}`}
-                      className="btnEdit"
+                      className="btnEdit-user"
                     >
                       Edit
                     </Link>
                     <button
                       onClick={() => hapusUser(user.uuid)}
-                      className="btnHapus"
+                      className="btnHapus-user"
                     >
                       Hapus
                     </button>

@@ -76,8 +76,8 @@ const ListRekapNilai = () => {
             <tbody>
               {currentData.map((jal, index) => (
                 <tr key={jal.id}>
-                    <td>{index + 1}</td>
-                    <td>A{index + 1}</td>
+                    <td>{startIndex+ index + 1}</td>
+                    <td>A{startIndex + index + 1}</td>
                     <td>{jal.nama_lengkap}</td>
                     <td>{jal.usia}</td>
                     <td>{jal.jarak}</td>

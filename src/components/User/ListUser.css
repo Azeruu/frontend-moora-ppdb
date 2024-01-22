@@ -21,18 +21,51 @@
   margin-top: 3rem;
 }
 /* CSS untuk btnadd */
-.btnadd {
-  display: inline-block;
-  width: max-content;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
+.btnadd-user{
+  width: 10rem;
+    height: 2rem;
+    padding: 20px;
+    border: 1px solid rgb(255, 255, 255, .2);
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: var(--primary);
 }
 
-.btnadd:hover {
+.btnadd-user:hover {
   background-color: #0056b3;
+}
+.btnEdit-user{
+  width: 5rem;
+  height: 2rem;
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: var(--primary);
+}
+.btnHapus-user{
+  width: 5rem;
+  height: 2rem;
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: red;
+}
+.btnHapus-user:hover, .btnEdit-user:hover{
+  background-color: rgb(255, 255, 255, .2);
 }
 
 /* CSS untuk table */
