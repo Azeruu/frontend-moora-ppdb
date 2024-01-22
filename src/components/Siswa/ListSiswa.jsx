@@ -47,7 +47,7 @@ const ListSiswa = () => {
     };
 
     checkDataExistence();
-  }, [user.id]);
+  }, []);
 
   const handleDaftarButtonClick = () => {
     if (user.role === "admin") {
