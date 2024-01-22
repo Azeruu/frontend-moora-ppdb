@@ -108,7 +108,7 @@ const ListNilai = () => {
                         Edit
                         </Link>
                     </td>
-                    <td>{index + 1}</td>
+                    <td>{startIndex + index + 1}</td>
                     <td>{nil.id}</td>
                     <td>{nil.dataSiswaId}</td>
                     <td>{nil.pkn1}</td>

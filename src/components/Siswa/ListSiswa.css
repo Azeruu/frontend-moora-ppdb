@@ -23,17 +23,22 @@
 }
 
 /* CSS untuk btnadd */
-.btnadd {
-  display: inline-block;
-  margin-right: 100%;
-  padding: 8px 16px;
-  background-color: #007bff;
+.btnadd-siswa {
+  width: 10rem;
+  height: 2rem;
+  padding: 20px;
+  border: 1px solid rgb(255, 255, 255, .2);
+  border-radius: 10px;
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  border-radius: 4px;
+  background-color: var(--primary);
+  font-size: 17px;
 }
 
-.btnadd:hover {
+.btnadd-siswa:hover {
   background-color: #0056b3;
 }
 .list-siswa-table-container{

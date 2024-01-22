@@ -59,39 +59,41 @@ const ListJalur = () => {
           <Link to={`/jalur/addjalur`} className="btnadd-jalur">
             Tambah Jalur
           </Link>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>ID Jalur</th>
-                <th>Nama Jalur</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentData.map((jal, index) => (
-                <tr key={jal.uuid}>
-                    <td>{index + 1}</td>
-                    <td>{jal.id}</td>
-                    <td>{jal.nama_jalur}</td>
-                    <td>
-                      <Link
-                        to={`/jalur/editjalur/${jal.id}`}
-                        className="btnEdit"
-                      >
-                        Edit
-                      </Link>
-                      <button
-                        onClick={() => hapusJalur(jal.id)}
-                        className="btnHapus"
-                      >
-                        Hapus
-                      </button>
-                    </td>
+          <div className="container-table-jalur">
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>ID Jalur</th>
+                  <th>Nama Jalur</th>
+                  <th>Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {currentData.map((jal, index) => (
+                  <tr key={jal.uuid}>
+                      <td>{startIndex+index + 1}</td>
+                      <td>{jal.id}</td>
+                      <td>{jal.nama_jalur}</td>
+                      <td className="button-action">
+                        <Link
+                          to={`/jalur/editjalur/${jal.id}`}
+                          className="btnEdit-jalur"
+                        >
+                          Edit
+                        </Link>
+                        <button
+                          onClick={() => hapusJalur(jal.id)}
+                          className="btnHapus-jalur"
+                        >
+                          Hapus
+                        </button>
+                      </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="pagination">
           <button onClick={() => handleClick("prev")} class="page-button">Prev</button>

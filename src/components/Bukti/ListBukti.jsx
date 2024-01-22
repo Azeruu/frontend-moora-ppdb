@@ -84,7 +84,7 @@ const ListBukti = () => {
                 <tbody>
                 {currentData.map((bukti, index) => (
                     <tr key={bukti.id}>
-                        <td>{index + 1}</td>
+                        <td>{ startIndex +index + 1}</td>
                         <td>{bukti.id}</td>
                         <td>{bukti.dataSiswaId}</td>
                         <td><img className="bukti-gambar" src={`${IMAGE_URL}/${bukti.ijazah_sk}`} alt="ijazah_sk cuy" /></td>

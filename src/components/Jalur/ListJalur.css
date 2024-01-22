@@ -1,6 +1,7 @@
 /* CSS untuk list-jalur-container */
 .list-jalur-container {
     padding: 20px;
+    /* background-color: #007bff; */
 }
 
 /* CSS untuk list-jalur-grid */
@@ -17,41 +18,84 @@
     font-size: 26px;
     margin-bottom: 20px;
 }
-
+.list-jalur-table-container{
+    padding: 10px;
+    /* background-color: #ccc; */
+}
 /* CSS untuk btnadd */
 .btnadd-jalur {
-    display: inline-block;
-    margin-right: 100%;
-    padding: 8px 16px;
-    background-color: #007bff;
+    width: 10rem;
+    height: 2rem;
+    padding: 20px;
+    border: 1px solid rgb(255, 255, 255, .2);
+    border-radius: 10px;
     color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    border-radius: 4px;
-    width: max-content;
+    background-color: var(--primary);
 }
 
-.btnadd:hover {
+.btnadd-jalur:hover {
     background-color: #0056b3;
 }
+
 .list-jalur-table-container{
     margin-top: 3rem;
 }
 /* CSS untuk table */
-.table {
-    width: 100%;
-    border-collapse: collapse;
+.container-table-jalur {
+    height: 100%;
+    overflow-y: auto;
     margin-top: 20px;
 }
-
-.table th,
-.table td {
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+th,td {
     border: 1px solid #ccc;
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
-
-.table th {
+th {
     background-color: var(--quartenary);
+}
+.button-action{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.btnEdit-jalur{
+    width: 5rem;
+    height: 2rem;
+    padding: 20px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: var(--primary);
+}
+.btnHapus-jalur{
+    width: 5rem;
+    height: 2rem;
+    padding: 20px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: red;
+}
+.btnHapus-jalur:hover, .btnEdit-jalur:hover{
+    background-color: rgb(255, 255, 255, .2);
 }
 
 /* Style Untuk Pagination */

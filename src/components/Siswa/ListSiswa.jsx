@@ -99,7 +99,7 @@ const ListSiswa = () => {
         <h1 className="list-siswa-judul">Daftar Siswa</h1>
         <p className="list-siswa-subjudul">Daftar calon siswa pendaftar</p>
         <div className="list-siswa-table-container">
-        <button onClick={handleDaftarButtonClick} className="btnadd">Daftar</button>
+        <button onClick={handleDaftarButtonClick} className="btnadd-siswa">Daftar</button>
           <table className="table">
             <thead>
               <tr>
@@ -145,7 +145,7 @@ const ListSiswa = () => {
                       Hapus
                     </button>
                   </td>
-                  <td>{index + 1}</td>
+                  <td>{startIndex+index + 1}</td>
                   <td>{sis.id}</td>
                   <td>{sis.nama_jalur}</td>
                   <td>{sis.NISN}</td>

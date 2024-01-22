@@ -76,7 +76,7 @@ const ListHasil = () => {
             <tbody>
               {currentData.map((jal, index) => (
                 <tr key={jal.id}>
-                    <td>{index + 1}</td>
+                    <td>{startIndex +index + 1}</td>
                     <td>{jal.nama_lengkap}</td>
                     <td>{jal.skor_akhir}</td>
                     <td>Lolos</td>
