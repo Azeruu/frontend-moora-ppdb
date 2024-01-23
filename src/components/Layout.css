@@ -1,12 +1,13 @@
 /* Layout.css */
 .layout-container {
     display: grid;
-    grid-template-columns: auto 1fr; /* Navbar dan Sidebar akan berada di sisi kiri, Konten akan mengisi sisanya */
+    grid-template-columns: auto 1fr;
     /* grid-gap: 16px; */
-    max-height: 100vh; /* Sesuaikan dengan tinggi yang Anda inginkan */
+    max-height: 100vh;
     grid-template-areas:
         "sidebar navbar"
         "sidebar content";
+        overflow-y: hidden;
 }
 
 .navbar {
@@ -42,19 +43,20 @@
     grid-area: content;
     background-color: transparent;
     padding: 16px;
-    min-height: 100vh;
+    max-height: 100vh;
 }
 .kanan-container{
     overflow-y: auto;
+    max-height: 100vh;
 }
-.kanan-container::-webkit-scrollbar{
+::-webkit-scrollbar{
     width: 10px;
 }
-.kanan-container::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: #555;
     border-radius: 5px;
 }
-.kanan-container::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background-color: gray;
 }
 

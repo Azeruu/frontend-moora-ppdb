@@ -62,84 +62,84 @@ const ListNilai = () => {
         <div className="list-nilai-grid">
             <h1 className="list-nilai-judul">Daftar Nilai</h1>
             <p className="list-nilai-subjudul">Daftar Nilai yang telah di input oleh Pendaftar</p>
-            <div className="list-nilai-table-container">
-            <table className="table">
-                <thead>
-                <tr>
-                    <th>Action</th>
-                    <th>No</th>
-                    <th>ID Nilai</th>
-                    <th>ID Siswa</th>
-                    <th>PKN 1</th>
-                    <th>PKN 2</th>
-                    <th>PKN 3</th>
-                    <th>PKN 4</th>
-                    <th>PKN 5</th>
-                    <th>B.Indo 1</th>
-                    <th>B.Indo 2</th>
-                    <th>B.Indo 3</th>
-                    <th>B.Indo 4</th>
-                    <th>B.Indo 5</th>
-                    <th>MTK 1</th>
-                    <th>MTK 2</th>
-                    <th>MTK 3</th>
-                    <th>MTK 4</th>
-                    <th>MTK 5</th>
-                    <th>IPS 1</th>
-                    <th>IPS 2</th>
-                    <th>IPS 3</th>
-                    <th>IPS 4</th>
-                    <th>IPS 5</th>
-                    <th>IPA 1</th>
-                    <th>IPA 2</th>
-                    <th>IPA 3</th>
-                    <th>IPA 4</th>
-                    <th>IPA 5</th>
-                </tr>
-                </thead>
-                <tbody>
-                {currentData.map((nil, index) => (
-                    <tr key={nil.id}>
-                    <td>
-                        <Link
-                        to={`/nilailist/editnilai/${nil.dataSiswaId}`}
-                        className="btnEdit"
-                        >
-                        Edit
-                        </Link>
-                    </td>
-                    <td>{startIndex + index + 1}</td>
-                    <td>{nil.id}</td>
-                    <td>{nil.dataSiswaId}</td>
-                    <td>{nil.pkn1}</td>
-                    <td>{nil.pkn2}</td>
-                    <td>{nil.pkn3}</td>
-                    <td>{nil.pkn4}</td>
-                    <td>{nil.pkn5}</td>
-                    <td>{nil.bindo1}</td>
-                    <td>{nil.bindo2}</td>
-                    <td>{nil.bindo3}</td>
-                    <td>{nil.bindo4}</td>
-                    <td>{nil.bindo5}</td>
-                    <td>{nil.mtk1}</td>
-                    <td>{nil.mtk2}</td>
-                    <td>{nil.mtk3}</td>
-                    <td>{nil.mtk4}</td>
-                    <td>{nil.mtk5}</td>
-                    <td>{nil.ips1}</td>
-                    <td>{nil.ips2}</td>
-                    <td>{nil.ips3}</td>
-                    <td>{nil.ips4}</td>
-                    <td>{nil.ips5}</td>
-                    <td>{nil.ipa1}</td>
-                    <td>{nil.ipa2}</td>
-                    <td>{nil.ipa3}</td>
-                    <td>{nil.ipa4}</td>
-                    <td>{nil.ipa5}</td>
+            <div className="container-table-nilai">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>No</th>
+                        <th>ID Nilai</th>
+                        <th>ID Siswa</th>
+                        <th>PKN 1</th>
+                        <th>PKN 2</th>
+                        <th>PKN 3</th>
+                        <th>PKN 4</th>
+                        <th>PKN 5</th>
+                        <th>B.Indo 1</th>
+                        <th>B.Indo 2</th>
+                        <th>B.Indo 3</th>
+                        <th>B.Indo 4</th>
+                        <th>B.Indo 5</th>
+                        <th>MTK 1</th>
+                        <th>MTK 2</th>
+                        <th>MTK 3</th>
+                        <th>MTK 4</th>
+                        <th>MTK 5</th>
+                        <th>IPS 1</th>
+                        <th>IPS 2</th>
+                        <th>IPS 3</th>
+                        <th>IPS 4</th>
+                        <th>IPS 5</th>
+                        <th>IPA 1</th>
+                        <th>IPA 2</th>
+                        <th>IPA 3</th>
+                        <th>IPA 4</th>
+                        <th>IPA 5</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {currentData.map((nil, index) => (
+                        <tr key={nil.id}>
+                        <td>
+                            <Link
+                            to={`/nilailist/editnilai/${nil.dataSiswaId}`}
+                            className="btnEdit"
+                            >
+                            Edit
+                            </Link>
+                        </td>
+                        <td>{startIndex + index + 1}</td>
+                        <td>{nil.id}</td>
+                        <td>{nil.dataSiswaId}</td>
+                        <td>{nil.pkn1}</td>
+                        <td>{nil.pkn2}</td>
+                        <td>{nil.pkn3}</td>
+                        <td>{nil.pkn4}</td>
+                        <td>{nil.pkn5}</td>
+                        <td>{nil.bindo1}</td>
+                        <td>{nil.bindo2}</td>
+                        <td>{nil.bindo3}</td>
+                        <td>{nil.bindo4}</td>
+                        <td>{nil.bindo5}</td>
+                        <td>{nil.mtk1}</td>
+                        <td>{nil.mtk2}</td>
+                        <td>{nil.mtk3}</td>
+                        <td>{nil.mtk4}</td>
+                        <td>{nil.mtk5}</td>
+                        <td>{nil.ips1}</td>
+                        <td>{nil.ips2}</td>
+                        <td>{nil.ips3}</td>
+                        <td>{nil.ips4}</td>
+                        <td>{nil.ips5}</td>
+                        <td>{nil.ipa1}</td>
+                        <td>{nil.ipa2}</td>
+                        <td>{nil.ipa3}</td>
+                        <td>{nil.ipa4}</td>
+                        <td>{nil.ipa5}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
             </div>
             <div class="pagination">
             <button onClick={() => handleClick("prev")} class="page-button">

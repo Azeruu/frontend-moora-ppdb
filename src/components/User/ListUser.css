@@ -33,6 +33,7 @@
     justify-content: center;
     text-decoration: none;
     background-color: var(--primary);
+    margin-top: 4rem;
 }
 
 .btnadd-user:hover {
@@ -69,21 +70,25 @@
 }
 
 /* CSS untuk table */
-.table {
+.container-table-user {
+  height: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+  max-width: 100%;
+}
+table{
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
 }
-
-.table th,
-.table td {
+th,td {
   border: 1px solid #ccc;
   padding: 10px;
-  text-align: left;
+  text-align: center;
 }
-
-.table th {
+th {
   background-color: var(--quartenary);
+  top: 0;
+  position: sticky;
 }
 
 /* Style Untuk Pagination */

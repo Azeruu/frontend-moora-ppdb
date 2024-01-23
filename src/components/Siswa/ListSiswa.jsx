@@ -98,9 +98,9 @@ const ListSiswa = () => {
       <div className="list-siswa-grid">
         <h1 className="list-siswa-judul">Daftar Siswa</h1>
         <p className="list-siswa-subjudul">Daftar calon siswa pendaftar</p>
-        <div className="list-siswa-table-container">
         <button onClick={handleDaftarButtonClick} className="btnadd-siswa">Daftar</button>
-          <table className="table">
+        <div className="container-table-siswa">
+          <table>
             <thead>
               <tr>
                 <th>Action</th>

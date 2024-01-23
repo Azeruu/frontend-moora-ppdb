@@ -62,11 +62,11 @@ const ListUser = () => {
     <div className="list-user-container">
       <div className="list-user-grid">
         <h1 className="list-user-judul">Daftar User</h1>
-        <div className="list-user-table-container">
         <Link to={`/userlist/adduser`} className="btnadd-user">
           Tambah User
         </Link>
-          <table className="table" id="data-table">
+        <div className="container-table-user">
+          <table id="data-table">
             <thead>
               <tr>
                 <th>No</th>

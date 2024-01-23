@@ -57,8 +57,8 @@ const ListRekapNilai = () => {
       <div className="list-rekap-grid">
           <h1 className="list-rekap-judul">Rekapitulasi Nilai </h1>
           <p className="list-rekap-subjudul">Rekapitulasi nilai setiap mata pelajaran serta rekapNilai lainnya</p>
-        <div className="list-rekap-table-container">
-          <table className="table">
+        <div className="container-table-rekapnilai">
+          <table>
             <thead>
               <tr>
                 <th>No</th>

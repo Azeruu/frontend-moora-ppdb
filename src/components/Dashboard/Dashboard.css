@@ -1,11 +1,20 @@
 /* Gaya umum */
-.dashboard-container {
+.dashboard-container{
+    max-height: 100vh;
+    overflow-y: auto;
+    margin-top: 20px;
+    max-width: 100%;
+}
+.dashboard {
     max-width: auto;
     margin: 0 auto;
     padding: 20px;
     /* border: 1px solid #ddd; */
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    border-collapse: collapse;
+    overflow-y: auto;
 }
 
 /* Gaya judul */
