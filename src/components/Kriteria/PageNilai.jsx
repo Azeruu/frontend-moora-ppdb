@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../../features/authSlice";
+import { getMe } from "../../features/authSlice.js";
 import Nilai from "./Nilai.jsx";
-import Layout from "../Layout";
+import Layout from "../Layout.jsx";
 
 const PageDaftar2 = () => {
   const dispatch = useDispatch();

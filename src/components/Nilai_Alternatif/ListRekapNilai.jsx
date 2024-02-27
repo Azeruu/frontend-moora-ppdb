@@ -33,7 +33,7 @@ const ListRekapNilai = () => {
   
   // Batas
   const getRekapNilai = async () => {
-    const response = await axios.get("/rekap_nilai");
+    const response = await axios.get("/nilai_alternatif");
     setRekapNilai(response.data);
   };
   // const hapusrekapNilai = async (id) => {
@@ -46,7 +46,7 @@ const ListRekapNilai = () => {
   // };
   const jumlahData = async () => {
     try {
-      const response = await axios.get("/rekap_nilai");
+      const response = await axios.get("/nilai_alternatif");
       setJmlData(response.data.length);
     } catch (error) {
       console.log(error);
@@ -55,37 +55,29 @@ const ListRekapNilai = () => {
   return (
     <div className="list-rekap-container">
       <div className="list-rekap-grid">
-          <h1 className="list-rekap-judul">Rekapitulasi Nilai </h1>
-          <p className="list-rekap-subjudul">Rekapitulasi nilai setiap mata pelajaran serta rekapNilai lainnya</p>
+          <h1 className="list-rekap-judul"> Nilai Alternatif</h1>
+          <p className="list-rekap-subjudul">Nilai Alternatif di setiap kriteria</p>
         <div className="container-table-rekapnilai">
           <table>
             <thead>
               <tr>
                 <th>No</th>
-                <th>Kode</th>
-                <th>Nama Siswa</th>
-                <th>Usia <tr>(C1)</tr></th>
-                <th>Jarak Ke sekolah "KM"<tr>(C2)</tr></th>
-                <th>Rata - Rata Nilai PKN<tr>(C3)</tr></th>
-                <th>Rata - Rata Nilai B.indo<tr>(C4)</tr></th>
-                <th>Rata - Rata Nilai MTK<tr>(C5)</tr></th>
-                <th>Rata - Rata Nilai IPS<tr>(C6)</tr></th>
-                <th>Rata - Rata Nilai IPA<tr>(C7)</tr></th>
+                <th>Nama Alternatif(Siswa)</th>
+                <th>Nama Kriteria</th>
+                <th>Nilai Asli</th>
+                <th>Nilai Fuzzy</th>
+                <th>Keterangan</th>
               </tr>
             </thead>
             <tbody>
               {currentData.map((jal, index) => (
                 <tr key={jal.id}>
                     <td>{startIndex+ index + 1}</td>
-                    <td>A{startIndex + index + 1}</td>
-                    <td>{jal.nama_lengkap}</td>
-                    <td>{jal.usia}</td>
-                    <td>{jal.jarak}</td>
-                    <td>{jal.avrg_nilai_pkn}</td>
-                    <td>{jal.avrg_nilai_bindo}</td>
-                    <td>{jal.avrg_nilai_mtk}</td>
-                    <td>{jal.avrg_nilai_ips}</td>
-                    <td>{jal.avrg_nilai_ipa}</td>
+                    <td>{jal.nama_alternatif}</td>
+                    <td>{jal.nama_kriteria}</td>
+                    <td>{jal.nilai_real}</td>
+                    <td>{jal.nilai_fuzzy}</td>
+                    <td>{jal.keterangan}</td>
                 </tr>
               ))}
             </tbody>

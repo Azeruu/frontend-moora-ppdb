@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../../features/authSlice";
-import ListNilai from "./ListNilai.jsx";
-import Layout from "../Layout";
+import { getMe } from "../../features/authSlice.js";
+import EditNilai from "./EditNilai.jsx";
+import Layout from "../Layout.jsx";
 
-const PageListNilai = () => {
+const PageEditNilai = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { isError } = useSelector((state) => state.auth);
@@ -24,9 +24,9 @@ const PageListNilai = () => {
     }, [isError, navigate]);
     return (
         <Layout>
-        <ListNilai />
+        <EditNilai />
         </Layout>
     );
 };
 
-export default PageListNilai;
+export default PageEditNilai;

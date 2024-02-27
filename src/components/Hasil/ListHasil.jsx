@@ -67,9 +67,9 @@ const ListHasil = () => {
             <thead>
               <tr>
                 <th>No</th>
-                <th>Nama Siswa</th>
-                <th>Skor Akhir</th>
-                <th>Status</th>
+                <th>Nama Alternatif (Siswa)</th>
+                <th>Jalur Pendaftaran</th>
+                <th>Nilai</th>
                 <th>Peringkat</th>
               </tr>
             </thead>
@@ -77,9 +77,9 @@ const ListHasil = () => {
               {currentData.map((jal, index) => (
                 <tr key={jal.id}>
                     <td>{startIndex +index + 1}</td>
-                    <td>{jal.nama_lengkap}</td>
-                    <td>{jal.skor_akhir}</td>
-                    <td>Lolos</td>
+                    <td>{jal.nama_alternatif}</td>
+                    <td>{jal.jalur_pendaftaran}</td>
+                    <td>{jal.nilai}</td>
                     <td>ke -{index + 1}</td>
                 </tr>
               ))}

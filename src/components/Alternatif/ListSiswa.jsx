@@ -35,7 +35,7 @@ const ListSiswa = () => {
   useEffect(() => {
     const checkDataExistence = async () => {
       try {
-        const response = await axios.get("/data_siswa", {
+        const response = await axios.get("/alternatif", {
           params: {
             userId: user.id,
           },
@@ -51,18 +51,18 @@ const ListSiswa = () => {
 
   const handleDaftarButtonClick = () => {
     if (user.role === "admin") {
-      navigate(`/siswalist/addsiswa`);
+      navigate(`/alternatif/addAlternatif`);
     } else {
       if (isDataExists) {
         alert('Anda sudah melakukan input, tidak dapat melakukan input lebih dari 1 kali.');
       } else {
-        navigate(`/siswalist/addsiswa`);
+        navigate(`/alternatif/addAlternatif`);
       }
     }
   };
 
   const getSiswa = async () => {
-    const response = await axios.get("/data_siswa");
+    const response = await axios.get("/alternatif");
     setSiswa(response.data);
   };
   useEffect(() => {
@@ -72,7 +72,7 @@ const ListSiswa = () => {
   useEffect(() => {
     const jumlahData = async () => {
       try {
-        const response = await axios.get("/data_siswa");
+        const response = await axios.get("/alternatif");
         setJmlData(response.data.length);
       } catch (error) {
         console.log(error);
@@ -83,10 +83,7 @@ const ListSiswa = () => {
 
   const hapusSiswa = async (id) => {
     try {
-      await axios.delete(`/hasil/${id}`);
-      await axios.delete(`/rekap_nilai/${id}`);
-      await axios.delete(`/data_nilai/${id}`);
-      await axios.delete(`/data_siswa/${id}`);
+      await axios.delete(`/alternatif/${id}`);
       getSiswa();
     } catch (error) {
       console.log(error);
@@ -96,47 +93,37 @@ const ListSiswa = () => {
   return (
     <div className="list-siswa-container">
       <div className="list-siswa-grid">
-        <h1 className="list-siswa-judul">Daftar Siswa</h1>
-        <p className="list-siswa-subjudul">Daftar calon siswa pendaftar</p>
-        <button onClick={handleDaftarButtonClick} className="btnadd-siswa">Daftar</button>
+        <h1 className="list-siswa-judul">Daftar Alternatif</h1>
+        <p className="list-siswa-subjudul">Daftar Alternatif (calon siswa pendaftar)</p>
+        <button onClick={handleDaftarButtonClick} className="btnadd-siswa">Tambah</button>
         <div className="container-table-siswa">
           <table>
             <thead>
               <tr>
-                <th>Action</th>
                 <th>No</th>
-                <th>ID siswa</th>
-                <th>Jalur</th>
-                <th>NISN</th>
-                <th>Nama Lengkap</th>
-                <th>Jenis Kelamin</th>
-                <th>NIK</th>
-                <th>Tempat Lahir</th>
-                <th>Tanggal Lahir</th>
-                <th>Usia</th>
-                <th>Asal Sekolah</th>
-                <th>Nama Jalan</th>
-                <th>No. Rumah</th>
-                <th>RT</th>
-                <th>RW</th>
-                <th>Desa</th>
-                <th>Kecamatan</th>
-                <th>Jarak Rumah Ke Sekolah</th>
+                <th>Kode Alternatif</th>
+                <th>Nama Alternatif</th>
+                <th>Nama Jalur</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {currentData.map((sis, index) => (
                 <tr key={sis.id}>
+                  <td>{startIndex+index + 1}</td>
+                  <td>{sis.kode_alternatif}</td>
+                  <td>{sis.nama_alternatif}</td>
+                  <td>{sis.nama_jalur}</td>
                   <td>
                     <Link
-                      to={`/siswalist/editsiswa/${sis.id}`}
+                      to={`/alternatif/editAlternatif/${sis.id}`}
                       className="btnEdit"
                     >
                       Edit
                     </Link>
                     <button
                       onClick={() => {
-                        if (window.confirm('Apakah Anda yakin ingin menghapus  data siswa ini?')) {
+                        if (window.confirm('Apakah Anda yakin ingin menghapus  data Alternatif ini?')) {
                           hapusSiswa(sis.id);
                         }
                       }}
@@ -145,24 +132,6 @@ const ListSiswa = () => {
                       Hapus
                     </button>
                   </td>
-                  <td>{startIndex+index + 1}</td>
-                  <td>{sis.id}</td>
-                  <td>{sis.nama_jalur}</td>
-                  <td>{sis.NISN}</td>
-                  <td>{sis.nama_lengkap}</td>
-                  <td>{sis.jenis_kelamin}</td>
-                  <td>{sis.NIK}</td>
-                  <td>{sis.tempat_lahir}</td>
-                  <td>{sis.tgl_lahir}</td>
-                  <td>{sis.usia}</td>
-                  <td>{sis.asal_sekolah}</td>
-                  <td>{sis.nama_jalan}</td>
-                  <td>{sis.no_rumah}</td>
-                  <td>{sis.RT}</td>
-                  <td>{sis.RW}</td>
-                  <td>{sis.Desa}</td>
-                  <td>{sis.Kecamatan}</td>
-                  <td>{sis.jarak}</td>
                 </tr>
               ))}
             </tbody>

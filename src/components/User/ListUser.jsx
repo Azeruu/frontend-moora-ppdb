@@ -87,13 +87,13 @@ const ListUser = () => {
                   <td>{user.role}</td>
                   <td className="button-action">
                     <Link
-                      to={`/userlist/edituser/${user.uuid}`}
+                      to={`/userlist/edituser/${user.id}`}
                       className="btnEdit-user"
                     >
                       Edit
                     </Link>
                     <button
-                      onClick={() => hapusUser(user.uuid)}
+                      onClick={() => hapusUser(user.id)}
                       className="btnHapus-user"
                     >
                       Hapus
