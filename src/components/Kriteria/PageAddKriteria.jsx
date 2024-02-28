@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../../features/authSlice.js";
-import Nilai from "./Nilai.jsx";
+import AddKriteria from "./AddKriteria.jsx";
 import Layout from "../Layout.jsx";
 
-const PageDaftar2 = () => {
+const PageAddKriteria = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -23,10 +23,10 @@ const PageDaftar2 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, navigate]);
   return (
-    <Layout>
-      <Nilai />
-    </Layout>
+      <Layout>
+        <AddKriteria />
+      </Layout>
   );
 };
 
-export default PageDaftar2;
+export default PageAddKriteria;

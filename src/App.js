@@ -11,9 +11,9 @@ import EditAlternatif from "./components/Alternatif/PageEditSiswa";
 import Jalur from "./components/Jalur/PageJalur";
 import AddJalur from "./components/Jalur/AddJalur";
 import EditJalur from "./components/Jalur/EditJalur";
-import AddKriteria from "./components/Kriteria/PageNilai"
-import ListKriteria from "./components/Kriteria/PageListNilai";
-import EditKriteria from "./components/Kriteria/PageEditNilai";
+import AddKriteria from "./components/Kriteria/PageAddKriteria"
+import ListKriteria from "./components/Kriteria/PageListKriteria";
+import EditKriteria from "./components/Kriteria/PageEditKriteria";
 import NilaiAlternatif from "./components/Nilai_Alternatif/PageRekapNilai";
 import Hasil from "./components/Hasil/PageHasil";
 
@@ -35,8 +35,8 @@ function App() {
           <Route path="/alternatif/editAlternatif/:id" element={<EditAlternatif />} />
           {/* Kriteria */}
           <Route path="/kriteria" element={<ListKriteria />} />
+          <Route path="/kriteria/addKriteria/" element={<AddKriteria />} />
           <Route path="/kriteria/editKriteria/:id" element={<EditKriteria />} />
-          <Route path="/kriteria/addKriteria/:id" element={<AddKriteria />} />
           {/* Nilai ALternatif */}
           <Route path="/nilai_alternatif" element={<NilaiAlternatif />} />
           {/* Jalur */}

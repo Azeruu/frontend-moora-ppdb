@@ -34,9 +34,9 @@ const ListJalur = () => {
     const response = await axios.get("/jalur");
     setJalur(response.data);
   };
-  const hapusJalur = async (uuid) => {
+  const hapusJalur = async (id) => {
     try {
-      await axios.delete(`/jalur/${uuid}`);
+      await axios.delete(`/jalur/${id}`);
       getJalur();
     } catch (error) {
       console.log(error);
@@ -65,6 +65,7 @@ const ListJalur = () => {
                 <tr>
                   <th>No</th>
                   <th>ID Jalur</th>
+                  <th>Kode Jalur</th>
                   <th>Nama Jalur</th>
                   <th>Action</th>
                 </tr>
@@ -74,6 +75,7 @@ const ListJalur = () => {
                   <tr key={jal.uuid}>
                       <td>{startIndex+index + 1}</td>
                       <td>{jal.id}</td>
+                      <td>{jal.kode_jalur}</td>
                       <td>{jal.nama_jalur}</td>
                       <td className="button-action">
                         <Link

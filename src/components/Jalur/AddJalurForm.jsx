@@ -3,7 +3,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from "../../lib/axios";
 
 const AddJalur = () => {
-    const [jalur, setJalur] = useState('');
+    const [jalur, setJalur] = useState({
+      nama_jalur:'',
+      kode_jalur:''
+    });
     const [msg, setMsg] = useState('');
     const navigate = useNavigate();
 
@@ -11,7 +14,8 @@ const AddJalur = () => {
         e.preventDefault();
         try {
             await axios.post('/jalur',{
-                nama_jalur : jalur,
+                nama_jalur : jalur.nama_jalur,
+                kode_jalur : jalur.kode_jalur,
             });
             navigate("/jalur");
         } catch (error) {
@@ -20,6 +24,12 @@ const AddJalur = () => {
             }
         }
     }
+    const setKodeJalur = (newValue) => {
+      setJalur({ ...jalur, kode_jalur: newValue });
+    };
+    const setNamaJalur = (newValue) => {
+      setJalur({ ...jalur, nama_jalur: newValue });
+    };
 
   return (
     <div className="add-jalur-column">
@@ -27,13 +37,25 @@ const AddJalur = () => {
       <form onSubmit={saveJalur}>
         <p>{msg}</p>
         <div className="field">
+          <label className="label">Kode Jalur</label>
+          <div className="control">
+            <input
+              type="text"
+              className="input"
+              value={jalur.kode_jalur}
+              onChange={(e) => setKodeJalur(e.target.value)}
+              placeholder="Jalur Masuk"
+            ></input>
+          </div>
+        </div>
+        <div className="field">
           <label className="label">Nama Jalur</label>
           <div className="control">
             <input
               type="text"
               className="input"
-              value={jalur}
-              onChange={(e) => setJalur(e.target.value)}
+              value={jalur.nama_jalur}
+              onChange={(e) => setNamaJalur(e.target.value)}
               placeholder="Jalur Masuk"
             ></input>
           </div>

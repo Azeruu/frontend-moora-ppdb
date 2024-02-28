@@ -6,7 +6,10 @@ const EditJalur = () => {
     const navigate = useNavigate();
     const [msg, setMsg] = useState("");
     const { id } = useParams();
-    const [jalur, setJalur] = useState('');
+    const [jalur, setJalur] = useState({
+        nama_jalur:'',
+        kode_jalur:''
+    });
 
     useEffect(() => {
         const getJalurById = async () => {
@@ -21,7 +24,10 @@ const EditJalur = () => {
         };
         getJalurById();
     }, [id]);
-    const setJalurBaru = (newValue) => {
+    const setKodeJalurBaru = (newValue) => {
+        setJalur({ ...jalur, kode_jalur: newValue });
+    };
+    const setNamaJalurBaru = (newValue) => {
         setJalur({ ...jalur, nama_jalur: newValue });
     };
 
@@ -29,6 +35,7 @@ const EditJalur = () => {
         e.preventDefault();
         try {
         await axios.patch(`/jalur/${id}`, {
+            kode_jalur: jalur.kode_jalur,
             nama_jalur: jalur.nama_jalur,
         });
         navigate("/jalur");
@@ -46,13 +53,25 @@ const EditJalur = () => {
             <form onSubmit={updateJalur}>
             <p>{msg}</p>
             <div className="field">
+                <label className="label">Kode Jalur</label>
+                <div className="control">
+                <input
+                    type="text"
+                    className="input"
+                    value={jalur.kode_jalur}
+                    onChange={(e) => setKodeJalurBaru(e.target.value)}
+                    placeholder="Nama Jalur"
+                ></input>
+                </div>
+            </div>
+            <div className="field">
                 <label className="label">Nama Jalur</label>
                 <div className="control">
                 <input
                     type="text"
                     className="input"
                     value={jalur.nama_jalur}
-                    onChange={(e) => setJalurBaru(e.target.value)}
+                    onChange={(e) => setNamaJalurBaru(e.target.value)}
                     placeholder="Nama Jalur"
                 ></input>
                 </div>

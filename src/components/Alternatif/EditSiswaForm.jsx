@@ -1,4 +1,3 @@
-import { useForm } from 'react-hook-form';
 import './EditSiswa.css'
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -19,7 +18,7 @@ export default function EditSiswaForm() {
       try {
         const response = await axios.get(`/alternatif/${id}`,data);
         setAlternatif(response.data);
-    } catch (error) {
+    } catch (e) {
       console.log("error dalam submit data :", e.response.msg);
     }
     };

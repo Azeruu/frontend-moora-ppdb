@@ -1,16 +1,17 @@
-import "./ListNilai.css";
+import "./ListKriteria.css";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "../../lib/axios";
 
-const ListNilai = () => {
-    const [nilai, setNilai] = useState([]);
+const ListKriteria = () => {
+    const [kriteria, setKriteria] = useState([]);
     const [jmlData, setJmlData] = useState(0);
+    const navigate = useNavigate();
 
     // Batas
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 3;
-    const totalPages = Math.ceil(nilai.length / itemsPerPage);
+    const totalPages = Math.ceil(kriteria.length / itemsPerPage);
 
     const handleClick = (value) => {
         if (value === "prev" && currentPage > 1) {
@@ -24,24 +25,24 @@ const ListNilai = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
-    const currentData = nilai.slice(startIndex, endIndex);
+    const currentData = kriteria.slice(startIndex, endIndex);
     // Batas
 
     useEffect(() => {
-        getNilai();
+        getKriteria();
     }, []);
     useEffect(() => {
         jumlahData();
     }, []);
 
-    const getNilai = async () => {
+    const getKriteria = async () => {
         const response = await axios.get("/kriteria");
-        setNilai(response.data);
+        setKriteria(response.data);
     };
-    const hapusNilai = async (id) => {
+    const hapusKriteria = async (id) => {
         try {
         await axios.delete(`/kriteria/${id}`);
-        getNilai();
+        getKriteria();
         } catch (error) {
         console.log(error);
         }
@@ -54,12 +55,16 @@ const ListNilai = () => {
         console.log(error);
         }
     };
+    const handleTambahButtonClick = () => {
+        navigate(`/kriteria/addKriteria`);
+    };
     return (
-        <div className="list-nilai-container">
-        <div className="list-nilai-grid">
-            <h1 className="list-nilai-judul">Daftar Nilai</h1>
-            <p className="list-nilai-subjudul">Daftar Nilai yang telah di input oleh Pendaftar</p>
-            <div className="container-table-nilai">
+        <div className="list-siswa-container">
+        <div className="list-siswa-grid">
+            <h1 className="list-siswa-judul">Daftar Kriteria</h1>
+            <p className="list-siswa-subjudul">Daftar Kriteria yang telah di input oleh Pendaftar</p>
+            <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
+            <div className="container-table-siswa">
                 <table>
                     <thead>
                     <tr>
@@ -84,12 +89,15 @@ const ListNilai = () => {
                                 >
                                 Edit
                                 </Link>
-                                <Link
-                                to={`/kriteria/hapusKriteria/${nil.id}`}
-                                className="btnHapus"
-                                >
-                                Edit
-                                </Link>
+                                <button onClick={() => {
+                                        if (window.confirm('Apakah Anda yakin ingin menghapus  data Kriteria ini?')) {
+                                        hapusKriteria(nil.id);
+                                        }
+                                    }}
+                                    className="btnHapus"
+                                    >
+                                    Hapus
+                                </button>
                             </td>
                         </tr>
                     ))}
@@ -124,4 +132,4 @@ const ListNilai = () => {
     );
 };
 
-export default ListNilai;
+export default ListKriteria;
