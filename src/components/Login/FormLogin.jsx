@@ -61,11 +61,11 @@ const Login = () => {
       <div className="login-row">
         <div className="hero">
           <h1>
-              SELAMAT DATANG di Website PPDB <span> SMPN 1 Cisoka</span>.
+              Website Sistem Penunjang Keputusan <span>Dengan metode </span>Multi-Objective Optimization by Ratio Analysis (MOORA)
           </h1>
           <p>
-            Website penerimaan murid baru smpn 1 cisoka yang dibuat untuk
-            memudahkan para calon siswa untuk medaftar secara online
+            Website untuk membantu panitia dalam seleksi penerimaan
+            peserta didik baru di SMPN 1 CISOKA
           </p>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../../features/authSlice";
-import Layout from "../Layout";
-import RekapNilai from "./ListRekapNilai";
+import { getMe } from "../../features/authSlice.js";
+import AddNilaiAlt from "./AddNilaiAlt.jsx";
+import Layout from "../Layout.jsx";
 
-const PageRekapNilai = () => {
+const PageAddNilaiAlt = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -23,10 +23,10 @@ const PageRekapNilai = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, navigate]);
   return (
-    <Layout>
-      <RekapNilai />
-    </Layout>
+      <Layout>
+        <AddNilaiAlt />
+      </Layout>
   );
 };
 
-export default PageRekapNilai;
+export default PageAddNilaiAlt;

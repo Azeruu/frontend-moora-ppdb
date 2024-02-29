@@ -1,22 +1,25 @@
-import "./ListRekapNilai.css";
+import "./ListNilaiAlt.css";
 import { useState, useEffect } from "react";
+import { Link, useNavigate} from "react-router-dom";
 import axios from "../../lib/axios";
 
-const ListRekapNilai = () => {
-  const [rekapNilai, setRekapNilai] = useState([]);
+const ListNilaiAlt = () => {
+  const [nilaiAlt, setNilaiAlt] = useState([]);
   const [jmlData, setJmlData] = useState(0);
+  const navigate = useNavigate();
 
+  const getNilaiAlt = async () => {
+    const response = await axios.get("/nilai_alternatif");
+    setNilaiAlt(response.data);
+  };
   useEffect(() => {
-    getRekapNilai();
-  }, []);
-  useEffect(() => {
-    jumlahData();
+    getNilaiAlt();
   }, []);
 
   // Batas
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
-  const totalPages = Math.ceil(rekapNilai.length / itemsPerPage);
+  const totalPages = Math.ceil(nilaiAlt.length / itemsPerPage);
 
   const handleClick = (value) => {
     if (value === "prev" && currentPage > 1) {
@@ -29,35 +32,40 @@ const ListRekapNilai = () => {
   };
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentData = rekapNilai.slice(startIndex, endIndex);
+  const currentData = nilaiAlt.slice(startIndex, endIndex);
   
   // Batas
-  const getRekapNilai = async () => {
-    const response = await axios.get("/nilai_alternatif");
-    setRekapNilai(response.data);
-  };
-  // const hapusrekapNilai = async (id) => {
-  //   try {
-  //     await axios.delete(`/rekap_nilai/${id}`);
-  //     getrekapNilai();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  const jumlahData = async () => {
+  const hapusNilAlt = async (id) => {
     try {
-      const response = await axios.get("/nilai_alternatif");
-      setJmlData(response.data.length);
+      await axios.delete(`/nilai_alternatif/${id}`);
+      getNilaiAlt();
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    const jumlahData = async () => {
+      try {
+        const response = await axios.get("/alternatif");
+        setJmlData(response.data.length);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    jumlahData();
+  }, []);
+
+  const handleTambahButtonClick = () => {
+      navigate(`/nilai_alternatif/addNilaiAlternatif`);
+  };
+
   return (
     <div className="list-rekap-container">
       <div className="list-rekap-grid">
           <h1 className="list-rekap-judul"> Nilai Alternatif</h1>
           <p className="list-rekap-subjudul">Nilai Alternatif di setiap kriteria</p>
-        <div className="container-table-rekapnilai">
+          <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
+        <div className="container-table-siswa">
           <table>
             <thead>
               <tr>
@@ -67,6 +75,7 @@ const ListRekapNilai = () => {
                 <th>Nilai Asli</th>
                 <th>Nilai Fuzzy</th>
                 <th>Keterangan</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -78,6 +87,24 @@ const ListRekapNilai = () => {
                     <td>{jal.nilai_real}</td>
                     <td>{jal.nilai_fuzzy}</td>
                     <td>{jal.keterangan}</td>
+                    <td>
+                    <Link
+                      to={`/nilai_alternatif/editNilaiAlternatif/${jal.id}`}
+                      className="btnEdit"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      onClick={() => {
+                        if (window.confirm('Apakah Anda yakin ingin menghapus  data Nilai Alternatif ini?')) {
+                          hapusNilAlt(jal.id);
+                        }
+                      }}
+                      className="btnHapus"
+                    >
+                      Hapus
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -103,4 +130,4 @@ const ListRekapNilai = () => {
   );
 };
 
-export default ListRekapNilai;
+export default ListNilaiAlt;

@@ -14,7 +14,9 @@ import EditJalur from "./components/Jalur/EditJalur";
 import AddKriteria from "./components/Kriteria/PageAddKriteria"
 import ListKriteria from "./components/Kriteria/PageListKriteria";
 import EditKriteria from "./components/Kriteria/PageEditKriteria";
-import NilaiAlternatif from "./components/Nilai_Alternatif/PageRekapNilai";
+import NilaiAlternatif from "./components/Nilai_Alternatif/PageNilaiAlt";
+import AddNilaiAlternatif from "./components/Nilai_Alternatif/PageAddNilaiAlt"
+import EditNilaiAlternatif from "./components/Nilai_Alternatif/PageEditNilaiAlt"
 import Hasil from "./components/Hasil/PageHasil";
 
 function App() {
@@ -39,6 +41,8 @@ function App() {
           <Route path="/kriteria/editKriteria/:id" element={<EditKriteria />} />
           {/* Nilai ALternatif */}
           <Route path="/nilai_alternatif" element={<NilaiAlternatif />} />
+          <Route path="/nilai_alternatif/addNilaiAlternatif" element={<AddNilaiAlternatif />} />
+          <Route path="/nilai_alternatif/editNilaiAlternatif/:id" element={<EditNilaiAlternatif />} />
           {/* Jalur */}
           <Route path="/jalur" element={<Jalur />} />
           <Route path="/jalur/addjalur" element={<AddJalur />} />
