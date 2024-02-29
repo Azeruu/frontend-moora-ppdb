@@ -18,6 +18,8 @@ import NilaiAlternatif from "./components/Nilai_Alternatif/PageNilaiAlt";
 import AddNilaiAlternatif from "./components/Nilai_Alternatif/PageAddNilaiAlt"
 import EditNilaiAlternatif from "./components/Nilai_Alternatif/PageEditNilaiAlt"
 import Hasil from "./components/Hasil/PageHasil";
+import AddHasil from "./components/Hasil/PageAddHasil";
+import EditHasil from "./components/Hasil/PageEditHasil";
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
           <Route path="/jalur/editjalur/:id" element={<EditJalur />} />
           {/* Hasil */}
           <Route path="/hasil" element={<Hasil />} />
+          <Route path="/hasil/addhasil" element={<AddHasil />} />
+          <Route path="/hasil/edithasil/:id" element={<EditHasil />} />
         </Routes>
       </Router>
     </div>

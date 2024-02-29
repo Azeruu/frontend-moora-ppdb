@@ -15,42 +15,41 @@ const ListKriteria = () => {
 
     const handleClick = (value) => {
         if (value === "prev" && currentPage > 1) {
-          setCurrentPage((prev) => prev - 1);
+            setCurrentPage((prev) => prev - 1);
         } else if (value === "next" && currentPage < totalPages) {
-          setCurrentPage((prev) => prev + 1);
+            setCurrentPage((prev) => prev + 1);
         } else if (typeof value === "number" && value >= 1 && value <= totalPages) {
-          setCurrentPage(value);
+            setCurrentPage(value);
         }
-      };
+    };
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
     const currentData = kriteria.slice(startIndex, endIndex);
     // Batas
 
-    useEffect(() => {
-        getKriteria();
-    }, []);
-    useEffect(() => {
-        jumlahData();
-    }, []);
-
     const getKriteria = async () => {
         const response = await axios.get("/kriteria");
         setKriteria(response.data);
-    };
-    const hapusKriteria = async (id) => {
-        try {
-        await axios.delete(`/kriteria/${id}`);
-        getKriteria();
-        } catch (error) {
-        console.log(error);
-        }
     };
     const jumlahData = async () => {
         try {
         const response = await axios.get("/kriteria");
         setJmlData(response.data.length);
+        } catch (error) {
+        console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getKriteria();
+        jumlahData();
+    }, []);
+
+    const hapusKriteria = async (id) => {
+        try {
+        await axios.delete(`/kriteria/${id}`);
+        getKriteria();
         } catch (error) {
         console.log(error);
         }
