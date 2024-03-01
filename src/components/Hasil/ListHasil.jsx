@@ -93,10 +93,10 @@ const ListHasil = () => {
                     <td>{has.jalur_pendaftaran}</td>
                     <td>{has.nilai}</td>
                     <td>ke -{startIndex + index + 1}</td>
-                    <td>
+                    <td className="button-action">
                         <Link
                         to={`/hasil/editHasil/${has.id}`}
-                        className="btnEdit"
+                        className="btnEdit-jalur"
                         >
                         Edit
                         </Link>
@@ -105,7 +105,7 @@ const ListHasil = () => {
                                 hapusHasil(has.id);
                                 }
                             }}
-                            className="btnHapus"
+                            className="btnHapus-jalur"
                             >
                             Hapus
                         </button>

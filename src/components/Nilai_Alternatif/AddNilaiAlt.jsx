@@ -8,12 +8,24 @@ export default function Daftar() {
   const [alternatif, setAlternatif] = useState('');
   const [kriteria, setKriteria] = useState('');
   let [nilai_real, setNilaiReal] = useState('');
+  const [existingData, setExistingData] = useState([]);
   const [ambilAlt, setAmbilAlt] = useState([]);
   const [ambilKriteria, setAmbilKriteria] = useState([]);
   const navigate = useNavigate();
 
-  const onSubmit = async () => {
+  const onSubmit = async (e) => {
+    e.preventDefault();
     try {
+      // Periksa apakah nama_alternatif dan nama_kriteria sudah ada
+      const isDataExist = existingData.some(
+        (data) =>
+          data.nama_alternatif === alternatif && data.nama_kriteria === kriteria
+      );
+      if (isDataExist) {
+        alert("Data Alternatif dengan Kriteria Tersbut Sudah Ada! Mohon di cek Kembali");
+        navigate(`/nilai_alternatif`);
+        return;
+      }
         let fuzzyValue, keteranganValue;
         if (kriteria === "Rata - Rata Nilai Rapot") {
           if (nilai_real <= 70) {
@@ -81,7 +93,12 @@ export default function Daftar() {
     const response = await axios.get("/kriteria", data);
     setAmbilKriteria(response.data);
   }
+  const getNilaiAlternatif = async(data)=>{
+    const response = await axios.get("/nilai_alternatif", data);
+    setExistingData(response.data);
+  }
   useEffect(() => {
+    getNilaiAlternatif();
     getAlternatif();
     getKriteria();
 }, []);

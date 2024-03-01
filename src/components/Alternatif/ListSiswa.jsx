@@ -114,10 +114,10 @@ const ListSiswa = () => {
                   <td>{sis.kode_alternatif}</td>
                   <td>{sis.nama_alternatif}</td>
                   <td>{sis.nama_jalur}</td>
-                  <td>
+                  <td className="button-action">
                     <Link
                       to={`/alternatif/editAlternatif/${sis.id}`}
-                      className="btnEdit"
+                      className="btnEdit-jalur"
                     >
                       Edit
                     </Link>
@@ -127,7 +127,7 @@ const ListSiswa = () => {
                           hapusSiswa(sis.id);
                         }
                       }}
-                      className="btnHapus"
+                      className="btnHapus-jalur"
                     >
                       Hapus
                     </button>

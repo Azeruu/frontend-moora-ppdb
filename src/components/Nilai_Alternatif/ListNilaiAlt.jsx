@@ -87,10 +87,10 @@ const ListNilaiAlt = () => {
                     <td>{jal.nilai_real}</td>
                     <td>{jal.nilai_fuzzy}</td>
                     <td>{jal.keterangan}</td>
-                    <td>
+                    <td className="button-action">
                     <Link
                       to={`/nilai_alternatif/editNilaiAlternatif/${jal.id}`}
-                      className="btnEdit"
+                      className="btnEdit-jalur"
                     >
                       Edit
                     </Link>
@@ -100,7 +100,7 @@ const ListNilaiAlt = () => {
                           hapusNilAlt(jal.id);
                         }
                       }}
-                      className="btnHapus"
+                      className="btnHapus-jalur"
                     >
                       Hapus
                     </button>

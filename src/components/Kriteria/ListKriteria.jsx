@@ -81,10 +81,10 @@ const ListKriteria = () => {
                             <td>{nil.kode_kriteria}</td>
                             <td>{nil.nama_kriteria}</td>
                             <td>{nil.bobot_kriteria}</td>
-                            <td>
+                            <td className="button-action">
                                 <Link
                                 to={`/kriteria/editKriteria/${nil.id}`}
-                                className="btnEdit"
+                                className="btnEdit-jalur"
                                 >
                                 Edit
                                 </Link>
@@ -93,7 +93,7 @@ const ListKriteria = () => {
                                         hapusKriteria(nil.id);
                                         }
                                     }}
-                                    className="btnHapus"
+                                    className="btnHapus-jalur"
                                     >
                                     Hapus
                                 </button>
