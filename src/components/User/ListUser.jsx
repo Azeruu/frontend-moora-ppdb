@@ -26,7 +26,7 @@ const ListUser = () => {
     }
   };
   // Batas
-  const itemsPerPage = 4;
+  const itemsPerPage = 5;
   const totalPages = Math.ceil(users.length / itemsPerPage);
 
   const handleClick = (value) => {

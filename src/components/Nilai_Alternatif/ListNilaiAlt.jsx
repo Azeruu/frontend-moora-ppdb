@@ -18,7 +18,7 @@ const ListNilaiAlt = () => {
 
   // Batas
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
+  const itemsPerPage = 5;
   const totalPages = Math.ceil(nilaiAlt.length / itemsPerPage);
 
   const handleClick = (value) => {

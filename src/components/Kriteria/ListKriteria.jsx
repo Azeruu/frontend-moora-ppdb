@@ -10,7 +10,7 @@ const ListKriteria = () => {
 
     // Batas
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 3;
+    const itemsPerPage = 5;
     const totalPages = Math.ceil(kriteria.length / itemsPerPage);
 
     const handleClick = (value) => {

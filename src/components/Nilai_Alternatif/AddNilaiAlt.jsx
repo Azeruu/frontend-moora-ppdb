@@ -7,7 +7,7 @@ import axios from "../../lib/axios";
 export default function Daftar() {
   const [alternatif, setAlternatif] = useState('');
   const [kriteria, setKriteria] = useState('');
-  const [nilai_real, setNilaiReal] = useState('');
+  let [nilai_real, setNilaiReal] = useState('');
   const [ambilAlt, setAmbilAlt] = useState([]);
   const [ambilKriteria, setAmbilKriteria] = useState([]);
   const navigate = useNavigate();
@@ -15,20 +15,49 @@ export default function Daftar() {
   const onSubmit = async () => {
     try {
         let fuzzyValue, keteranganValue;
-        if (nilai_real <= 70) {
+        if (kriteria === "Rata - Rata Nilai Rapot") {
+          if (nilai_real <= 70) {
+              fuzzyValue = 1;
+              keteranganValue = "Kurang Baik";
+          } else if (nilai_real > 70 && nilai_real <= 80) {
+              fuzzyValue = 2;
+              keteranganValue = "Cukup";
+          } else if (nilai_real > 80 && nilai_real <= 90) {
+              fuzzyValue = 3;
+              keteranganValue = "Baik";
+          } else if (nilai_real > 90) {
+              fuzzyValue = 4;
+              keteranganValue = "Sangat Baik";
+          }
+      } else if (kriteria === "Usia") {
+        if (nilai_real <= 10) {
           fuzzyValue = 1;
           keteranganValue = "Kurang Baik";
-        } else if (nilai_real > 70 && nilai_real <= 80) {
+      } else if (nilai_real = 11) {
           fuzzyValue = 2;
           keteranganValue = "Cukup";
-        } else if (nilai_real > 80 && nilai_real <= 90) {
+      } else if (nilai_real = 12) {
           fuzzyValue = 3;
           keteranganValue = "Baik";
-        } else if (nilai_real > 90) {
+      } else if (nilai_real = 13) {
           fuzzyValue = 4;
           keteranganValue = "Sangat Baik";
-        }
-
+      }
+      } else if (kriteria === "Jarak") {
+        if (nilai_real > 2000) {
+          fuzzyValue = 1;
+          keteranganValue = "Kurang Baik";
+      } else if (nilai_real > 1000 && nilai_real <= 2000) {
+          fuzzyValue = 2;
+          keteranganValue = "Cukup";
+      } else if (nilai_real > 500 && nilai_real <= 1000) {
+          fuzzyValue = 3;
+          keteranganValue = "Baik";
+      } else if (nilai_real < 500) {
+          fuzzyValue = 4;
+          keteranganValue = "Sangat Baik";
+      }
+      }
       const response = await axios.post("/nilai_alternatif",{
         nama_alternatif:alternatif,
         nama_kriteria:kriteria,

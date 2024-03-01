@@ -5,13 +5,12 @@ import axios from "../../lib/axios";
 
 const ListHasil = () => {
   const [hasil, setHasil] = useState([]);
-  const [nilaiAlt, setNilaiAlt] = useState([]);
   const [jmlData, setJmlData] = useState(0);
   const navigate = useNavigate();
 
   // Start Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
+  const itemsPerPage = 5;
   const totalPages = Math.ceil(hasil.length / itemsPerPage);
 
   const handleClick = (value) => {
@@ -32,32 +31,15 @@ const ListHasil = () => {
   // nyoba
   const hasilkan = async()=>{
     await axios.post(`/hasil`);
-    window.location.reload();
+    navigate('/hasil');
+    getHasil();
   }
-
-  // Cek ketersediaan Data
-  const getNilaiAlternatif = async(data) =>{
-    try {
-      const response = await axios.get('/nilai_alternatif', data);
-      console.log(response.data);
-      setNilaiAlt(response.data);
-    } catch (error) {
-      console.error('Gagal mengambil data :', error);
-    }
-  };
-  const newData = {
-    nama_alternatif:"Rifki"
-  }
-  const existingKriteria = nilaiAlt.find(k => 
-    k.nama_alternatif === newData.nama_alternatif
-  );
-  console.log(existingKriteria);
-  // END Cek ketersediaan Data
 
   const getHasil = async() =>{
     try {
       const response = await axios.get('/hasil');
-      setHasil(response.data)
+      const sortedHasil = response.data.sort((a, b) => b.nilai - a.nilai);
+      setHasil(sortedHasil);
     } catch (error) {
       console.error('Gagal mengambil data dari API:', error);
     }
@@ -74,7 +56,6 @@ const ListHasil = () => {
   useEffect(() => {
     getHasil();
     jumlahData();
-    getNilaiAlternatif();
   }, []);
   
   const hapusHasil = async (id) => {
@@ -85,16 +66,12 @@ const ListHasil = () => {
       console.log(error);
     }
   };
-  const handleTambahButtonClick = () => {
-    navigate(`/hasil/addHasil`);
-  };
 
   return (
     <div className="list-hasil-container">
       <div className="list-hasil-grid">
           <h1 className="list-hasil-judul">Hasil Perhitungan MOORA </h1>
           <p className="list-rekap-subjudul">Hasil dari perhitungan yang dilakukan dengan menggunakan perhitungan SPK dengan Metode MOORA</p>
-        <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
         <button onClick={hasilkan} className="btnadd-siswa">Hasil</button>
         <div className="list-hasil-table-container">
           <table className="table">
@@ -115,7 +92,7 @@ const ListHasil = () => {
                     <td>{has.nama_alternatif}</td>
                     <td>{has.jalur_pendaftaran}</td>
                     <td>{has.nilai}</td>
-                    <td>ke -{index + 1}</td>
+                    <td>ke -{startIndex + index + 1}</td>
                     <td>
                         <Link
                         to={`/hasil/editHasil/${has.id}`}
