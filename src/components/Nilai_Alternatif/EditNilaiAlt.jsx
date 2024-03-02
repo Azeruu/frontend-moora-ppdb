@@ -33,14 +33,9 @@ export default function EditNilaiAlt() {
       console.log("error dalam mengambil data :", e.response.msg);
     }
     };
-    // const getNilaiAlt = async(data) =>{
-    //   const response = await axios.get("/nilai_alternatif", data);
-    //   console.log(response.data);
-    // };
     getNilaiAlternatifById();
     getAlternatif();
     getKriteria();
-    // getNilaiAlt();
 }, [id]);
 
 const setNamaAlternatifBaru = (newValue) => {
@@ -55,35 +50,70 @@ const setNilaiBaru = (newValue) => {
 
 const updateAlternatif = async (e) => {
   e.preventDefault();
-  let fuzzyValue, keteranganValue;
+    try {
+      let fuzzyValue, keteranganValue;
+      if (nilai_alternatif.nama_kriteria === "Rata - Rata Nilai Rapot") {
         if (nilai_alternatif.nilai_real <= 70) {
-          fuzzyValue = 1;
-          keteranganValue = "Kurang Baik";
+            fuzzyValue = 1;
+            keteranganValue = "Kurang Baik";
         } else if (nilai_alternatif.nilai_real > 70 && nilai_alternatif.nilai_real <= 80) {
-          fuzzyValue = 2;
-          keteranganValue = "Cukup";
+            fuzzyValue = 2;
+            keteranganValue = "Cukup";
         } else if (nilai_alternatif.nilai_real > 80 && nilai_alternatif.nilai_real <= 90) {
-          fuzzyValue = 3;
-          keteranganValue = "Baik";
+            fuzzyValue = 3;
+            keteranganValue = "Baik";
         } else if (nilai_alternatif.nilai_real > 90) {
-          fuzzyValue = 4;
-          keteranganValue = "Sangat Baik";
+            fuzzyValue = 4;
+            keteranganValue = "Sangat Baik";
         }
-  try {
-    await axios.patch(`/nilai_alternatif/${id}`,{
-      nama_alternatif:nilai_alternatif.nama_alternatif,
-      nama_kriteria:nilai_alternatif.nama_kriteria,
-      nilai_real:nilai_alternatif.nilai_real,
-      nilai_fuzzy:fuzzyValue,
-      keterangan:keteranganValue
-    });
-    alert("Data Nilai Alternatif Berhasil Di Update")
-    navigate(`/nilai_alternatif`);
-  } catch (e) {
-    console.log("error dalam submit data :", e.response.msg);
-    alert(e.response.data.msg);
-  }
-};
+        } else if (nilai_alternatif.nama_kriteria === "Usia") {
+          if (nilai_alternatif.nilai_real <= 10) {
+            fuzzyValue = 1;
+            keteranganValue = "Kurang Baik";
+          } else if (nilai_alternatif.nilai_real == 11) {
+              fuzzyValue = 2;
+              keteranganValue = "Cukup";
+          } else if (nilai_alternatif.nilai_real == 12) {
+              fuzzyValue = 3;
+              keteranganValue = "Baik";
+          } else if (nilai_alternatif.nilai_real == 13) {
+              fuzzyValue = 4;
+              keteranganValue = "Sangat Baik";
+          }
+        } else if (nilai_alternatif.nama_kriteria === "Jarak") {
+          if (nilai_alternatif.nilai_real > 2000) {
+            fuzzyValue = 1;
+            keteranganValue = "Kurang Baik";
+          } else if (nilai_alternatif.nilai_real > 1000 && nilai_alternatif.nilai_real <= 2000) {
+              fuzzyValue = 2;
+              keteranganValue = "Cukup";
+          } else if (nilai_alternatif.nilai_real > 500 && nilai_alternatif.nilai_real <= 1000) {
+              fuzzyValue = 3;
+              keteranganValue = "Baik";
+          } else if (nilai_alternatif.nilai_real < 500) {
+              fuzzyValue = 4;
+              keteranganValue = "Sangat Baik";
+          }
+        }
+      try {
+        await axios.patch(`/nilai_alternatif/${id}`,{
+          nama_alternatif:nilai_alternatif.nama_alternatif,
+          nama_kriteria:nilai_alternatif.nama_kriteria,
+          nilai_real:nilai_alternatif.nilai_real,
+          nilai_fuzzy:fuzzyValue,
+          keterangan:keteranganValue
+        });
+        alert("Data Nilai Alternatif Berhasil Di Update")
+        navigate(`/nilai_alternatif`);
+      } catch (e) {
+        console.log("error dalam submit data :", e.response);
+        alert(e.response.data);
+      }
+    }catch (e) {
+      console.log("error dalam submit data :", e.response);
+      alert(e.response);
+    };
+  };
 
   return (
     <div className="Daftar-container">

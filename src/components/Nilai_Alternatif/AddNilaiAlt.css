@@ -129,3 +129,40 @@
     color: rgb(219, 63, 63);
     text-shadow: 0 0 .2rem #000000;
 }
+
+/* Sugetion Box  */
+#inputBox {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    width: 300px;
+    font-size: 16px;
+}
+
+#inputBox:focus {
+    outline: none;
+    border-color: dodgerblue;
+}
+
+#suggestions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    width: 300px; /* Sesuaikan lebar dengan input */
+}
+
+#suggestions option {
+    padding: 8px;
+    cursor: pointer;
+}
+  
+#suggestions option:hover {
+    background-color: #f4f4f4;
+}
+  

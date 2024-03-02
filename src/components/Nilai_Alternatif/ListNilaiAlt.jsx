@@ -16,10 +16,15 @@ const ListNilaiAlt = () => {
     getNilaiAlt();
   }, []);
 
-  // Batas
+  // Pagination
+  const sortedData = [...nilaiAlt].sort((a, b) => {
+    // Bandingkan nama alternatif
+    return a.nama_alternatif.localeCompare(b.nama_alternatif);
+  });
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-  const totalPages = Math.ceil(nilaiAlt.length / itemsPerPage);
+  const totalPages = Math.ceil(sortedData.length / itemsPerPage);
 
   const handleClick = (value) => {
     if (value === "prev" && currentPage > 1) {
@@ -32,7 +37,7 @@ const ListNilaiAlt = () => {
   };
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentData = nilaiAlt.slice(startIndex, endIndex);
+  const currentData = sortedData.slice(startIndex, endIndex);
   
   // Batas
   const hapusNilAlt = async (id) => {
@@ -58,6 +63,7 @@ const ListNilaiAlt = () => {
   const handleTambahButtonClick = () => {
       navigate(`/nilai_alternatif/addNilaiAlternatif`);
   };
+  
 
   return (
     <div className="list-rekap-container">

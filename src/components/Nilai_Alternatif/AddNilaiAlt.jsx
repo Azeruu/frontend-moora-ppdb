@@ -45,13 +45,13 @@ export default function Daftar() {
         if (nilai_real <= 10) {
           fuzzyValue = 1;
           keteranganValue = "Kurang Baik";
-      } else if (nilai_real = 11) {
+      } else if (nilai_real == 11) {
           fuzzyValue = 2;
           keteranganValue = "Cukup";
-      } else if (nilai_real = 12) {
+      } else if (nilai_real == 12) {
           fuzzyValue = 3;
           keteranganValue = "Baik";
-      } else if (nilai_real = 13) {
+      } else if (nilai_real == 13) {
           fuzzyValue = 4;
           keteranganValue = "Sangat Baik";
       }
@@ -114,17 +114,20 @@ export default function Daftar() {
             <label className="label">Nama Alternatif ( Siswa )</label>
             <div className="control">
               <div className="select">
-                <select
+                <input
+                  type="text"
+                  id="inputBox"
+                  list="suggestions"
                   value={alternatif}
                   onChange={(e) => setAlternatif(e.target.value)}
-                >
-                  <option value="">Pilih Alternatif</option>
+                />
+                <datalist id="suggestions">
                   {ambilAlt.map((item) => (
                     <option key={item.id} value={item.nama_alternatif}>
                       {item.nama_alternatif}
                     </option>
                   ))}
-                </select>
+                </datalist>
               </div>
             </div>
           </div>
