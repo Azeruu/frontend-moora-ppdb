@@ -34,6 +34,11 @@ const ListHasil = () => {
     navigate('/hasil');
     getHasil();
   }
+  const update = async()=>{
+    await axios.patch(`/hasil`);
+    navigate('/hasil');
+    getHasil();
+  }
 
   const getHasil = async() =>{
     try {
@@ -72,7 +77,10 @@ const ListHasil = () => {
       <div className="list-hasil-grid">
           <h1 className="list-hasil-judul">Hasil Perhitungan MOORA </h1>
           <p className="list-rekap-subjudul">Hasil dari perhitungan yang dilakukan dengan menggunakan perhitungan SPK dengan Metode MOORA</p>
-        <button onClick={hasilkan} className="btnadd-siswa">Hasil</button>
+          <div className="bungkus-btn">
+            <button onClick={hasilkan} className="btnadd-hasil">Hasil</button>
+            <button onClick={update} className="btnUpdate-hasil">Update</button>
+          </div>
         <div className="list-hasil-table-container">
           <table className="table">
             <thead>
