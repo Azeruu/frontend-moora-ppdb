@@ -171,13 +171,15 @@ th {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin: 20px;
   height: 70vh;
   box-shadow: 10px 20px 40px rgba(8, 187, 211, 0.5);
 }
-.add-user-judul{
-  margin: 1rem;
-  margin-bottom: 2rem;
+
+.add-user-judul {
+  margin: 3rem;
+  font-size: 2.5rem;
 }
 .label {
   font-weight: bold;
@@ -233,11 +235,13 @@ th {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin: 20px;
   height: 70vh;
   box-shadow: 10px 20px 40px rgba(8, 187, 211, 0.5);
 }
-.edit-user-judul{
-  margin: 1rem;
-  margin-bottom: 2rem;
+
+.edit-user-judul {
+  margin: 3rem;
+  font-size: 2.5rem;
 }

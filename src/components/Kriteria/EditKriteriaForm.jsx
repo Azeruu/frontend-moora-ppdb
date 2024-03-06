@@ -50,10 +50,8 @@ const updateKriteria = async (e) => {
 };
 
   return (
-    <div className="Daftar-container">
-      <div className="daftar-navbar">
-        <h2 className="daftar-judul">Input Data Kriteria</h2>
-      </div>
+    <div className="edit-kriteria-column">
+        <h2 className="kriteria-judul">EDIT DATA KRITERIA</h2>
       <form onSubmit={updateKriteria}>
       {/* <p>{msg}</p> */}
           <div className="field">

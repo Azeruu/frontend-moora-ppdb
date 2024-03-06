@@ -40,10 +40,8 @@ const createKriteria = async (e) => {
 };
 
   return (
-    <div className="Daftar-container">
-      <div className="daftar-navbar">
-        <h2 className="daftar-judul">Input Data Kriteria</h2>
-      </div>
+    <div className="add-kriteria-column">
+        <h2 className="kriteria-judul">INPUT DATA KRITERIA</h2>
       <form onSubmit={createKriteria}>
       {/* <p>{msg}</p> */}
           <div className="field">
@@ -87,7 +85,7 @@ const createKriteria = async (e) => {
               Kembali
             </Link>
             <button type="submit" className="action-btn">
-              Save
+              Simpan
             </button>
           </div>
       </form>

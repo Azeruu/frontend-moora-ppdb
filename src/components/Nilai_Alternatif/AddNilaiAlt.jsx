@@ -104,10 +104,8 @@ export default function Daftar() {
 }, []);
 
   return (
-    <div className="Daftar-container">
-      <div className="daftar-navbar">
-        <h2 className="daftar-judul">Input Data Alternatif</h2>
-      </div>
+    <div className="add-nilaialt-column">
+        <h2 className="add-nilaialt-judul">Tambah Data Alternatif</h2>
       <form onSubmit={onSubmit}>
       {/* <p>{msg}</p> */}
       <div className="field">
