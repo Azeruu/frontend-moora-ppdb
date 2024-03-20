@@ -5,6 +5,7 @@ import axios from "../../lib/axios";
 
 const ListHasil = () => {
   const [hasil, setHasil] = useState([]);
+  // const [kode, setKode] = useState([]);
   const [jmlData, setJmlData] = useState(0);
   const navigate = useNavigate();
 
@@ -40,15 +41,35 @@ const ListHasil = () => {
     getHasil();
   }
 
-  const getHasil = async() =>{
+  const getHasil = async () => {
     try {
       const response = await axios.get('/hasil');
-      const sortedHasil = response.data.sort((a, b) => b.nilai - a.nilai);
+      const response2 = await axios.get('/alternatif');
+  
+      // Ambil kolom nama_alternatif dan kode_alternatif dari response alternatif
+      const alternatifData = response2.data.map(item => ({
+        nama_alternatif: item.nama_alternatif,
+        kode_alternatif: item.kode_alternatif
+      }));
+  
+      // Perbarui hasil dengan kode_alternatif yang sesuai
+      const updatedHasil = response.data.map(item => ({
+        ...item,
+        // Cari kode_alternatif yang sesuai dengan nama_alternatif
+        kode_alternatif: alternatifData.find(alternatif => alternatif.nama_alternatif === item.nama_alternatif)?.kode_alternatif
+      }));
+  
+      // Urutkan hasil berdasarkan nilai
+      const sortedHasil = updatedHasil.sort((a, b) => b.nilai - a.nilai);
+  
+      // Atur hasil yang sudah diurutkan ke dalam state
       setHasil(sortedHasil);
     } catch (error) {
       console.error('Gagal mengambil data dari API:', error);
     }
   };
+  
+  
   const jumlahData = async () => {
     try {
       const response = await axios.get("/hasil");
@@ -86,6 +107,7 @@ const ListHasil = () => {
             <thead>
               <tr>
                 <th>No</th>
+                <th>Kode Alternatif</th>
                 <th>Nama Alternatif (Siswa)</th>
                 <th>Jalur Pendaftaran</th>
                 <th>Nilai</th>
@@ -97,6 +119,7 @@ const ListHasil = () => {
               {currentData.map((has, index) => (
                 <tr key={has.id}>
                     <td>{startIndex +index + 1}</td>
+                    <td>{has.kode_alternatif}</td>
                     <td>{has.nama_alternatif}</td>
                     <td>{has.jalur_pendaftaran}</td>
                     <td>{has.nilai}</td>
