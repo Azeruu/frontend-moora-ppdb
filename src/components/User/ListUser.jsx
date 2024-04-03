@@ -8,11 +8,10 @@ const ListUser = () => {
   const [users, setUsers] = useState([]);
   const [jmlData, setJmlData] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState('');
 
   useEffect(()=> {
     getUsers();
-  },[]);
-  useEffect(() => {
     jumlahData();
   }, []);
 
@@ -28,7 +27,6 @@ const ListUser = () => {
   // Batas
   const itemsPerPage = 5;
   const totalPages = Math.ceil(users.length / itemsPerPage);
-
   const handleClick = (value) => {
     if (value === "prev" && currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
@@ -38,12 +36,13 @@ const ListUser = () => {
       setCurrentPage(value);
     }
   };
-
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-
-  const currentData = users.slice(startIndex, endIndex);
-
+  const filteredData = users.filter((user) =>
+  user.username.toLowerCase().includes(search.toLowerCase())
+  );
+  const currentData = filteredData.slice(startIndex, endIndex);
+  
   // Batas
   const getUsers = async() =>{
     const response = await axios.get('/users');
@@ -62,9 +61,18 @@ const ListUser = () => {
     <div className="list-user-container">
       <div className="list-user-grid">
         <h1 className="list-user-judul">Daftar User</h1>
-        <Link to={`/userlist/adduser`} className="btnadd-user">
-          Tambah User
-        </Link>
+        <div className="action-box">
+          <Link to={`/userlist/adduser`} className="btnadd-user">
+            Tambah User
+          </Link>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Cari..."
+            className="search-box"
+          />
+        </div>
         <div className="container-table-user">
           <table id="data-table">
             <thead>

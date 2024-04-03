@@ -20,6 +20,9 @@ import EditNilaiAlternatif from "./components/Nilai_Alternatif/PageEditNilaiAlt"
 import Hasil from "./components/Hasil/PageHasil";
 import AddHasil from "./components/Hasil/PageAddHasil";
 import EditHasil from "./components/Hasil/PageEditHasil";
+import Pendaftar from "./components/Pendaftaran/PagePendaftar";
+import AddPendaftar from "./components/Pendaftaran/PageAddPendaftar";
+import AddPendaftar2 from "./components/Pendaftaran/PageAddPendaftar2";
 
 function App() {
   return (
@@ -49,6 +52,11 @@ function App() {
           <Route path="/jalur" element={<Jalur />} />
           <Route path="/jalur/addjalur" element={<AddJalur />} />
           <Route path="/jalur/editjalur/:id" element={<EditJalur />} />
+          {/* Pendaftaran */}
+          <Route path="/daftar" element={<Pendaftar />} />
+          <Route path="/daftar/addpendaftar" element={<AddPendaftar />} />
+          <Route path="/daftar/addpendaftar2/:namaAlternatif/:jalurId" element={<AddPendaftar2 />} />
+          {/* <Route path="/daftar/edithasil/:id" element={<EditHasil />} /> */}
           {/* Hasil */}
           <Route path="/hasil" element={<Hasil />} />
           <Route path="/hasil/addhasil" element={<AddHasil />} />

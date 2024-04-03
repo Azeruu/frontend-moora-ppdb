@@ -29,7 +29,10 @@ const createHasil = async (e) => {
     await axios.post(`/hasil`,{
       nama_alternatif:hasil.nama_alternatif,
       jalur_pendaftaran:hasil.jalur_pendaftaran,
-      nilai:hasil.nilai
+      nilai:hasil.nilai,
+      // userId:req.userId,
+      // jalurId:jalurId,
+      // dataAlternatifId:dataAlternatifId
     });
     alert("Data Hasil Berhasil Di Tambah")
     navigate(`/hasil`);

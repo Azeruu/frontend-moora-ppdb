@@ -17,25 +17,20 @@
   font-size: 26px;
   margin-bottom: 20px;
 }
-.list-user-table-container{
-  margin-top: 3rem;
-}
 /* CSS untuk btnadd */
 .btnadd-user{
   width: 10rem;
-    height: 2rem;
-    padding: 20px;
-    border: 1px solid rgb(255, 255, 255, .2);
-    border-radius: 10px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    background-color: var(--primary);
-    margin-top: 4rem;
+  height: 2rem;
+  padding: 20px;
+  border: 1px solid rgb(255, 255, 255, .2);
+  border-radius: 10px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: var(--primary);
 }
-
 .btnadd-user:hover {
   background-color: #0056b3;
 }
@@ -171,13 +166,15 @@ th {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin: 20px;
   height: 70vh;
   box-shadow: 10px 20px 40px rgba(8, 187, 211, 0.5);
 }
-.add-user-judul{
-  margin: 1rem;
-  margin-bottom: 2rem;
+
+.add-user-judul {
+  margin: 3rem;
+  font-size: 2.5rem;
 }
 .label {
   font-weight: bold;
@@ -233,11 +230,13 @@ th {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin: 20px;
   height: 70vh;
   box-shadow: 10px 20px 40px rgba(8, 187, 211, 0.5);
 }
-.edit-user-judul{
-  margin: 1rem;
-  margin-bottom: 2rem;
+
+.edit-user-judul {
+  margin: 3rem;
+  font-size: 2.5rem;
 }

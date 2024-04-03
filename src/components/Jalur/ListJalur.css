@@ -18,10 +18,7 @@
     font-size: 26px;
     margin-bottom: 20px;
 }
-.list-jalur-table-container{
-    padding: 10px;
-    /* background-color: #ccc; */
-}
+
 /* CSS untuk btnadd */
 .btnadd-jalur {
     width: 10rem;
@@ -36,7 +33,6 @@
     text-decoration: none;
     background-color: var(--primary);
 }
-
 .btnadd-jalur:hover {
     background-color: #0056b3;
 }

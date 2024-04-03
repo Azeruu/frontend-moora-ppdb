@@ -1,5 +1,5 @@
 // import { useForm } from 'react-hook-form';
-import './Addsiswa.css';
+import './AddPendaftar.css';
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "../../lib/axios";
@@ -16,15 +16,14 @@ export default function Daftar() {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/alternatif",{
-        kode_alternatif:kode_alternatif,
-        nama_alternatif:nama_alternatif,
-        nama_jalur:jalur,
-        jalurId:jalurId
+        await axios.post("/alternatif",{
+          kode_alternatif:kode_alternatif,
+          nama_alternatif:nama_alternatif,
+          nama_jalur:jalur,
+          jalurId:jalurId
       });
-      console.log(response);
-      alert("Data Alternatif Berhasil Di Input")
-      navigate(`/alternatif`);
+      // Navigasi ke form selanjutnya dengan menyertakan id dan jalurId sebagai query parameter
+      navigate(`/daftar/addpendaftar2/${nama_alternatif}/${jalurId}`);
     } catch (e) {
       console.log("error dalam submit data :", e.response.msg);
       alert(e.response.data.msg);
@@ -117,11 +116,11 @@ export default function Daftar() {
             </div>
           </div>
           <div className="btn-field">
-            <Link to={`/alternatif`} className="action-btn">
+            <Link to={`/daftar`} className="action-btn">
               Kembali
             </Link>
             <button type="submit" className="action-btn">
-              Save
+              Next
             </button>
           </div>
       </form>

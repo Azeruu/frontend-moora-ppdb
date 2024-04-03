@@ -10,13 +10,12 @@ const ListSiswa = () => {
   const [isDataExists, setIsDataExists] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-
+  const [search, setSearch] = useState('');
   
-  // Batas
+  // START PAGINATION
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const totalPages = Math.ceil(siswa.length / itemsPerPage);
-
   const handleClick = (value) => {
     if (value === "prev" && currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
@@ -28,10 +27,17 @@ const ListSiswa = () => {
   };
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+  const filteredData = siswa.filter((sis) =>
+  sis.nama_alternatif.toLowerCase().includes(search.toLowerCase())
+  );
+  const currentData = filteredData.slice(startIndex, endIndex);
   
-  const currentData = siswa.slice(startIndex, endIndex);
-  // Batas
+  // END PAGINATION
 
+  const getSiswa = async () => {
+    const response = await axios.get("/alternatif");
+    setSiswa(response.data);
+  };
   useEffect(() => {
     const checkDataExistence = async () => {
       try {
@@ -45,7 +51,17 @@ const ListSiswa = () => {
         console.error('Error checking data existence:', error);
       }
     };
+    const jumlahData = async () => {
+      try {
+        const response = await axios.get("/alternatif");
+        setJmlData(response.data.length);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
+    getSiswa();
+    jumlahData();
     checkDataExistence();
   }, []);
 
@@ -61,26 +77,6 @@ const ListSiswa = () => {
     }
   };
 
-  const getSiswa = async () => {
-    const response = await axios.get("/alternatif");
-    setSiswa(response.data);
-  };
-  useEffect(() => {
-    getSiswa();
-  }, []);
-
-  useEffect(() => {
-    const jumlahData = async () => {
-      try {
-        const response = await axios.get("/alternatif");
-        setJmlData(response.data.length);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    jumlahData();
-  }, []);
-
   const hapusSiswa = async (id) => {
     try {
       await axios.delete(`/alternatif/${id}`);
@@ -95,7 +91,16 @@ const ListSiswa = () => {
       <div className="list-siswa-grid">
         <h1 className="list-siswa-judul">Daftar Alternatif</h1>
         <p className="list-siswa-subjudul">Daftar Alternatif (calon siswa pendaftar)</p>
-        <button onClick={handleDaftarButtonClick} className="btnadd-siswa">Tambah</button>
+        <div className="action-box">
+          <button onClick={handleDaftarButtonClick} className="btnadd-siswa">Tambah</button>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Cari..."
+            className="search-box"
+          />
+        </div>
         <div className="container-table-siswa">
           <table>
             <thead>

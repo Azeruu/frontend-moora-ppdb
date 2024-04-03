@@ -56,10 +56,8 @@ const updateAlternatif = async (e) => {
 };
 
   return (
-    <div className="Daftar-container">
-      <div className="daftar-navbar">
-        <h2 className="daftar-judul">Input Data Alternatif</h2>
-      </div>
+    <div className="edit-alternatif-column">
+        <h2 className="edit-alternatif-judul">Edit Data Alternatif</h2>
       <form onSubmit={updateAlternatif}>
       {/* <p>{msg}</p> */}
           <div className="field">

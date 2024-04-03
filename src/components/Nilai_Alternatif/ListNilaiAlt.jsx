@@ -6,6 +6,7 @@ import axios from "../../lib/axios";
 const ListNilaiAlt = () => {
   const [nilaiAlt, setNilaiAlt] = useState([]);
   const [jmlData, setJmlData] = useState(0);
+  const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
   const getNilaiAlt = async () => {
@@ -25,7 +26,6 @@ const ListNilaiAlt = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const totalPages = Math.ceil(sortedData.length / itemsPerPage);
-
   const handleClick = (value) => {
     if (value === "prev" && currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
@@ -37,7 +37,10 @@ const ListNilaiAlt = () => {
   };
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentData = sortedData.slice(startIndex, endIndex);
+  const filteredData = sortedData.filter((jal) =>
+  jal.nama_alternatif.toLowerCase().includes(search.toLowerCase())
+  );
+  const currentData = filteredData.slice(startIndex, endIndex);
   
   // Batas
   const hapusNilAlt = async (id) => {
@@ -70,7 +73,16 @@ const ListNilaiAlt = () => {
       <div className="list-rekap-grid">
           <h1 className="list-rekap-judul"> Nilai Alternatif</h1>
           <p className="list-rekap-subjudul">Nilai Alternatif di setiap kriteria</p>
-          <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
+          <div className="action-box">
+            <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Cari..."
+              className="search-box"
+            />
+          </div>
         <div className="container-table-siswa">
           <table>
             <thead>

@@ -1,10 +1,10 @@
-/* CSS untuk list-siswa-container */
-.list-siswa-container {
+/* CSS untuk list-rekap-container */
+.list-rekap-container {
   padding: 20px;
 }
 
-/* CSS untuk list-siswa-grid */
-.list-siswa-grid {
+/* CSS untuk list-rekap-grid */
+.list-rekap-grid {
   /* background-color: #fff; */
   text-align: center;
   padding: 20px;
@@ -12,24 +12,23 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* CSS untuk list-siswa-judul */
-.list-siswa-judul {
+/* CSS untuk list-rekap-judul */
+.list-rekap-judul {
   font-size: 26px;
   margin-bottom: 20px;
 }
-.list-siswa-subjudul {
+.list-rekap-subjudul {
   margin-bottom: 20px;
   color: var(--secondary);
 }
-
-.list-siswa-table-container{
-  margin-top: 3rem;
+.list-rekap-table-container{
+  margin-top: 5rem;
 }
 /* CSS untuk table */
-.container-table-siswa {
+.container-table-rekapnilai {
   height: 100%;
   overflow-x: auto;
-  margin-top: 20px;
+  margin-top: 50px;
   max-width: 100%;
 }
 table{
@@ -122,41 +121,4 @@ th {
   border: 1px solid #ccc;
   border-radius: 4px;
   margin: 0 5px;
-}
-
-.action-box{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* background-color: #007bff; */
-}
-
-/* CSS untuk btnadd */
-.btnadd-siswa {
-  width: 10rem;
-  height: 2rem;
-  padding: 20px;
-  border: 1px solid rgb(255, 255, 255, .2);
-  border-radius: 10px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  background-color: var(--primary);
-  font-size: 17px;
-}
-.btnadd-siswa:hover {
-  background-color: #0056b3;
-}
-
-.search-box{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2rem;
-  width: 15rem;
-  font-size: 1.2rem;
-  border-radius: 10px;
-  padding: 10px;
 }

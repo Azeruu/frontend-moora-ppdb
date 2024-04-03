@@ -6,13 +6,13 @@ import axios from "../../lib/axios";
 const ListKriteria = () => {
     const [kriteria, setKriteria] = useState([]);
     const [jmlData, setJmlData] = useState(0);
+    const [search, setSearch] = useState('');
     const navigate = useNavigate();
 
     // Batas
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
     const totalPages = Math.ceil(kriteria.length / itemsPerPage);
-
     const handleClick = (value) => {
         if (value === "prev" && currentPage > 1) {
             setCurrentPage((prev) => prev - 1);
@@ -24,9 +24,11 @@ const ListKriteria = () => {
     };
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-
-    const currentData = kriteria.slice(startIndex, endIndex);
-    // Batas
+    const filteredData = kriteria.filter((nil) =>
+    nil.nama_kriteria.toLowerCase().includes(search.toLowerCase())
+    );
+    const currentData = filteredData.slice(startIndex, endIndex);
+  // Batas
 
     const getKriteria = async () => {
         const response = await axios.get("/kriteria");
@@ -62,7 +64,16 @@ const ListKriteria = () => {
         <div className="list-siswa-grid">
             <h1 className="list-siswa-judul">Daftar Kriteria</h1>
             <p className="list-siswa-subjudul">Daftar Kriteria yang telah di input oleh Pendaftar</p>
-            <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
+            <div className="action-box">
+                <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
+                <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Cari..."
+                className="search-box"
+                />
+            </div>
             <div className="container-table-siswa">
                 <table>
                     <thead>

@@ -22,12 +22,11 @@
 }
 .bungkus-btn{
     display:flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    gap: 2rem;
-    margin-bottom: -5rem;
-    width: 20%;
-    height: 5rem;
+    height: 3rem;
+    gap: 10px;
+    /* background-color: #007bff; */
 }
 /* CSS untuk btnadd */
 .btnadd-hasil {
@@ -38,9 +37,9 @@
     text-decoration: none;
     border-radius: 15px;
     width: fit-content;
-    font-size: 15px;
+    font-weight: bold;
+    font-size: 1rem;
 }
-
 .btnadd-hasil:hover {
     background-color: #0056b3;
 }
@@ -52,14 +51,11 @@
     text-decoration: none;
     border-radius: 15px;
     width: fit-content;
-    font-size: 15px;
+    font-weight: bold;
+    font-size: 1rem;
 }
-
 .btnUpdate-hasil:hover {
-    background-color: #0056b3;
-}
-.list-hasil-table-container{
-    margin-top: 5rem;
+    background-color: #2ca114;
 }
 /* CSS untuk table */
 .table {

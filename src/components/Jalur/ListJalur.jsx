@@ -6,6 +6,7 @@ import axios from "../../lib/axios";
 const ListJalur = () => {
   const [jalur, setJalur] = useState([]);
   const [jmlData, setJmlData] = useState(0);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     getJalur();
@@ -15,7 +16,6 @@ const ListJalur = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const totalPages = Math.ceil(jalur.length / itemsPerPage);
-
   const handleClick = (value) => {
     if (value === "prev" && currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
@@ -27,7 +27,10 @@ const ListJalur = () => {
   };
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentData = jalur.slice(startIndex, endIndex);
+  const filteredData = jalur.filter((jal) =>
+  jal.nama_jalur.toLowerCase().includes(search.toLowerCase())
+  );
+  const currentData = filteredData.slice(startIndex, endIndex);
   
   // Batas
   const getJalur = async () => {
@@ -55,10 +58,18 @@ const ListJalur = () => {
       <div className="list-jalur-grid">
           <h1 className="list-jalur-judul">Jalur Pendaftaran</h1>
           <p className="list-rekap-subjudul">Jalur pendaftaran yang dapat dipilih dengan batas kuota-nya masing - masing</p>
-        <div className="list-jalur-table-container">
-          <Link to={`/jalur/addjalur`} className="btnadd-jalur">
-            Tambah Jalur
-          </Link>
+          <div className="action-box">
+            <Link to={`/jalur/addjalur`} className="btnadd-jalur">
+              Tambah Jalur
+            </Link>
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Cari..."
+              className="search-box"
+            />
+          </div>
           <div className="container-table-jalur">
             <table>
               <thead>
@@ -96,7 +107,6 @@ const ListJalur = () => {
               </tbody>
             </table>
           </div>
-        </div>
         <div class="pagination">
           <button onClick={() => handleClick("prev")} class="page-button">Prev</button>
           {Array.from({ length: totalPages }, (_, index) => (

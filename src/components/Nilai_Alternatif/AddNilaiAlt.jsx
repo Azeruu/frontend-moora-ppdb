@@ -7,6 +7,8 @@ import axios from "../../lib/axios";
 export default function Daftar() {
   const [alternatif, setAlternatif] = useState('');
   const [kriteria, setKriteria] = useState('');
+  const [alternatifId, setAlternatifId] = useState('');
+  const [kriteriaId, setKriteriaId] = useState('');
   let [nilai_real, setNilaiReal] = useState('');
   const [existingData, setExistingData] = useState([]);
   const [ambilAlt, setAmbilAlt] = useState([]);
@@ -75,7 +77,9 @@ export default function Daftar() {
         nama_kriteria:kriteria,
         nilai_real:nilai_real,
         nilai_fuzzy:fuzzyValue,
-        keterangan:keteranganValue
+        keterangan:keteranganValue,
+        dataAlternatifId:alternatifId,
+        dataKriteriumId:kriteriaId
       });
       console.log(response);
       alert("Data Alternatif Berhasil Di Input")
@@ -104,30 +108,33 @@ export default function Daftar() {
 }, []);
 
   return (
-    <div className="Daftar-container">
-      <div className="daftar-navbar">
-        <h2 className="daftar-judul">Input Data Alternatif</h2>
-      </div>
+    <div className="add-nilaialt-column">
+        <h2 className="add-nilaialt-judul">Tambah Data Alternatif</h2>
       <form onSubmit={onSubmit}>
       {/* <p>{msg}</p> */}
       <div className="field">
             <label className="label">Nama Alternatif ( Siswa )</label>
             <div className="control">
               <div className="select">
-                <input
+                <select
                   type="text"
                   id="inputBox"
                   list="suggestions"
-                  value={alternatif}
-                  onChange={(e) => setAlternatif(e.target.value)}
-                />
-                <datalist id="suggestions">
+                  value={`${alternatifId},${alternatif}`}
+                  onChange={(e) => {
+                    const [id, nama_alternatif] = e.target.value.split(","); // Memisahkan id dan nama_alternatif
+                    setAlternatif(nama_alternatif); // Set nama_alternatif ke state
+                    setAlternatifId(id); // Set id ke state
+                    // Gunakan id sesuai kebutuhan
+                    // console.log("ID Alternatif:", id);
+                  }}
+                >
                   {ambilAlt.map((item) => (
-                    <option key={item.id} value={item.nama_alternatif}>
+                    <option key={item.id} value={`${item.id},${item.nama_alternatif}`}>
                       {item.nama_alternatif}
                     </option>
                   ))}
-                </datalist>
+                  </select>
               </div>
             </div>
           </div>
@@ -136,12 +143,17 @@ export default function Daftar() {
             <div className="control">
               <div className="select">
                 <select
-                  value={kriteria}
-                  onChange={(e) => setKriteria(e.target.value)}
+                  value={`${kriteriaId},${kriteria}`}
+                  onChange={(e) =>{ 
+                  const [id, nama_kriteria] = e.target.value.split(",");
+                  setKriteria(nama_kriteria);
+                  setKriteriaId(id);
+                  // console.log(id);
+                  }}
                 >
                   <option value="">Pilih Kriteria</option>
                   {ambilKriteria.map((item) => (
-                    <option key={item.id} value={item.nama_kriteria}>
+                    <option key={item.id} value={`${item.id},${item.nama_kriteria}`}>
                       {item.nama_kriteria}
                     </option>
                   ))}
