@@ -5,6 +5,7 @@ import axios from "../../lib/axios";
 
 const ListHasil = () => {
   const [hasil, setHasil] = useState([]);
+  // const [kode, setKode] = useState([]);
   const [jmlData, setJmlData] = useState(0);
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const ListHasil = () => {
     getHasil();
   }
 
-  const getHasil = async() =>{
+  const getHasil = async () => {
     try {
       const response = await axios.get('/hasil');
       const sortedHasil = response.data.sort((a, b) => b.nilai - a.nilai);
@@ -59,6 +60,8 @@ const ListHasil = () => {
       console.error('Gagal mengambil data dari API:', error);
     }
   };
+  
+  
   const jumlahData = async () => {
     try {
       const response = await axios.get("/hasil");
@@ -109,6 +112,7 @@ const ListHasil = () => {
             <thead>
               <tr>
                 <th>No</th>
+                <th>Kode Alternatif</th>
                 <th>Nama Alternatif (Siswa)</th>
                 <th>Jalur Pendaftaran</th>
                 <th>Nilai</th>
