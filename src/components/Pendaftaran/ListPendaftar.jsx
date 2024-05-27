@@ -105,10 +105,10 @@ const ListPendaftar = () => {
   return (
     <div className="list-rekap-container">
       <div className="list-rekap-grid">
-          <h1 className="list-rekap-judul"> Nilai Alternatif</h1>
-          <p className="list-rekap-subjudul">Nilai Alternatif di setiap kriteria</p>
+          <h1 className="list-rekap-judul"> Data Pendaftar</h1>
+          <p className="list-rekap-subjudul">Data diri dan nilai dari para pendaftar</p>
           <div className="action-box">
-            <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
+            <button onClick={handleTambahButtonClick} className="btnadd-siswa">Daftar</button>
             <input
               type="text"
               value={search}

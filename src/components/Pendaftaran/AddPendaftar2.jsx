@@ -138,11 +138,11 @@ const FuzzyAndKeterangan = async (namaKriteria, nilai_real) => {
 
     return (
         <div className="add-nilaialt-column">
-        <h2 className="add-nilaialt-judul">Tambah Data Alternatif</h2>
+        <h2 className="add-nilaialt-judul">Tambah Data Pendaftar</h2>
         <form onSubmit={onSubmit}>
             {/* <p>{msg}</p> */}
             <div className="field">
-            <label className="label">Nama Alternatif ( Siswa )</label>
+            <label className="label">Nama Siswa Pendaftar</label>
                 <div className="control">
                     <input
                         type="text"

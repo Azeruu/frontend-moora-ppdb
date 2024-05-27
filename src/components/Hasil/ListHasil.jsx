@@ -125,6 +125,7 @@ const ListHasil = () => {
               return (
                 <tr key={has.id}>
                   <td>{has.nomorUrut}</td>
+                  <td>{has.kode_alternatif}</td>
                   <td>{has.nama_alternatif}</td>
                   <td>{has.jalur_pendaftaran}</td>
                   <td>{has.nilai}</td>
