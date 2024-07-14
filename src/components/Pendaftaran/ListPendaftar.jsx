@@ -108,7 +108,7 @@ const ListPendaftar = () => {
           <h1 className="list-rekap-judul"> Pendaftaran</h1>
           <p className="list-rekap-subjudul">Halaman data pendaftar dan untuk melakukan pendaftaran</p>
           <div className="action-box">
-            <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
+            <button onClick={handleTambahButtonClick} className="btnadd-siswa">Daftar</button>
             <input
               type="text"
               value={search}
