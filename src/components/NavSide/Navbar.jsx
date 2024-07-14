@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Menu } from "feather-icons-react/build/IconComponents";
 import "./Navbar.css";
-import logo from "../../image/profile1.png";
+import logo from "../../image/userPng.png";
 import ModalProfil from "./ModalProfil";
 
 const Navbar = ({toggleSidebar}) => {

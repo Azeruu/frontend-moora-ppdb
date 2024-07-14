@@ -57,7 +57,7 @@ const ListJalur = () => {
     <div className="list-jalur-container">
       <div className="list-jalur-grid">
           <h1 className="list-jalur-judul">Jalur Pendaftaran</h1>
-          <p className="list-rekap-subjudul">Jalur pendaftaran yang dapat dipilih dengan batas kuota-nya masing - masing</p>
+          <p className="list-rekap-subjudul">Kategori yang digunakan untuk mengatur proses penerimaan siswa baru berdasarkan kriteria tertentu</p>
           <div className="action-box">
             <Link to={`/jalur/addjalur`} className="btnadd-jalur">
               Tambah Jalur

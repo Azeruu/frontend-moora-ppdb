@@ -65,7 +65,7 @@ export default function Daftar() {
 
   return (
     <div className="add-alternatif-column">
-        <h2 className="add-alternatif-judul">Input Data Alternatif</h2>
+        <h2 className="add-alternatif-judul">Tambah Alternatif</h2>
       <button className="btnadd" onClick={generateNextKodeAlternatif}>generate</button>
       <form onSubmit={onSubmit}>
       {/* <p>{msg}</p> */}

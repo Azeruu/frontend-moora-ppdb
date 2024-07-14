@@ -71,8 +71,8 @@ const ListNilaiAlt = () => {
   return (
     <div className="list-rekap-container">
       <div className="list-rekap-grid">
-          <h1 className="list-rekap-judul"> Nilai Alternatif</h1>
-          <p className="list-rekap-subjudul">Nilai Alternatif di setiap kriteria</p>
+          <h1 className="list-rekap-judul"> Data Nilai Alternatif</h1>
+          <p className="list-rekap-subjudul">Nilai yang diberikan kepada setiap alternatif berdasarkan kriteria yang telah ditentukan. </p>
           <div className="action-box">
             <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
             <input

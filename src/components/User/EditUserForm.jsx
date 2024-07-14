@@ -66,7 +66,7 @@ const EditUser = () => {
   return (
     <div className="edit-user-column">
       <div className="form-column">
-        <h1 className="edit-user-judul">Edit User</h1>
+        <h1 className="edit-user-judul">Edit Data User</h1>
         <form onSubmit={updateUser}>
           <p>{msg}</p>
           <div className="field">

@@ -31,40 +31,54 @@ export default function Daftar() {
   };
 
   useEffect(() => {
-    const fetchDataAlternatif = async (data) => {
-      try {
-        const response = await axios.get(`/alternatif`, data);
-        const kodeAlternatifValues = response.data.map(item => item.kode_alternatif);
-        setKodeAlternatif2(kodeAlternatifValues);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    const getJalur = async(data) =>{
-      const response = await axios.get("/jalur", data);
+  const fetchDataAlternatif = async () => {
+    try {
+      const response = await axios.get("/alternatif");
+      const kodeAlternatifValues = response.data.map(item => item.kode_alternatif);
+      setKodeAlternatif2(kodeAlternatifValues);
+    } catch (error) {
+      console.error('Error fetching data alternatif:', error);
+    }
+  };
+  const getJalur = async () => {
+    try {
+      const response = await axios.get("/jalur");
       setAmbilJalur(response.data);
-  }
-    fetchDataAlternatif();
-    getJalur();
+    } catch (error) {
+      console.error('Error fetching data jalur:', error);
+    }
+  };
+  fetchDataAlternatif();
+  getJalur();
 }, []);
 
   const generateNextKodeAlternatif = () => {
     // Ambil kode terakhir
     const lastKode = kodeAlternatif2[kodeAlternatif2.length-1];
-    // console.log(lastKode)
-    const [letter, number] = lastKode.match(/[A-Za-z]+|[0-9]+/g);
-    // Tambahkan 1 ke angka
-    const nextNumber = parseInt(number) + 1;
-    // Gabungkan kembali huruf dan angka
-    // console.log(nextNumber)
-    let newCode = `${letter}${nextNumber}`;
-    setKodeAlternatif(newCode);
-    // console.log(newCode)
+    console.log(lastKode)
+    if (lastKode && typeof lastKode === 'string') {
+      const [letter, number] = lastKode.match(/[A-Za-z]+|[0-9]+/g);
+  
+      // Tambahkan 1 ke angka
+      const nextNumber = parseInt(number, 10) + 1;
+  
+      // Gabungkan kembali huruf dan angka, pastikan angka dikonversi ke string
+      const newCode = `${letter}${nextNumber}`;
+  
+      // Atur state kode alternatif baru
+      setKodeAlternatif(newCode);
+    } else {
+      // Handle jika lastKode kosong atau undefined
+      // Contoh: atur kode awal jika tidak ada kode sebelumnya
+      setKodeAlternatif('A1'); // Misalnya, atur kode awal sesuai kebutuhan Anda
+    }
   };
 
   return (
     <div className="add-alternatif-column">
-        <h2 className="add-alternatif-judul">Input Data Alternatif</h2>
+        <h2 className="add-alternatif-judul">Tambah Data Pendaftaran</h2>
+        <p className="list-rekap-subjudul">Setiap user hanya bisa mendaftar 1 kali</p>
+        <p className="list-rekap-subjudul">{jalur}</p>
       <button className="btnadd" onClick={generateNextKodeAlternatif}>generate</button>
       <form onSubmit={onSubmit}>
       {/* <p>{msg}</p> */}

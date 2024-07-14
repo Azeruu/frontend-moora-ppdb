@@ -51,7 +51,7 @@ const updateKriteria = async (e) => {
 
   return (
     <div className="edit-kriteria-column">
-        <h2 className="kriteria-judul">EDIT DATA KRITERIA</h2>
+        <h2 className="kriteria-judul">Edit Data Kriteria</h2>
       <form onSubmit={updateKriteria}>
       {/* <p>{msg}</p> */}
           <div className="field">

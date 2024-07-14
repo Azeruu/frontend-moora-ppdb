@@ -46,6 +46,16 @@ const ListHasil = () => {
     getHasil();
   }
 
+  const handledua = async() =>{
+    try {
+      await hasilkan();
+      await update();
+      navigate('/hasil');
+      getHasil();
+    } catch (error) {
+      alert('ada yg salah dengan kodenya');
+    }
+  }
   const getHasil = async () => {
     try {
       const response = await axios.get('/hasil');
@@ -97,6 +107,7 @@ const ListHasil = () => {
             <div className="bungkus-btn">
               <button onClick={hasilkan} className="btnadd-hasil">Hasil</button>
               <button onClick={update} className="btnUpdate-hasil">Update</button>
+              <button onClick={handledua} className="btnUpdate-hasil">Update2</button>
             </div>
             <input
               type="text"
@@ -125,6 +136,7 @@ const ListHasil = () => {
               return (
                 <tr key={has.id}>
                   <td>{has.nomorUrut}</td>
+                  <td>{has.kode_alternatif}</td>
                   <td>{has.nama_alternatif}</td>
                   <td>{has.jalur_pendaftaran}</td>
                   <td>{has.nilai}</td>

@@ -44,7 +44,7 @@ const AddJalur = () => {
               className="input"
               value={jalur.kode_jalur}
               onChange={(e) => setKodeJalur(e.target.value)}
-              placeholder="Jalur Masuk"
+              placeholder="kode jalur"
             ></input>
           </div>
         </div>
@@ -56,7 +56,7 @@ const AddJalur = () => {
               className="input"
               value={jalur.nama_jalur}
               onChange={(e) => setNamaJalur(e.target.value)}
-              placeholder="Jalur Masuk"
+              placeholder="nama jalur"
             ></input>
           </div>
         </div>

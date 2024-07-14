@@ -109,7 +109,7 @@ export default function Daftar() {
 
   return (
     <div className="add-nilaialt-column">
-        <h2 className="add-nilaialt-judul">Tambah Data Alternatif</h2>
+        <h2 className="add-nilaialt-judul">Tambah Data Nilai Alternatif</h2>
       <form onSubmit={onSubmit}>
       {/* <p>{msg}</p> */}
       <div className="field">
