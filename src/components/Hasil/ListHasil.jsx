@@ -109,9 +109,9 @@ const ListHasil = () => {
           <p className="list-rekap-subjudul">Hasil dari perhitungan yang dilakukan dengan menggunakan perhitungan SPK dengan Metode MOORA</p>
           <div className="action-box">
             <div className="bungkus-btn">
-              <button onClick={hasilkan} className="btnadd-hasil">Hasil</button>
-              <button onClick={update} className="btnUpdate-hasil">Update</button>
-              <button onClick={handledua} className="btnUpdate-hasil">Update2</button>
+              {/* <button onClick={hasilkan} className="btnadd-hasil">Hasil</button>
+              <button onClick={update} className="btnUpdate-hasil">Update</button> */}
+              <button onClick={handledua} className="btnUpdate-hasil">Update</button>
             </div>
             <input
               type="text"
@@ -127,7 +127,7 @@ const ListHasil = () => {
             <thead>
               <tr>
                 <th>No</th>
-                <th>Kode Alternatif</th>
+                {/* <th>Kode Alternatif</th> */}
                 <th>Nama Alternatif (Siswa)</th>
                 <th>Jalur Pendaftaran</th>
                 <th>Nilai</th>
@@ -142,7 +142,7 @@ const ListHasil = () => {
               return (
                 <tr key={has.id}>
                   <td>{has.nomorUrut}</td>
-                  <td>{has.kode_alternatif}</td>
+                  {/* <td>{has.kode_alternatif}</td> */}
                   <td>{has.nama_alternatif}</td>
                   <td>{has.jalur_pendaftaran}</td>
                   <td>{has.nilai}</td>

@@ -33,7 +33,7 @@ const ListPendaftar = () => {
   useEffect(() => {
     const jumlahData = async () => {
       try {
-        const response = await axios.get("/hasil");
+        const response = await axios.get("/alternatif");
         setJmlData(response.data.length);
       } catch (error) {
         console.log(error);

@@ -54,7 +54,7 @@ const ListNilaiAlt = () => {
   useEffect(() => {
     const jumlahData = async () => {
       try {
-        const response = await axios.get("/alternatif");
+        const response = await axios.get("/nilai_alternatif");
         setJmlData(response.data.length);
       } catch (error) {
         console.log(error);

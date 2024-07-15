@@ -155,6 +155,7 @@ const ModalEditProfil = ({ isOpen, isClose }) => {
                           className="option-edit"
                           value={user.role}
                           onChange={(e) => setRole(e.target.value)}
+                          disabled
                         >
                           <option value="admin">Admin</option>
                           <option value="user">User</option>
