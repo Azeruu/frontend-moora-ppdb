@@ -62,8 +62,8 @@ const ListKriteria = () => {
     return (
         <div className="list-siswa-container">
         <div className="list-siswa-grid">
-            <h1 className="list-siswa-judul">Daftar Kriteria</h1>
-            <p className="list-siswa-subjudul">Daftar Kriteria yang telah di input oleh Pendaftar</p>
+            <h1 className="list-siswa-judul">Data Kriteria</h1>
+            <p className="list-siswa-subjudul">Parameter yang digunakan untuk mengevaluasi dan membandingkan alternatif-alternatif yang tersedia</p>
             <div className="action-box">
                 <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
                 <input

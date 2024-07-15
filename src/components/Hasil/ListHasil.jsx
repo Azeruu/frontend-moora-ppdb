@@ -50,6 +50,16 @@ const ListHasil = () => {
     getHasil();
   }
 
+  const handledua = async() =>{
+    try {
+      await hasilkan();
+      await update();
+      navigate('/hasil');
+      getHasil();
+    } catch (error) {
+      alert('ada yg salah dengan kodenya');
+    }
+  }
   const getHasil = async () => {
     try {
       const response = await axios.get('/hasil');
@@ -101,6 +111,7 @@ const ListHasil = () => {
             <div className="bungkus-btn">
               <button onClick={hasilkan} className="btnadd-hasil">Hasil</button>
               <button onClick={update} className="btnUpdate-hasil">Update</button>
+              <button onClick={handledua} className="btnUpdate-hasil">Update2</button>
             </div>
             <input
               type="text"

@@ -49,7 +49,7 @@ const EditJalur = () => {
     return (
         <div className="edit-jalur-column">
         <div className="form-column">
-            <h1 className="edit-jalur-judul">Edit Jalur</h1>
+            <h1 className="edit-jalur-judul">Edit Data Jalur</h1>
             <form onSubmit={updateJalur}>
             <p>{msg}</p>
             <div className="field">

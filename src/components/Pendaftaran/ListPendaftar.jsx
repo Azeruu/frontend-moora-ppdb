@@ -33,7 +33,7 @@ const ListPendaftar = () => {
   useEffect(() => {
     const jumlahData = async () => {
       try {
-        const response = await axios.get("/alternatif");
+        const response = await axios.get("/hasil");
         setJmlData(response.data.length);
       } catch (error) {
         console.log(error);
@@ -105,8 +105,8 @@ const ListPendaftar = () => {
   return (
     <div className="list-rekap-container">
       <div className="list-rekap-grid">
-          <h1 className="list-rekap-judul"> Data Pendaftar</h1>
-          <p className="list-rekap-subjudul">Data diri dan nilai dari para pendaftar</p>
+          <h1 className="list-rekap-judul"> Pendaftaran</h1>
+          <p className="list-rekap-subjudul">Halaman data pendaftar dan untuk melakukan pendaftaran</p>
           <div className="action-box">
             <button onClick={handleTambahButtonClick} className="btnadd-siswa">Daftar</button>
             <input

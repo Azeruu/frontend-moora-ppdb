@@ -89,8 +89,8 @@ const ListSiswa = () => {
   return (
     <div className="list-siswa-container">
       <div className="list-siswa-grid">
-        <h1 className="list-siswa-judul">Daftar Alternatif</h1>
-        <p className="list-siswa-subjudul">Daftar Alternatif (calon siswa pendaftar)</p>
+        <h1 className="list-siswa-judul">Data Alternatif</h1>
+        <p className="list-siswa-subjudul">Opsi yang dipertimbangkan dalam proses pengambilan keputusan.</p>
         <div className="action-box">
           <button onClick={handleDaftarButtonClick} className="btnadd-siswa">Tambah</button>
           <input

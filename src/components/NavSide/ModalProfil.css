@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 25rem;
+    width: 30rem;
     height: 40rem;
     top: 4rem;
     right: 3rem;
@@ -15,7 +15,7 @@
     background-color: rgb(51, 51, 51);
     border-radius: 1rem;
     box-shadow: 0 0 1.2rem rgb(0, 0, 0, .5);
-    width: 25rem;
+    width: 30rem;
     height: 40rem;
     padding: 2rem;
 }
@@ -51,27 +51,46 @@
     align-items: center;
     margin-bottom: 2rem;
     /* border: 1px solid #fff; */
+    /* background-color: #0056b3; */
 }
 .profil-detail .foto-user{
     width: 7rem;
     height: 7rem;
-    margin-right: 1.5rem;
-    margin-left: -4rem;
 }
-.profil-detail h4{
+.profil-detail .detail {
     display: flex;
-    justify-content: center;
-    align-items: left;
-    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.profil-detail .profile-picture {
+    flex: 0 0 auto;
+    margin-right: 20px;
+}
+
+.profil-detail .foto-user {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profil-detail .user-info {
+    flex: 1;
+}
+.profil-detail h4 {
+    margin: 5px 0;
+    font-size: 16px;
     color: var(--secondary);
 }
+
 .modal-user-settings{
     margin: 0 1.5rem;
     padding: 1rem 0;
     box-shadow: 0px 1px 1px -1px rgba(0, 0, 0), 0px -1px 1px -1px rgba(0, 0, 0);
 }
-.modal-user-setting:hover{
-    background-color: var(--secondary);
+.modal-user-settings:hover{
+    border-radius: 15px;
+    background-color: var(--quartenary);
 }
 .modal-user-settings a{
     display: flex;
@@ -80,7 +99,7 @@
     color: var(--secondary);
     font-size: 1.5rem;
 }
-.modal-user-settings .modal-button-setting{
+.modal-user-settings .modal-button-setting, .modal-button-user{
     background-color: transparent;
     display: inline-flex;
     justify-content: center;
@@ -119,14 +138,8 @@
     margin-top: 20px;
 }
 
-.modal-button {
-    background-color: #007BFF;
-    color: #fff;
+.modal-button-user, .modal-button-setting {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-}
-
-.modal-button:hover {
-    background-color: #0056b3;
 }

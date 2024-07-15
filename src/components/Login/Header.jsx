@@ -1,4 +1,4 @@
-import logo from "../../image/react.png"
+import logo from "../../image/SMPN1CSK.png"
 import "./Login.css"
 
 const Header = () => {

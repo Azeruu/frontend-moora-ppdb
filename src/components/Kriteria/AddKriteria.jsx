@@ -41,7 +41,7 @@ const createKriteria = async (e) => {
 
   return (
     <div className="add-kriteria-column">
-        <h2 className="kriteria-judul">INPUT DATA KRITERIA</h2>
+        <h2 className="kriteria-judul">Tambah Kriteria</h2>
       <form onSubmit={createKriteria}>
       {/* <p>{msg}</p> */}
           <div className="field">

@@ -3,7 +3,7 @@ import { NavLink, useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout, reset } from "../../features/authSlice";
 import {Home, FileText, UserPlus, Award, User, LogOut, PieChart, Map, Edit} from "feather-icons-react/build/IconComponents";
-import logo from "../../image/profile1.png";
+import logo from "../../image/userPng.png";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Sidebar = () => {
             <NavLink to="/daftar" className="sidebar-menu-list"><Edit/>Pendaftaran</NavLink>
             {user && user.role === "admin" &&(
               <div>
-                <NavLink to="/jalur" className="sidebar-menu-list"><Map/>Jalur Penerimaan</NavLink>
+                <NavLink to="/jalur" className="sidebar-menu-list"><Map/>Jalur Pendaftaran</NavLink>
                 <NavLink to="/alternatif" className="sidebar-menu-list"><UserPlus/>Alternatif</NavLink>
                 <NavLink to="/kriteria" className="sidebar-menu-list"><FileText/>Kriteria</NavLink>
                 <NavLink to="/nilai_alternatif" className="sidebar-menu-list"><PieChart/>Nilai Alternatif</NavLink>
