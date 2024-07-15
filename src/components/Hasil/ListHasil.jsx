@@ -1,9 +1,13 @@
 import "./ListHasil.css";
 import { useState, useEffect } from "react";
 import { Link, useNavigate} from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "../../lib/axios";
 
 const ListHasil = () => {
+
+  const {user} = useSelector((state)=> state.auth)
+
   const [hasil, setHasil] = useState([]);
   // const [kode, setKode] = useState([]);
   const [jmlData, setJmlData] = useState(0);
@@ -117,7 +121,9 @@ const ListHasil = () => {
                 <th>Jalur Pendaftaran</th>
                 <th>Nilai</th>
                 <th>Peringkat</th>
-                <th>Action</th>
+                {user.role === 'admin' && (
+                  <th>Action</th>
+                )}
               </tr>
             </thead>
             <tbody>
@@ -130,18 +136,20 @@ const ListHasil = () => {
                   <td>{has.jalur_pendaftaran}</td>
                   <td>{has.nilai}</td>
                   <td>ke -{has.peringkat}</td>
-                  <td className="button-action">
-                    <button 
-                      onClick={() => {
-                        if (window.confirm('Apakah Anda yakin ingin menghapus  data Hasil ini?')) {
-                          hapusHasil(has.id);
-                        }
-                      }}
-                      className="btnHapus-jalur"
-                    >
-                      Hapus
-                    </button>
-                  </td>
+                  {user.role === 'admin' && (
+                    <td className="button-action">
+                          <button 
+                            onClick={() => {
+                              if (window.confirm('Apakah Anda yakin ingin menghapus  data Hasil ini?')) {
+                                hapusHasil(has.id);
+                              }
+                            }}
+                            className="btnHapus-jalur"
+                          >
+                            Hapus
+                          </button>
+                    </td>
+                  )}
                 </tr>
               );
             })}
