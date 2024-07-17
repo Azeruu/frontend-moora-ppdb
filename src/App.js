@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Login from "./components/Login/Base";
+import Login from "./components/Login/Login";
 import Dashboard from "./components/Dashboard/PageDashboard";
 import UserList from "./components/User/PageUsers";
 import AddUser from "./components/User/AddUser";
@@ -23,13 +23,14 @@ import EditHasil from "./components/Hasil/PageEditHasil";
 import Pendaftar from "./components/Pendaftaran/PagePendaftar";
 import AddPendaftar from "./components/Pendaftaran/PageAddPendaftar";
 import AddPendaftar2 from "./components/Pendaftaran/PageAddPendaftar2";
+import Home from "./components/Home/HomePage";
 
 function App() {
   return (
     <div className="Body">
       <Router>
         <Routes>
-          <Route exact path="/" element={<Login />} />
+          <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           {/* User */}

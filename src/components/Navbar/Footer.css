@@ -1,0 +1,43 @@
+/* FOOTER */
+.footer {
+    background-color: transparents;
+    padding: 1rem 0;
+    margin-top: 3rem;
+    text-align: center;
+    color: #fff;
+}
+
+.footer .links {
+    margin-bottom: 1.4rem;
+}
+
+.footer .links a {
+    font-size: 1.2rem;
+    padding: 0.7rem 1rem;
+    color: #fff;
+}
+
+.footer .links a:hover,
+.footer .social a:hover {
+    color: var(--primary);
+}
+
+.footer .copy {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.footer .social {
+    padding: 1rem 0;
+}
+
+.footer .social a {
+    color: #fff;
+    margin: 1rem;
+}
+
+@media (max-width: 768px) {
+    .login-row{
+        width: 60%;
+    }
+}

@@ -1,5 +1,5 @@
 import {Facebook, Instagram, Twitter} from "feather-icons-react/build/IconComponents"
-import "./Login.css"
+import "./Footer.css"
 const Footer = () => {
   return (
     <div className="footer">

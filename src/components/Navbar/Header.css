@@ -1,0 +1,115 @@
+/* Navbar */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 7%;
+    background-color: rgb(63, 58, 13);
+    border-bottom: 1px solid #6e5e4c;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
+.header .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    filter: drop-shadow(4px 4px 10px #000000);
+}
+.header .logo1 {
+    width: 3rem;
+    height: 3rem;
+    filter: drop-shadow(4px 4px 10px #000000);
+}
+.header .logo2{
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    font-style: italic;
+}
+.header .logo2 span{
+    color: var(--primary);  
+}
+
+.header .header-tab-container .header-tab {
+    color: #fff;
+    display: inline-block;
+    font-size: 1.4rem;
+    margin: 0 1rem;
+}
+.header .header-tab-container .header-tab:hover {
+    color: var(--primary);
+}
+
+.header .header-tab-container .header-tab::after {
+    content: " ";
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid var(--primary);
+    transform: scaleX(0);
+    transition: 0.2s linear;
+}
+    .header .header-tab-container .header-tab:hover::after {
+    transform: scaleX(1);
+}
+    .header .btn-login-container button {
+    color: #fff;
+    margin: 0 0.5rem;
+}
+    .header .btn-login-container button:hover {
+    color: var(--primary);
+}  
+    .menu-toggle {
+    display: none;
+}
+
+/* Media Queries */
+/* Laptop */
+@media (max-width: 1366px) {
+    html {
+        font-size: 75%;
+    }
+}
+  /* Tablet */
+@media (max-width: 768px) {
+    html {
+        font-size: 62.5%;
+    }
+    .menu-toggle {
+        display: inline-block;
+    }
+    .header .header-tab-container {
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        background-color: #6e5e4c;
+        width: 25rem;
+        height: 100vh;
+        transition: 0.3s;
+    }
+    .header .header-tab-container.active {
+        right: 0;
+    }
+    .header .header-tab-container .header-tab {
+        color: var(--secondary);
+        display: block;
+        margin: 1.5rem;
+        padding: 0.5rem;
+        font-size: 2rem;
+    }
+    .header .header-tab-container .header-tab::after {
+        transform-origin: 0 0;
+    }
+    .header .header-tab-container .header-tab:hover::after {
+        transform: scaleX(0.2);
+    }
+}
+  /* Mobile */
+@media (max-width: 450px) {
+    html {
+        font-size: 55%;
+    }
+}

@@ -1,6 +1,6 @@
-import Header from "./Header.jsx"
+import Header from "../Navbar/Header.jsx"
 import FormLogin from "./FormLogin.jsx"
-import Footer from "./Footer.jsx"
+import Footer from "../Navbar/Footer.jsx"
 import "./Login.css"
 
 const Base = () => {
