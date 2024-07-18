@@ -22,7 +22,8 @@
     color: var(--primary);
 }
 
-.footer .copy {
+.footer .copy p{
+    color: #010101;
     font-size: 0.9rem;
     font-weight: 700;
 }

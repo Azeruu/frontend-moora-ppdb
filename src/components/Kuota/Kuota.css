@@ -1,54 +1,43 @@
-.home{
+.Kuota{
     margin-top: 6rem;
     /* background-color: aqua; */
 }
+/* styles.css */
 body {
     font-family: Arial, sans-serif;
-    background-color:var(--bg);
+    background-color: var(--bg);
     margin: 0;
     padding: 0;
 }
 
-.content {
+.kuota-container {
     text-align: center;
     margin: 20px auto;
-    margin-top: 8rem;
     padding: 20px;
-    max-width: 800px;
+    max-width: 1000px;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.logo {
-    max-width: 100%;
-    margin-bottom: 20px;
-}
 
-.content h1 {
-    font-size: 1.8rem;
-    color: #333;
-    margin: 0;
-}
-
-.content h2 {
+.kuota-container h1 {
     font-size: 2rem;
-    color: #007bff;
-    margin: 10px 0;
+    color: #333;
 }
 
-.content p {
-    font-size: 1.2rem;
+.update-time {
+    font-size: 1rem;
     color: #666;
 }
 
-.schedule {
+.quota-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
 }
 
-.schedule-item {
+.quota-item {
     background: #f0f0f0;
     margin: 10px;
     padding: 15px;
@@ -56,28 +45,42 @@ body {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     width: calc(33.333% - 40px);
     box-sizing: border-box;
+    text-align: left;
 }
 
-.schedule-item h3 {
-    font-size: 1rem;
+.quota-item h3 {
+    font-size: 1.2rem;
     color: #333;
     margin: 0 0 10px 0;
 }
 
-.schedule-item p {
+.quota-item p {
     font-size: 1rem;
     color: #666;
-    margin: 0;
+    margin: 5px 0;
+}
+
+.progress-bar {
+    background-color: #007bff;
+    height: 20px;
+    border-radius: 8px;
+}
+
+.progress-container {
+    background-color: #d8d8d8;
+    height: 20px;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 @media (max-width: 768px) {
-    .schedule-item {
+    .quota-item {
         width: calc(50% - 40px);
     }
 }
 
 @media (max-width: 480px) {
-    .schedule-item {
+    .quota-item {
         width: calc(100% - 40px);
     }
 }

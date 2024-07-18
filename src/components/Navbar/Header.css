@@ -34,36 +34,63 @@
     color: var(--primary);  
 }
 
-.header .header-tab-container .header-tab {
+.header-tab-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: height 0.3s ease;
+}
+.header-tab {
+    display: flex;
+    align-items: center;
     color: #fff;
-    display: inline-block;
+    gap: 0.5rem; /* Mengatur jarak antara ikon dan teks */
     font-size: 1.4rem;
     margin: 0 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
-.header .header-tab-container .header-tab:hover {
+.header-tab:hover {
     color: var(--primary);
 }
-
-.header .header-tab-container .header-tab::after {
+.header-tab::after {
     content: " ";
     display: block;
     padding-bottom: 0.5rem;
     border-bottom: 0.1rem solid var(--primary);
     transform: scaleX(0);
-    transition: 0.2s linear;
+    transition: transform 0.2s linear;
 }
-    .header .header-tab-container .header-tab:hover::after {
+.header-tab:hover::after {
     transform: scaleX(1);
 }
-    .header .btn-login-container button {
+.btn-login1 {
+    background-color: var(--primary);
     color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
     margin: 0 0.5rem;
 }
-    .header .btn-login-container button:hover {
-    color: var(--primary);
+.btn-login1:hover {
+    background-color: var(--tertiary);
+    cursor: pointer;
+    color: #010101;
 }  
-    .menu-toggle {
+
+/* Hamburger Menu Styles */
+.menu-toggle {
     display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #fff;
 }
 
 /* Media Queries */
@@ -83,6 +110,10 @@
     }
     .header .header-tab-container {
         position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: center;
         top: 100%;
         right: -100%;
         background-color: #6e5e4c;

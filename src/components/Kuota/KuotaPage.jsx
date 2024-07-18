@@ -1,16 +1,16 @@
 import Header from "../Navbar/Header.jsx"
 import Footer from "../Navbar/Footer.jsx"
-import Home from "./Home.jsx"
-import "./Home.css"
+import Kuota from "./Kuota.jsx"
+import "./Kuota.css"
 
-const HomePage = () => {
+const KuotaPage = () => {
   return (
     <div>
       <Header/>
-      <Home/>
+      <Kuota/>
       <Footer/>
     </div>
   )
 }
 
-export default HomePage
+export default KuotaPage

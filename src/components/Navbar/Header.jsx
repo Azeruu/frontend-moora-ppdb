@@ -24,13 +24,13 @@ const Header = () => {
       </div>
 
       <div className={`header-tab-container ${isMenuOpen ? "active" : ""}`}>
-        <NavLink to="/" className="header-tab"><Home />Home</NavLink>
-        <NavLink to="/info" className="header-tab"><Info />Informasi PPDB</NavLink>
-        <NavLink to="/hasil" className="header-tab"><Award />Kuota Pendaftaran</NavLink>
-        <NavLink to="/peringkat" className="header-tab"><Award />Peringkat</NavLink>
+        <NavLink to="/" className="header-tab"><Home /> Home</NavLink>
+        <NavLink to="/info" className="header-tab"><Info /> Informasi PPDB</NavLink>
+        <NavLink to="/kuota" className="header-tab"><Award /> Kuota Pendaftaran</NavLink>
+        <NavLink to="/peringkat" className="header-tab"><Award /> Peringkat</NavLink>
       </div>
-      <div className="btn-login-container">
-        <button className="btn-login" onClick={handleLogin}>Login</button>
+      <div className="btn-login1-container">
+        <button className="btn-login1" onClick={handleLogin}>Login</button>
       </div>
       <div>
         <button className="menu-toggle" onClick={toggleMenu}><Menu/></button>

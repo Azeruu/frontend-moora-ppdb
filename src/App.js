@@ -24,6 +24,9 @@ import Pendaftar from "./components/Pendaftaran/PagePendaftar";
 import AddPendaftar from "./components/Pendaftaran/PageAddPendaftar";
 import AddPendaftar2 from "./components/Pendaftaran/PageAddPendaftar2";
 import Home from "./components/Home/HomePage";
+import Info from "./components/Informasi/InfoPage";
+import KuotaPage from "./components/Kuota/KuotaPage";
+import PeringkatPage from "./components/Peringkat/PeringkatPage";
 
 function App() {
   return (
@@ -33,6 +36,9 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/info" element={<Info />} />
+          <Route path="/kuota" element={<KuotaPage />} />
+          <Route path="/peringkat" element={<PeringkatPage />} />
           {/* User */}
           <Route path="/userlist" element={<UserList />} />
           <Route path="/userlist/adduser" element={<AddUser />} />
