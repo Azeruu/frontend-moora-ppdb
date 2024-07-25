@@ -81,7 +81,9 @@ const ListKriteria = () => {
                         <th>No</th>
                         <th>Kode Kriteria</th>
                         <th>Nama Kriteria</th>
-                        <th>Bobot Kriteria</th>
+                        <th>Jalur Pendaftaran</th>
+                        <th>Bobot Kriteria(%)</th>
+                        <th>Tipe Data (cost/benefit)</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -91,7 +93,9 @@ const ListKriteria = () => {
                             <td>{startIndex + index + 1}</td>
                             <td>{nil.kode_kriteria}</td>
                             <td>{nil.nama_kriteria}</td>
+                            <td>{nil.jalur_pendaftaran}</td>
                             <td>{nil.bobot_kriteria}</td>
+                            <td>{nil.tipe_data}</td>
                             <td className="button-action">
                                 <Link
                                 to={`/kriteria/editKriteria/${nil.id}`}

@@ -26,6 +26,9 @@ import AddPendaftar2 from "./components/Pendaftaran/PageAddPendaftar2";
 import Home from "./components/Home/HomePage";
 import Info from "./components/Informasi/InfoPage";
 import KuotaPage from "./components/Kuota/KuotaPage";
+import AddQuota from "./components/Kuota/AddQuota";
+import EditQuota from "./components/Kuota/EditQuota";
+import PageKuotaAdmin from "./components/Kuota/KuotaAdminPage";
 import PeringkatPage from "./components/Peringkat/PeringkatPage";
 
 function App() {
@@ -37,8 +40,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/info" element={<Info />} />
-          <Route path="/kuota" element={<KuotaPage />} />
           <Route path="/peringkat" element={<PeringkatPage />} />
+          {/* QUota */}
+          <Route path="/kuota" element={<KuotaPage />} />
+          <Route path="/kuota/admin" element={<PageKuotaAdmin />} />
+          <Route path="/kuota/addkuota" element={<AddQuota />} />
+          <Route path="/kuota/editkuota/:id" element={<EditQuota />} />
           {/* User */}
           <Route path="/userlist" element={<UserList />} />
           <Route path="/userlist/adduser" element={<AddUser />} />

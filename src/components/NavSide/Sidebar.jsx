@@ -28,6 +28,7 @@ const Sidebar = () => {
             <NavLink to="/daftar" className="sidebar-menu-list"><Edit/>Pendaftaran</NavLink>
             {user && user.role === "admin" &&(
               <div>
+                <NavLink to="/kuota/admin" className="sidebar-menu-list"><Map/>Quota Pendaftaran</NavLink>
                 <NavLink to="/jalur" className="sidebar-menu-list"><Map/>Jalur Pendaftaran</NavLink>
                 <NavLink to="/alternatif" className="sidebar-menu-list"><UserPlus/>Alternatif</NavLink>
                 <NavLink to="/kriteria" className="sidebar-menu-list"><FileText/>Kriteria</NavLink>
