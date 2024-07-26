@@ -56,7 +56,7 @@ const Kuota = () => {
           <h1 className="list-jalur-judul">Quota Pendaftaran</h1>
           <p className="list-rekap-subjudul">Kategori yang digunakan untuk mengatur proses penerimaan siswa baru berdasarkan kriteria tertentu</p>
           <div className="action-box">
-            <Link to={`/jalur/addjalur`} className="btnadd-jalur">
+            <Link to={`/kuota/addkuota`} className="btnadd-jalur">
               Tambah Quota
             </Link>
             <input
