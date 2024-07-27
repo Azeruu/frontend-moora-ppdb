@@ -1,55 +1,45 @@
 import "./ListPendaftar.css";
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate} from "react-router-dom";
 import axios from "../../lib/axios";
 
 const ListPendaftar = () => {
   const [nilaiAlt, setNilaiAlt] = useState([]);
-  const [alt, setAlt] = useState([]);
   const [kriteria, setKriteria] = useState([]);
   const [jmlData, setJmlData] = useState(0);
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
   const [jalur, setJalur] = useState([]);
-  const [filteredNilaiAlt, setFilteredNilaiAlt] = useState([]);
   const itemsPerPage = 7;
   const navigate = useNavigate();
 
-  // Ambil data Nilai Alternatif, Kriteria, dan Jalur
+  // Ambil data Nilai Alternatif dan Kriteria
   const getNilaiAlt = async () => {
-    try {
-      const response = await axios.get("/nilai_alternatif");
-      const sortedData = response.data.sort((a, b) => a.nama_alternatif.localeCompare(b.nama_alternatif));
-      setNilaiAlt(sortedData);
-    } catch (error) {
-      console.error("Error dalam fetching nilai alternatif: ", error);
-    }
+    const response = await axios.get("/nilai_alternatif");
+    // Mengurutkan data berdasarkan nama_alternatif dari A ke Z
+    const sortedData = response.data.sort((a, b) => {
+      return a.nama_alternatif.localeCompare(b.nama_alternatif);
+    });
+    setNilaiAlt(sortedData);
   };
-
   const getKriteria = async () => {
     try {
       const response = await axios.get("/kriteria");
       setKriteria(response.data);
     } catch (error) {
-      console.error("Error dalam fetching kriteria: ", error);
+      console.error("Error dalam fetching data: ", error);
     }
   };
-
   const getJalur = async () => {
-    try {
-      const response = await axios.get('/jalur');
-      setJalur(response.data);
-    } catch (error) {
-      console.error("Error dalam fetching jalur: ", error);
-    }
+    const response = await axios.get('/jalur');
+    setJalur(response.data);
   };
 
   useEffect(() => {
     const jumlahData = async () => {
       try {
         const response = await axios.get("/alternatif");
-        setAlt(response.data);
         setJmlData(response.data.length);
       } catch (error) {
         console.log(error);
@@ -61,29 +51,8 @@ const ListPendaftar = () => {
     getNilaiAlt();
   }, []);
 
-  useEffect(() => {
-    // Mengfilter nilaiAlt berdasarkan jalur aktif
-    if (jalur.length > 0) {
-      const currentJalur = jalur[activeTab]?.nama_jalur;
-      // Menggunakan filteredData untuk mencari data di nilaiAlt
-      const filteredData = nilaiAlt.filter(item => item.jalur_pendaftaran === currentJalur);
-
-      // Membuat referensi untuk pencarian data
-      const filteredNilaiAltData = nilaiAlt.filter(item =>
-        filteredData.some(filteredItem => filteredItem.nama_alternatif === item.nama_alternatif)
-      );
-
-      setFilteredNilaiAlt(filteredNilaiAltData);
-
-      console.log("NilaiAlt:", nilaiAlt);
-      console.log("CurrentJalur:", currentJalur);
-      console.log("FilteredData:", filteredData);
-      console.log("FilteredNilaiAlt:", filteredNilaiAltData);
-    }
-  }, [activeTab, jalur, nilaiAlt]);
-
   // Menggabungkan data untuk setiap siswa
-  const mergedData = filteredNilaiAlt.reduce((acc, curr) => {
+  const mergedData = nilaiAlt.reduce((acc, curr) => {
     const { nama_alternatif, nama_kriteria, nilai_real } = curr;
     if (!acc[nama_alternatif]) {
       acc[nama_alternatif] = {};
@@ -91,14 +60,15 @@ const ListPendaftar = () => {
     acc[nama_alternatif][nama_kriteria] = nilai_real;
     return acc;
   }, {});
-
+  
   // Pagination
   const totalPages = Math.ceil(Object.keys(mergedData).length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const filteredData = Object.entries(mergedData).filter(([namaSiswa, dataSiswa]) =>
-    namaSiswa.toLowerCase().includes(search.toLowerCase())
+  namaSiswa.toLowerCase().includes(search.toLowerCase())
   );
+  // Menggunakan data yang sudah difilter untuk render
   const currentData = filteredData.slice(startIndex, endIndex);
 
   const handleClick = (value) => {
@@ -110,7 +80,7 @@ const ListPendaftar = () => {
       setCurrentPage(value);
     }
   };
-
+  
   // Fungsi untuk Search data
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -122,46 +92,49 @@ const ListPendaftar = () => {
       let deletedCount = 0;
       let response;
       do {
-        response = await axios.delete(`/nilai_alternatif/${dataAlternatifId}`);
-        deletedCount += response.data.deletedCount;
-      } while (response.data.deletedCount > 0);
+          // Panggil endpoint untuk menghapus data dengan dataAlternatifId tertentu
+          response = await axios.delete(`/nilai_alternatif/${dataAlternatifId}`);
+          // Tambahkan jumlah data yang berhasil dihapus
+          deletedCount += response.data.deletedCount;
+      } while (response.data.deletedCount > 0); // Ulangi selama masih ada data yang dihapus
 
+      // Setelah semua data yang memenuhi syarat telah dihapus, panggil getNilaiAlt
       getNilaiAlt();
     } catch (error) {
-      console.log(error);
+        console.log(error);
     }
   };
 
   const handleTambahButtonClick = () => {
-    navigate(`/daftar/addpendaftar`);
+      navigate(`/daftar/addpendaftar`);
   };
-
+  
   return (
     <div className="list-rekap-container">
       <div className="list-rekap-grid">
-        <h1 className="list-rekap-judul"> Pendaftaran</h1>
-        <p className="list-rekap-subjudul">Halaman data pendaftar dan untuk melakukan pendaftaran</p>
-        <div className="tabs">
-          {jalur.map((jalurItem, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveTab(index)}
-              className={activeTab === index ? 'active' : ''}
-            >
-              {jalurItem.nama_jalur}
-            </button>
-          ))}
-        </div>
-        <div className="action-box">
-          <button onClick={handleTambahButtonClick} className="btnadd-siswa">Daftar</button>
-          <input
-            type="text"
-            value={search}
-            onChange={handleSearchChange}
-            className="search-box"
-            placeholder="Cari nama siswa..."
-          />
-        </div>
+          <h1 className="list-rekap-judul"> Pendaftaran</h1>
+          <p className="list-rekap-subjudul">Halaman data pendaftar dan untuk melakukan pendaftaran</p>
+          <div className="tabs">
+            {jalur.map((jalur, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveTab(index)}
+                className={activeTab === index ? 'active' : ''}
+              >
+                {jalur.nama_jalur}
+              </button>
+            ))}
+          </div>
+          <div className="action-box">
+            <button onClick={handleTambahButtonClick} className="btnadd-siswa">Daftar</button>
+            <input
+              type="text"
+              value={search}
+              onChange={handleSearchChange}
+              className="search-box"
+              placeholder="Cari nama siswa..."
+            />
+          </div>
         <div className="container-table-siswa">
           <table>
             <thead>
@@ -179,15 +152,15 @@ const ListPendaftar = () => {
                   <td>{startIndex + index + 1}</td>
                   <td>{namaSiswa}</td>
                   {kriteria.map((item, index) => (
-                    <td key={index}>{dataSiswa[item.nama_kriteria] || '-'}</td>
+                    <td key={index}>{dataSiswa[item.nama_kriteria]}</td>
                   ))}
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <div className="pagination">
-          <button onClick={() => handleClick("prev")} className="page-button">Prev</button>
+        <div class="pagination">
+          <button onClick={() => handleClick("prev")} class="page-button">Prev</button>
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index}
@@ -197,7 +170,7 @@ const ListPendaftar = () => {
               {index + 1}
             </button>
           ))}
-          <button onClick={() => handleClick("next")} className="page-button">Next</button>
+          <button onClick={() => handleClick("next")} class="page-button">Next</button>
         </div>
         <p className="jumlah-data">Jumlah Data : {jmlData}</p>
         <p className="jumlah-data">Jumlah Page : {totalPages}</p>

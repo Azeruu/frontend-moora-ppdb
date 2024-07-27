@@ -32,7 +32,7 @@ const AddQuota = () => {
 
   return (
     <div className="add-jalur-column">
-      <h1 className="add-jalur-judul">Tambah Jalur</h1>
+      <h1 className="add-jalur-judul">Tambah Quota</h1>
       <form onSubmit={saveQuota}>
         <p>{msg}</p>
         <div className="field">

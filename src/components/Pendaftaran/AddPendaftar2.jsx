@@ -5,6 +5,7 @@ import axios from "../../lib/axios";
 
 export default function Daftar2() {
     const [alternatif, setAlternatif] = useState("");
+    const [jalur, setJalur] = useState("");
     const [nilai_real, setNilaiReal] = useState({});
     const [alternatifId, setAlternatifId] = useState('');
     const [ambilAlt, setAmbilAlt] = useState([]);
@@ -14,37 +15,44 @@ export default function Daftar2() {
     const {namaAlternatif} = useParams();
 
 // START AMBIL DATA
-const getAlternatif = async (data) => {
-    const response = await axios.get("/alternatif", data);
-    setAmbilAlt(response.data);
-};
-const getKriteria = async (data) => {
-    const response = await axios.get("/kriteria", data);
-    setAmbilKriteria(response.data);
-
-    // Membuat objek untuk menyimpan ID kriteria berdasarkan nama kriterianya
-    const kriteriaIdMap = {};
-    response.data.forEach(kriteria => {
-        kriteriaIdMap[kriteria.nama_kriteria] = kriteria.id;
-    });
-    setDataKriteriumId(kriteriaIdMap);
-};
+useEffect(()=>{
+    const getAlternatif = async (data) => {
+        const response = await axios.get("/alternatif", data);
+        setAmbilAlt(response.data);
+    };
+    getAlternatif();
+},[]);
+useEffect(()=>{
+    const getKriteria = async () => {
+        const response = await axios.get("/kriteria");
+        const dataKriteria = response.data;
+        const filteredKriteria = dataKriteria.filter(kriteria => kriteria.jalur_pendaftaran === jalur);
+        setAmbilKriteria(filteredKriteria);
+        // console.log(filteredKriteria)
+        console.log(filteredKriteria)
+    
+        // Membuat objek untuk menyimpan ID kriteria berdasarkan nama kriterianya
+        const kriteriaIdMap = {};
+        response.data.forEach(kriteria => {
+            kriteriaIdMap[kriteria.nama_kriteria] = kriteria.id;
+        });
+        setDataKriteriumId(kriteriaIdMap);
+    };
+    getKriteria();
+},[jalur]);
 // END AMBIL DATA
 
 useEffect(() => {
-    if (namaAlternatif) {
+    if (namaAlternatif && ambilAlt.length) {
         const selectedAlternatif = ambilAlt.find(item => item.nama_alternatif === namaAlternatif);
         if (selectedAlternatif) {
         setAlternatif(selectedAlternatif.nama_alternatif);
+        setJalur(selectedAlternatif.nama_jalur);
         setAlternatifId(selectedAlternatif.id);
         }
     }
 }, [namaAlternatif, ambilAlt]);
-    
-useEffect(() => {
-    getAlternatif();
-    getKriteria();
-}, []);
+
 
 const handleInputChange = (namaKriteria, nilai) => {
     setNilaiReal(prevState => ({
@@ -67,6 +75,7 @@ const onSubmit = async (e) => {
 
             const response = await axios.post("/nilai_alternatif", {
                 nama_alternatif: alternatif,
+                jalur_pendaftaran: jalur,
                 nama_kriteria: namaKriteria,
                 nilai_real: nilai_real[namaKriteria], // Menggunakan nilai_real[namaKriteria] untuk mendapatkan nilai real kriteria saat ini
                 nilai_fuzzy: nilai_fuzzy,
@@ -148,6 +157,14 @@ const FuzzyAndKeterangan = async (namaKriteria, nilai_real) => {
                         type="text"
                         className="input"
                         value={alternatif}
+                        readOnly // Membuat input tidak bisa diedit
+                    />
+                </div>
+                <div className="control">
+                    <input
+                        type="text"
+                        className="input"
+                        value={jalur}
                         readOnly // Membuat input tidak bisa diedit
                     />
                 </div>

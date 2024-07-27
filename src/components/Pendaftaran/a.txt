@@ -152,3 +152,27 @@ export default function Daftar() {
       </div>
   );
 }
+
+switch (activeTab) {
+      case 'tab1':
+        return <div className='konten'>Konten Tab 1</div>;
+      case 'tab2':
+        return <div className='konten'>Konten Tab 2</div>;
+      case 'tab3':
+        return <div className='konten'>Konten Tab 3</div>;
+      default:
+        return null;
+    }
+
+  return (
+    <div>
+      <div className="tabs">
+        <button onClick={() => setActiveTab('tab1')}>Tab 1</button>
+        <button onClick={() => setActiveTab('tab2')}>Tab 2</button>
+        <button onClick={() => setActiveTab('tab3')}>Tab 3</button>
+      </div>
+      <div className="content">
+        {renderContent()}
+      </div>
+    </div>
+  );

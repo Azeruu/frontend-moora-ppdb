@@ -122,3 +122,28 @@ th {
   border-radius: 4px;
   margin: 0 5px;
 }
+
+/* END */
+.tabs {
+  display: flex;
+}
+
+.tabs button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid #0056b3;
+  padding: 10px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.content {
+  color: black;
+  margin-top: 20px;
+}
+
+.tabs button.active{
+  background-color: #557597;
+  color: #fff;
+}
