@@ -13,10 +13,12 @@ const ListPendaftar = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [jalur, setJalur] = useState([]);
   const [filteredNilaiAlt, setFilteredNilaiAlt] = useState([]);
+  const [filteredKriteria, setFilteredKriteria] = useState([]);
+  const [jumlahAlternatifPerJalur, setJumlahAlternatifPerJalur] = useState([]);
   const itemsPerPage = 7;
   const navigate = useNavigate();
 
-  // Ambil data Nilai Alternatif, Kriteria, dan Jalur
+// Ambil data Nilai Alternatif, Kriteria, dan Jalur
   const getNilaiAlt = async () => {
     try {
       const response = await axios.get("/nilai_alternatif");
@@ -26,16 +28,22 @@ const ListPendaftar = () => {
       console.error("Error dalam fetching nilai alternatif: ", error);
     }
   };
-
+// Ambil Data Kriteria
   const getKriteria = async () => {
     try {
       const response = await axios.get("/kriteria");
-      setKriteria(response.data);
+      const dataKriteria = response.data;
+      // const filteredKriteria = dataKriteria.filter(kriteria => kriteria.jalur_pendaftaran === activeTab);
+      setKriteria(dataKriteria);
+      
+      // console.log(dataKriteria);
+      // console.log(currentJalur);
+      // console.log(filteredKriteria);
     } catch (error) {
       console.error("Error dalam fetching kriteria: ", error);
     }
   };
-
+// Ambil Data Jalur
   const getJalur = async () => {
     try {
       const response = await axios.get('/jalur');
@@ -44,6 +52,20 @@ const ListPendaftar = () => {
       console.error("Error dalam fetching jalur: ", error);
     }
   };
+// Ambil Data Jumlah Alternatif PerJalur
+  const hitungJumlahAlternatifPerJalur = (dataAlternatif, dataJalur) => {
+    const jumlahPerJalur = dataJalur.map(jalurItem => {
+      const jumlah = dataAlternatif.filter(item => item.nama_jalur === jalurItem.nama_jalur).length;
+      return { nama_jalur: jalurItem.nama_jalur, jumlah };
+    });
+    setJumlahAlternatifPerJalur(jumlahPerJalur);
+  };
+
+  useEffect(() => {
+    if (alt.length > 0 && jalur.length > 0) {
+      hitungJumlahAlternatifPerJalur(alt, jalur);
+    }
+  }, [alt, jalur]);
 
   useEffect(() => {
     const jumlahData = async () => {
@@ -67,18 +89,15 @@ const ListPendaftar = () => {
       const currentJalur = jalur[activeTab]?.nama_jalur;
       // Menggunakan filteredData untuk mencari data di nilaiAlt
       const filteredData = nilaiAlt.filter(item => item.jalur_pendaftaran === currentJalur);
+      const filteredData2 = kriteria.filter(item => item.jalur_pendaftaran === currentJalur);
 
       // Membuat referensi untuk pencarian data
       const filteredNilaiAltData = nilaiAlt.filter(item =>
         filteredData.some(filteredItem => filteredItem.nama_alternatif === item.nama_alternatif)
       );
 
+      setFilteredKriteria(filteredData2);
       setFilteredNilaiAlt(filteredNilaiAltData);
-
-      console.log("NilaiAlt:", nilaiAlt);
-      console.log("CurrentJalur:", currentJalur);
-      console.log("FilteredData:", filteredData);
-      console.log("FilteredNilaiAlt:", filteredNilaiAltData);
     }
   }, [activeTab, jalur, nilaiAlt]);
 
@@ -141,6 +160,7 @@ const ListPendaftar = () => {
       <div className="list-rekap-grid">
         <h1 className="list-rekap-judul"> Pendaftaran</h1>
         <p className="list-rekap-subjudul">Halaman data pendaftar dan untuk melakukan pendaftaran</p>
+        
         <div className="tabs">
           {jalur.map((jalurItem, index) => (
             <button
@@ -148,10 +168,11 @@ const ListPendaftar = () => {
               onClick={() => setActiveTab(index)}
               className={activeTab === index ? 'active' : ''}
             >
-              {jalurItem.nama_jalur}
+              {jalurItem.nama_jalur}({jumlahAlternatifPerJalur.find(item => item.nama_jalur === jalurItem.nama_jalur)?.jumlah || 0} / {jalurItem.jumlah_kuota})
             </button>
           ))}
         </div>
+
         <div className="action-box">
           <button onClick={handleTambahButtonClick} className="btnadd-siswa">Daftar</button>
           <input
@@ -168,8 +189,8 @@ const ListPendaftar = () => {
               <tr>
                 <th>No</th>
                 <th>Nama Siswa</th>
-                {kriteria.map((item, index) => (
-                  <th key={index}>{item.nama_kriteria}</th>
+                {filteredKriteria.map((item) => (
+                  <th key={item.id}>{item.nama_kriteria}</th>
                 ))}
               </tr>
             </thead>
@@ -178,8 +199,8 @@ const ListPendaftar = () => {
                 <tr key={index}>
                   <td>{startIndex + index + 1}</td>
                   <td>{namaSiswa}</td>
-                  {kriteria.map((item, index) => (
-                    <td key={index}>{dataSiswa[item.nama_kriteria] || '-'}</td>
+                  {filteredKriteria.map((item) => (
+                    <td key={item.id}>{dataSiswa[item.nama_kriteria] || '-'}</td>
                   ))}
                 </tr>
               ))}

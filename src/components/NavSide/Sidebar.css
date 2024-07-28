@@ -8,7 +8,19 @@
     background-color: #222;
     color: #fff;
 }
+.sidebar-content{
+    position: fixed;
+    top: 2rem;
+    left: 10px; /* Jarak dari kiri */
+    width: 90%; /* Lebar penuh */
+    height: calc(100% - 2.5rem); /* Menyesuaikan tinggi sidebar agar tidak melebihi layar */
+    overflow-y: scroll; /* Mengizinkan scroll vertikal */
+}
+.sidebar-content::-webkit-scrollbar {
+    display: none; /* Sembunyikan scrollbar */
+}
 .sidebar-pp-container{
+    position: sticky;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,15 +40,8 @@
     border-radius: 50%;
     object-fit: cover;
 }
-.sidebar-content{
-    position: fixed;
-    display: block;
-    width: 100%;
-    top: 2rem;
-    left: 0;
-}
 .grid-container{
-    /* margin-bottom: 2rem; */
+    margin-bottom: 2rem;
 }
 .sidebar-label {
     display: block;

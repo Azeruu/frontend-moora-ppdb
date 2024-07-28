@@ -2,7 +2,9 @@ import "./Sidebar.css"
 import { NavLink, useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout, reset } from "../../features/authSlice";
-import {Home, FileText, UserPlus, Award, User, LogOut, PieChart, Map, Edit} from "feather-icons-react/build/IconComponents";
+import {
+  Home, FileText, UserPlus, Award, User, LogOut, PieChart, Map, Edit, BarChart, Layers
+} from "feather-icons-react/build/IconComponents";
 import logo from "../../image/userPng.png";
 
 const Sidebar = () => {
@@ -17,7 +19,7 @@ const Sidebar = () => {
   }
 
   return(
-    <div className='sidebar'>
+    <div className="sidebar">
       <div className="sidebar-content">
         <div className="sidebar-pp-container">
           <img src={logo} alt="logo" className="pp" />
@@ -28,10 +30,11 @@ const Sidebar = () => {
             <NavLink to="/daftar" className="sidebar-menu-list"><Edit/>Pendaftaran</NavLink>
             {user && user.role === "admin" &&(
               <div>
-                <NavLink to="/kuota/admin" className="sidebar-menu-list"><Map/>Quota Pendaftaran</NavLink>
+                <NavLink to="/kuota/admin" className="sidebar-menu-list"><BarChart/>Quota Pendaftaran</NavLink>
                 <NavLink to="/jalur" className="sidebar-menu-list"><Map/>Jalur Pendaftaran</NavLink>
                 <NavLink to="/alternatif" className="sidebar-menu-list"><UserPlus/>Alternatif</NavLink>
                 <NavLink to="/kriteria" className="sidebar-menu-list"><FileText/>Kriteria</NavLink>
+                <NavLink to="/subkriteria" className="sidebar-menu-list"><Layers/>SUB-Kriteria</NavLink>
                 <NavLink to="/nilai_alternatif" className="sidebar-menu-list"><PieChart/>Nilai Alternatif</NavLink>
               </div>
             )}

@@ -58,6 +58,10 @@ function App() {
           <Route path="/kriteria" element={<ListKriteria />} />
           <Route path="/kriteria/addKriteria/" element={<AddKriteria />} />
           <Route path="/kriteria/editKriteria/:id" element={<EditKriteria />} />
+          {/* SUB Kriteria */}
+          <Route path="/subkriteria" element={<ListKriteria />} />
+          <Route path="/subkriteria/addSubKriteria/" element={<AddKriteria />} />
+          <Route path="/subkriteria/editSubKriteria/:id" element={<EditKriteria />} />
           {/* Nilai ALternatif */}
           <Route path="/nilai_alternatif" element={<NilaiAlternatif />} />
           <Route path="/nilai_alternatif/addNilaiAlternatif" element={<AddNilaiAlternatif />} />

@@ -18,11 +18,11 @@
     height: 8vh;
 }  
 .sidebar {
-    grid-area: sidebar;
+    /* grid-area: sidebar;
     background-color: #222;
     color: #fff;
     padding: 16px;
-    transition: transform 0.3s;
+    transition: transform 0.3s; */
 }
 .sidebar-open .sidebar{
     transform: translateX(0);

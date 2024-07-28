@@ -12,7 +12,7 @@ export default function Daftar2() {
     const [ambilKriteria, setAmbilKriteria] = useState([]);
     const [dataKriteriumId, setDataKriteriumId] = useState([]);
     const navigate = useNavigate();
-    const {namaAlternatif} = useParams();
+    const {namaAlternatif, jalurId} = useParams();
 
 // START AMBIL DATA
 useEffect(()=>{
@@ -22,14 +22,13 @@ useEffect(()=>{
     };
     getAlternatif();
 },[]);
+
 useEffect(()=>{
     const getKriteria = async () => {
         const response = await axios.get("/kriteria");
         const dataKriteria = response.data;
         const filteredKriteria = dataKriteria.filter(kriteria => kriteria.jalur_pendaftaran === jalur);
         setAmbilKriteria(filteredKriteria);
-        // console.log(filteredKriteria)
-        console.log(filteredKriteria)
     
         // Membuat objek untuk menyimpan ID kriteria berdasarkan nama kriterianya
         const kriteriaIdMap = {};
@@ -80,6 +79,7 @@ const onSubmit = async (e) => {
                 nilai_real: nilai_real[namaKriteria], // Menggunakan nilai_real[namaKriteria] untuk mendapatkan nilai real kriteria saat ini
                 nilai_fuzzy: nilai_fuzzy,
                 keterangan: keterangan,
+                jalurId : jalurId,
                 dataAlternatifId: alternatifId,
                 dataKriteriumId: dataKriteriumId[namaKriteria] ,
             });

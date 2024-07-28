@@ -1,10 +1,10 @@
-/* CSS untuk list-rekap-container */
-.list-rekap-container {
+/* CSS untuk list-nilai-container */
+.list-nilai-container {
   padding: 20px;
 }
 
-/* CSS untuk list-rekap-grid */
-.list-rekap-grid {
+/* CSS untuk list-nilai-grid */
+.list-nilai-grid {
   /* background-color: #fff; */
   text-align: center;
   padding: 20px;
@@ -12,20 +12,34 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* CSS untuk list-rekap-judul */
-.list-rekap-judul {
+/* CSS untuk list-nilai-judul */
+.list-nilai-judul {
   font-size: 26px;
   margin-bottom: 20px;
 }
-.list-rekap-subjudul {
+.list-nilai-subjudul {
   margin-bottom: 20px;
   color: var(--secondary);
 }
-.list-rekap-table-container{
+
+/* CSS untuk btnadd */
+.btnadd {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btnadd:hover {
+  background-color: #0056b3;
+}
+.list-nilai-table-container{
   margin-top: 5rem;
 }
 /* CSS untuk table */
-.container-table-rekapnilai {
+.container-table-nilai {
   height: 100%;
   overflow-x: auto;
   margin-top: 50px;
@@ -122,36 +136,3 @@ th {
   border-radius: 4px;
   margin: 0 5px;
 }
-
-/* END */
-
-.tabs {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 1rem;
-  background-color: transparent;
-  height: 3rem;
-  overflow: hidden;
-}
-
-.tabs button {
-  background-color: var(--quartenary);
-  border: none;
-  flex: 1;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  width: 10rem;
-  transition: background-color 0.3s, color 0.3s;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.tabs button.active {
-  background-color: var(--secondary);
-  color: rgb(15, 15, 15);
-}
-
-.tabs button:hover:not(.active) {
-  background-color: var(--hover);
-}
-
