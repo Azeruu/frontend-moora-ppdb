@@ -8,7 +8,7 @@ const Info = () => {
   // };
 
   return (
-    <table className="Info-container">
+    <div className="Info-container">
       <div className="Info">
         <h1 className="Info-judul">Informasi PPDB</h1>
         <h1>PETUNJUK TEKNIS (JUKNIS) PENERIMAAN PESERTA DIDIK BARU (PPDB) SMP NEGERI 1 CISOKA TAHUN PELAJARAN 2023/2024</h1>
@@ -89,7 +89,7 @@ const Info = () => {
         <p>2. Afirmasi dan Perpindahan Tugas : Jarak --&gt; Usia</p>
         <p>3. Prestasi : Rata-Rata Nilai Rapor atau Sertifikat/Piagam --&gt; Jarak --&gt; Usia</p>
       </div>
-    </table>
+    </div>
   );
 };
 

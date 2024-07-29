@@ -18,7 +18,7 @@ const Header = () => {
 
   return (
     <nav className="header">
-      <div className="logo">
+      <div className="header-logo">
       <img src={logo} className="logo1" alt="Logo SMP" />
       <NavLink to="/" className="logo2">PPDB <span>SMP N 1 CISOKA</span></NavLink>
       </div>

@@ -1,21 +1,43 @@
 /* Gaya umum */
 .Info-container{
-    background-color: var(--bg); 
-    max-height: 100vh;
-    overflow-y: auto;
-    margin-top: 20px;
-    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(90deg, rgba(33, 41, 62, 1)8%, rgba(255, 255, 255, 0)110%), url(../../image/sekolah5.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+.Info-container::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    /* height: 25%; */
+    /* bottom: -5rem; */
+    background: linear-gradient(0deg, rgba(33, 41, 62, 1)40%, rgba(255, 255, 255, 0)80%);
+}
+
 .Info {
-    max-width: auto;
-    margin: 0 auto;
-    padding: 20px;
-    /* border: 1px solid #ddd; */
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: transparent;
     border-collapse: collapse;
-    overflow-y: auto;
+    /* text-align: center; */
+    margin: 20px auto;
+    margin-top: 8rem;
+    padding: 20px;
+    max-width: 90%;
+    border-radius: 8px;
+    position: relative;
+    background:transparent;
+    border: 2px solid rgba(225, 225, 225, .5);
+    backdrop-filter: blur(1rem);
+    box-shadow: 0 0 1.2rem rgba(0, 0, 0, .5);
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    overflow: hidden;
+    /* margin-right: -12rem; */
 }
 
 /* Gaya judul */

@@ -125,7 +125,7 @@ th {
 
 /* END */
 
-.tabs {
+.tabs2 {
   display: flex;
   justify-content: space-around;
   margin-bottom: 1rem;
@@ -134,7 +134,7 @@ th {
   overflow: hidden;
 }
 
-.tabs button {
+.tabs2 button {
   background-color: var(--quartenary);
   border: none;
   flex: 1;
@@ -146,12 +146,12 @@ th {
   font-size: 1rem;
 }
 
-.tabs button.active {
+.tabs2 button.active {
   background-color: var(--secondary);
   color: rgb(15, 15, 15);
 }
 
-.tabs button:hover:not(.active) {
+.tabs2 button:hover:not(.active) {
   background-color: var(--hover);
 }
 

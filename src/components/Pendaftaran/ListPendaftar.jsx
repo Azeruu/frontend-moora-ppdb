@@ -161,7 +161,7 @@ const ListPendaftar = () => {
         <h1 className="list-rekap-judul"> Pendaftaran</h1>
         <p className="list-rekap-subjudul">Halaman data pendaftar dan untuk melakukan pendaftaran</p>
         
-        <div className="tabs">
+        <div className="tabs2">
           {jalur.map((jalurItem, index) => (
             <button
               key={index}

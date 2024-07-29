@@ -1,10 +1,24 @@
 /* FOOTER */
 .footer {
-    background-color: transparents;
-    padding: 1rem 0;
-    margin-top: 3rem;
-    text-align: center;
-    color: #fff;
+    padding: 1.4rem 7%;
+    background-image: linear-gradient(to right, #ec02ec, #00b0eb);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    position: relative; /* Agar pseudo-element bisa diposisikan */
+} 
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    height: 15%;
+    bottom: 6rem;
+    background: linear-gradient(180deg, rgba(33, 41, 62, 1)40%, rgba(255, 255, 255, 0)90%);
 }
 
 .footer .links {
@@ -14,7 +28,7 @@
 .footer .links a {
     font-size: 1.2rem;
     padding: 0.7rem 1rem;
-    color: #fff;
+    color: var(--secondary);
 }
 
 .footer .links a:hover,
@@ -23,7 +37,7 @@
 }
 
 .footer .copy p{
-    color: #010101;
+    color: var(--secondary);
     font-size: 0.9rem;
     font-weight: 700;
 }
@@ -33,7 +47,7 @@
 }
 
 .footer .social a {
-    color: #fff;
+    color: var(--secondary);
     margin: 1rem;
 }
 

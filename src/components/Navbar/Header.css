@@ -4,20 +4,22 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.4rem 7%;
-    background-color: rgb(63, 58, 13);
-    border-bottom: 1px solid #6e5e4c;
+    background: linear-gradient(to right, #ec02ec,#00b0eb);
+    /* border-bottom: 1px solid #6e5e4c; */
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9999;
 }
-.header .logo{
+.header .header-logo{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     filter: drop-shadow(4px 4px 10px #000000);
+    max-width: 100%;
+    margin-bottom: 10px;
 }
 .header .logo1 {
     width: 3rem;
@@ -51,7 +53,7 @@
     transition: color 0.3s ease;
 }
 .header-tab:hover {
-    color: var(--primary);
+    color: var(--bg);
 }
 .header-tab::after {
     content: " ";
@@ -80,6 +82,7 @@
 .btn-login1:hover {
     background-color: var(--tertiary);
     cursor: pointer;
+    transition: color 0.5s ease;
     color: #010101;
 }  
 
