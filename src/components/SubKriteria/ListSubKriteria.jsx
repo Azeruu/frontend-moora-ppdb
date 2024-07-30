@@ -1,18 +1,18 @@
-import "./ListKriteria.css";
+import "./ListSubKriteria.css";
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "../../lib/axios";
 
-const ListKriteria = () => {
-    const [kriteria, setKriteria] = useState([]);
+const ListSubKriteria = () => {
+    const [subKriteria, setSubKriteria] = useState([]);
     const [jmlData, setJmlData] = useState(0);
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
 
-    // Batas
+    // Pagination
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
-    const totalPages = Math.ceil(kriteria.length / itemsPerPage);
+    const totalPages = Math.ceil(subKriteria.length / itemsPerPage);
     const handleClick = (value) => {
         if (value === "prev" && currentPage > 1) {
             setCurrentPage((prev) => prev - 1);
@@ -24,19 +24,19 @@ const ListKriteria = () => {
     };
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const filteredData = kriteria.filter((nil) =>
+    const filteredData = subKriteria.filter((nil) =>
     nil.nama_kriteria.toLowerCase().includes(search.toLowerCase())
     );
     const currentData = filteredData.slice(startIndex, endIndex);
-  // Batas
+  // END Pagination
 
-    const getKriteria = async () => {
-        const response = await axios.get("/kriteria");
-        setKriteria(response.data);
+    const getSubKriteria = async () => {
+        const response = await axios.get("/subkriteria");
+        setSubKriteria(response.data);
     };
     const jumlahData = async () => {
         try {
-        const response = await axios.get("/kriteria");
+        const response = await axios.get("/subkriteria");
         setJmlData(response.data.length);
         } catch (error) {
         console.log(error);
@@ -44,25 +44,25 @@ const ListKriteria = () => {
     };
 
     useEffect(() => {
-        getKriteria();
+        getSubKriteria();
         jumlahData();
     }, []);
 
-    const hapusKriteria = async (id) => {
+    const hapusSubKriteria = async (id) => {
         try {
-        await axios.delete(`/kriteria/${id}`);
-        getKriteria();
+        await axios.delete(`/subkriteria/${id}`);
+        getSubKriteria();
         } catch (error) {
         console.log(error);
         }
     };
     const handleTambahButtonClick = () => {
-        navigate(`/kriteria/addKriteria`);
+        navigate(`/subkriteria/addSubKriteria`);
     };
     return (
         <div className="list-siswa-container">
         <div className="list-siswa-grid">
-            <h1 className="list-siswa-judul">Data Kriteria</h1>
+            <h1 className="list-siswa-judul">Data Sub Kriteria</h1>
             <p className="list-siswa-subjudul">Parameter yang digunakan untuk mengevaluasi dan membandingkan alternatif-alternatif yang tersedia</p>
             <div className="action-box">
                 <button onClick={handleTambahButtonClick} className="btnadd-siswa">Tambah</button>
@@ -70,7 +70,7 @@ const ListKriteria = () => {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Cari..."
+                placeholder="Cari Kriteria/Sub Kriteria..."
                 className="search-box"
                 />
             </div>
@@ -79,11 +79,11 @@ const ListKriteria = () => {
                     <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Kriteria</th>
                         <th>Nama Kriteria</th>
-                        <th>Jalur Pendaftaran</th>
-                        <th>Bobot Kriteria(%)</th>
-                        <th>Tipe Data (cost/benefit)</th>
+                        <th>Nilai Min</th>
+                        <th>Nilai Max</th>
+                        <th>Bobot Sub-Kriteria</th>
+                        <th>Keterangan</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -91,21 +91,21 @@ const ListKriteria = () => {
                     {currentData.map((nil, index) => (
                         <tr key={nil.id}>
                             <td>{startIndex + index + 1}</td>
-                            <td>{nil.kode_kriteria}</td>
                             <td>{nil.nama_kriteria}</td>
-                            <td>{nil.jalur_pendaftaran}</td>
-                            <td>{nil.bobot_kriteria}</td>
-                            <td>{nil.tipe_data}</td>
+                            <td>{nil.nilai_min}</td>
+                            <td>{nil.nilai_max}</td>
+                            <td>{nil.bobot}</td>
+                            <td>{nil.keterangan}</td>
                             <td className="button-action">
                                 <Link
-                                to={`/kriteria/editKriteria/${nil.id}`}
+                                to={`/subkriteria/editSubKriteria/${nil.id}`}
                                 className="btnEdit-jalur"
                                 >
                                 Edit
                                 </Link>
                                 <button onClick={() => {
-                                        if (window.confirm('Apakah Anda yakin ingin menghapus  data Kriteria ini?')) {
-                                        hapusKriteria(nil.id);
+                                        if (window.confirm('Apakah Anda yakin ingin menghapus  data Sub Kriteria ini?')) {
+                                        hapusSubKriteria(nil.id);
                                         }
                                     }}
                                     className="btnHapus-jalur"
@@ -146,4 +146,4 @@ const ListKriteria = () => {
     );
 };
 
-export default ListKriteria;
+export default ListSubKriteria;

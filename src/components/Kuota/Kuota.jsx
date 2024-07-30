@@ -7,6 +7,7 @@ const Kuota = () => {
   const [jalur, setJalur] = useState([]);
   const [alt, setAlt] = useState([]);
   const [jumlahAlternatifPerJalur, setJumlahAlternatifPerJalur] = useState([]);
+  const [lastUpdated, setLastUpdated] = useState(null);
 
 // Ambil Data Jalur
   const getJalur = async () => {
@@ -29,6 +30,7 @@ const Kuota = () => {
   };
   
   useEffect(() => {
+    setLastUpdated(new Date());
     ambilAlt();
     getJalur();
   }, []);
@@ -43,11 +45,17 @@ const Kuota = () => {
     }
   }, [alt, jalur]);
   
+  const formatDate = (date) => {
+    if (!date) return '';
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    return new Date(date).toLocaleDateString('id-ID', options);
+  };
+
   return (
     <div className="Kuota">
       <div className="kuota-container">
         <h1 className="kuota-judul">Info Kuota</h1>
-        <p className="update-time">Update terakhir</p>
+        <p className="update-time">Update terakhir: {formatDate(lastUpdated)}</p>
         <div className="tabs">
           {jalur.map((jalurItem, index) => {
             const jumlahAlternatif = jumlahAlternatifPerJalur.find(item => item.nama_jalur === jalurItem.nama_jalur)?.jumlah || 0;

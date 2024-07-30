@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../../features/authSlice.js";
-import AddKriteria from "./AddKriteria.jsx";
+import AddSubKriteria from "./AddSubKriteria.jsx";
 import Layout from "../Layout.jsx";
 
-const PageAddKriteria = () => {
+const PageAddSubKriteria = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -24,9 +24,9 @@ const PageAddKriteria = () => {
   }, [isError, navigate]);
   return (
       <Layout>
-        <AddKriteria />
+        <AddSubKriteria />
       </Layout>
   );
 };
 
-export default PageAddKriteria;
+export default PageAddSubKriteria;

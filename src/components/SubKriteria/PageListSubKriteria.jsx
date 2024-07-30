@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../../features/authSlice.js";
-import ListKriteria from "./ListKriteria.jsx";
+import ListSubKriteria from "./ListSubKriteria.jsx";
 import Layout from "../Layout.jsx";
 
-const PageListKriteria = () => {
+const PageListSubKriteria = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { isError } = useSelector((state) => state.auth);
@@ -24,9 +24,9 @@ const PageListKriteria = () => {
     }, [isError, navigate]);
     return (
         <Layout>
-        <ListKriteria />
+        <ListSubKriteria />
         </Layout>
     );
 };
 
-export default PageListKriteria;
+export default PageListSubKriteria;

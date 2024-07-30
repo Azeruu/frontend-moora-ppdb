@@ -30,6 +30,9 @@ import AddQuota from "./components/Kuota/AddQuota";
 import EditQuota from "./components/Kuota/EditQuota";
 import PageKuotaAdmin from "./components/Kuota/KuotaAdminPage";
 import PeringkatPage from "./components/Peringkat/PeringkatPage";
+import SubKriteria from './components/SubKriteria/PageListSubKriteria'
+import AddSubKriteria from './components/SubKriteria/PageAddSubKriteria'
+import EditSubKriteria from "./components/SubKriteria/PageEditSubKriteria";
 
 function App() {
   return (
@@ -59,9 +62,9 @@ function App() {
           <Route path="/kriteria/addKriteria/" element={<AddKriteria />} />
           <Route path="/kriteria/editKriteria/:id" element={<EditKriteria />} />
           {/* SUB Kriteria */}
-          <Route path="/subkriteria" element={<ListKriteria />} />
-          <Route path="/subkriteria/addSubKriteria/" element={<AddKriteria />} />
-          <Route path="/subkriteria/editSubKriteria/:id" element={<EditKriteria />} />
+          <Route path="/subkriteria" element={<SubKriteria />} />
+          <Route path="/subkriteria/addSubKriteria/" element={<AddSubKriteria />} />
+          <Route path="/subkriteria/editSubKriteria/:id" element={<EditSubKriteria />} />
           {/* Nilai ALternatif */}
           <Route path="/nilai_alternatif" element={<NilaiAlternatif />} />
           <Route path="/nilai_alternatif/addNilaiAlternatif" element={<AddNilaiAlternatif />} />
