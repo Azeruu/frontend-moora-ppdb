@@ -5,7 +5,6 @@ import axios from "../../lib/axios";
 
 export default function EditSiswaForm() {
   const [alternatif, setAlternatif] = useState({
-    kode_alternatif:'',
     nama_alternatif:'',
     nama_jalur:''
   });
@@ -29,9 +28,7 @@ export default function EditSiswaForm() {
     getAlternatifById();
     getJalur();
 }, [id]);
-const setKodeAlternatifBaru = (newValue) => {
-  setAlternatif({ ...alternatif, kode_alternatif: newValue });
-};
+
 const setNamaAlternatifBaru = (newValue) => {
   setAlternatif({ ...alternatif, nama_alternatif: newValue });
 };
@@ -43,7 +40,6 @@ const updateAlternatif = async (e) => {
   e.preventDefault();
   try {
     await axios.patch(`/alternatif/${id}`,{
-      kode_alternatif:alternatif.kode_alternatif,
       nama_alternatif:alternatif.nama_alternatif,
       nama_jalur:alternatif.nama_jalur
     });
@@ -59,19 +55,8 @@ const updateAlternatif = async (e) => {
     <div className="edit-alternatif-column">
         <h2 className="edit-alternatif-judul">Edit Data Alternatif</h2>
       <form onSubmit={updateAlternatif}>
+        
       {/* <p>{msg}</p> */}
-          <div className="field">
-            <label className="label">Kode Alternatif</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={alternatif.kode_alternatif}
-                onChange={(e) => setKodeAlternatifBaru(e.target.value)}
-                placeholder="Kode Alternatif"
-              ></input>
-            </div>
-          </div>
           <div className="field">
             <label className="label">Nama Alternatif</label>
             <div className="control">

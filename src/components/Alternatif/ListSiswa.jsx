@@ -106,7 +106,6 @@ const ListSiswa = () => {
             <thead>
               <tr>
                 <th>No</th>
-                <th>Kode Alternatif</th>
                 <th>Nama Alternatif</th>
                 <th>Nama Jalur</th>
                 <th>Action</th>
@@ -116,7 +115,6 @@ const ListSiswa = () => {
               {currentData.map((sis, index) => (
                 <tr key={sis.id}>
                   <td>{startIndex+index + 1}</td>
-                  <td>{sis.kode_alternatif}</td>
                   <td>{sis.nama_alternatif}</td>
                   <td>{sis.nama_jalur}</td>
                   <td className="button-action">

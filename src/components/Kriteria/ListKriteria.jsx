@@ -79,7 +79,6 @@ const ListKriteria = () => {
                     <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Kriteria</th>
                         <th>Nama Kriteria</th>
                         <th>Jalur Pendaftaran</th>
                         <th>Bobot Kriteria(%)</th>
@@ -91,7 +90,6 @@ const ListKriteria = () => {
                     {currentData.map((nil, index) => (
                         <tr key={nil.id}>
                             <td>{startIndex + index + 1}</td>
-                            <td>{nil.kode_kriteria}</td>
                             <td>{nil.nama_kriteria}</td>
                             <td>{nil.jalur_pendaftaran}</td>
                             <td>{nil.bobot_kriteria}</td>

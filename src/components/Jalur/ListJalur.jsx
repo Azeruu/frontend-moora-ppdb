@@ -76,7 +76,6 @@ const ListJalur = () => {
                 <tr>
                   <th>No</th>
                   <th>ID Jalur</th>
-                  <th>Kode Jalur</th>
                   <th>Nama Jalur</th>
                   <th>Persentase</th>
                   <th>Jumlah Kuota</th>
@@ -88,7 +87,6 @@ const ListJalur = () => {
                   <tr key={jal.uuid}>
                       <td>{startIndex+index + 1}</td>
                       <td>{jal.id}</td>
-                      <td>{jal.kode_jalur}</td>
                       <td>{jal.nama_jalur}</td>
                       <td>{jal.persentase}</td>
                       <td>{jal.jumlah_kuota}</td>

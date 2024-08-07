@@ -5,7 +5,6 @@ import axios from "../../lib/axios";
 const AddJalur = () => {
     const [jalur, setJalur] = useState({
       nama_jalur:'',
-      kode_jalur:'',
       persentase:'',
       jumlah_kuota:''
     });
@@ -36,7 +35,6 @@ const AddJalur = () => {
         try {
             await axios.post('/jalur',{
                 nama_jalur : jalur.nama_jalur,
-                kode_jalur : jalur.kode_jalur,
                 persentase : jalur.persentase,
                 jumlah_kuota : jalur.jumlah_kuota
             });
@@ -47,9 +45,6 @@ const AddJalur = () => {
             }
         }
     }
-    const setKodeJalur = (newValue) => {
-      setJalur({ ...jalur, kode_jalur: newValue });
-    };
     const setNamaJalur = (newValue) => {
       setJalur({ ...jalur, nama_jalur: newValue });
     };
@@ -63,18 +58,6 @@ const AddJalur = () => {
       <h1 className="add-jalur-judul">Tambah Jalur</h1>
       <form onSubmit={saveJalur}>
         <p>{msg}</p>
-        <div className="field">
-          <label className="label">Kode Jalur</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={jalur.kode_jalur}
-              onChange={(e) => setKodeJalur(e.target.value)}
-              placeholder="kode jalur"
-            ></input>
-          </div>
-        </div>
         <div className="field">
           <label className="label">Nama Jalur</label>
           <div className="control">

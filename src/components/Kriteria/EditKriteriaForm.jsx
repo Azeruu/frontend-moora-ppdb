@@ -5,7 +5,6 @@ import axios from "../../lib/axios";
 
 export default function EditKriteriaForm() {
   const [kriteria, setKriteria] = useState({
-    kode_kriteria:'',
     nama_kriteria:'',
     jalur_pendaftaran:'',
     bobot_kriteria:'',
@@ -34,9 +33,6 @@ export default function EditKriteriaForm() {
     getKriteriaById();
 }, [id]);
 
-const setKodeKriteriaBaru = (newValue) => {
-  setKriteria({ ...kriteria, kode_kriteria: newValue });
-};
 const setNamaKriteriaBaru = (newValue) => {
   setKriteria({ ...kriteria, nama_kriteria: newValue });
 };
@@ -54,7 +50,6 @@ const updateKriteria = async (e) => {
   e.preventDefault();
   try {
     await axios.patch(`/kriteria/${id}`,{
-      kode_kriteria:kriteria.kode_kriteria,
       nama_kriteria:kriteria.nama_kriteria,
       jalur_pendaftaran:kriteria.jalur_pendaftaran,
       bobot_kriteria:kriteria.bobot_kriteria,
@@ -73,18 +68,6 @@ const updateKriteria = async (e) => {
         <h2 className="kriteria-judul">Edit Data Kriteria</h2>
       <form onSubmit={updateKriteria}>
       {/* <p>{msg}</p> */}
-          <div className="field">
-            <label className="label">Kode Kriteria</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={kriteria.kode_kriteria}
-                onChange={(e) => setKodeKriteriaBaru(e.target.value)}
-                placeholder="Kode Kriteria"
-              ></input>
-            </div>
-          </div>
           <div className="field">
             <label className="label">Nama Kriteria</label>
             <div className="control">

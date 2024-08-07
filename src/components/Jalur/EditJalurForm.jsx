@@ -9,7 +9,6 @@ const EditJalur = () => {
     const [quotaTotal, setQuotaTotal] = useState(0);
     const [jalur, setJalur] = useState({
         nama_jalur:'',
-        kode_jalur:'',
         persentase:'',
         jumlah_kuota:''
     });
@@ -44,9 +43,6 @@ const EditJalur = () => {
             }
     },[jalur.persentase]);
 
-    const setKodeJalurBaru = (newValue) => {
-        setJalur({ ...jalur, kode_jalur: newValue });
-    };
     const setNamaJalurBaru = (newValue) => {
         setJalur({ ...jalur, nama_jalur: newValue });
     };
@@ -58,7 +54,6 @@ const EditJalur = () => {
         e.preventDefault();
         try {
         await axios.patch(`/jalur/${id}`, {
-            kode_jalur: jalur.kode_jalur,
             nama_jalur: jalur.nama_jalur,
             persentase : jalur.persentase,
             jumlah_kuota : jalur.jumlah_kuota
@@ -77,18 +72,6 @@ const EditJalur = () => {
             <h1 className="edit-jalur-judul">Edit Data Jalur</h1>
             <form onSubmit={updateJalur}>
             <p>{msg}</p>
-            <div className="field">
-                <label className="label">Kode Jalur</label>
-                <div className="control">
-                <input
-                    type="text"
-                    className="input"
-                    value={jalur.kode_jalur}
-                    onChange={(e) => setKodeJalurBaru(e.target.value)}
-                    placeholder="Nama Jalur"
-                ></input>
-                </div>
-            </div>
             <div className="field">
                 <label className="label">Nama Jalur</label>
                 <div className="control">
