@@ -1,19 +1,18 @@
 import './AddSubKriteria.css';
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "../../lib/axios";
 
 export default function AddSubKriteriaForm() {
-  const [subkriteria, setSubKriteria] = useState({
+  const [dataSubkriteria, setDataSubKriteria] = useState({
     nama_kriteria: '',
-    nilai_min: '',
-    nilai_max: '',
+    sub_kriteria: '',
     bobot: '',
-    keterangan: ''
+    keterangan: '',
+    tipe_subKriteria: ''
   });
   const [kriteria, setKriteria] = useState([]);
   const [kriteriaId, setKriteriaId] = useState('');
-  const { id } = useParams();
   const navigate = useNavigate();
 
   const getKriteria = async () => {
@@ -26,34 +25,32 @@ export default function AddSubKriteriaForm() {
   }, []);
 
   const setNamaKriteria = (newValue) => {
-    setSubKriteria({ ...subkriteria, nama_kriteria: newValue });
+    setDataSubKriteria({ ...dataSubkriteria, nama_kriteria: newValue });
   };
 
-  const setNilaiMin = (newValue) => {
-    setSubKriteria({ ...subkriteria, nilai_min: newValue });
+  const setSubKriteria = (newValue) => {
+    setDataSubKriteria({ ...dataSubkriteria, sub_kriteria: newValue });
   };
-
-  const setNilaiMax = (newValue) => {
-    setSubKriteria({ ...subkriteria, nilai_max: newValue });
-  };
-
   const setBobot = (newValue) => {
-    setSubKriteria({ ...subkriteria, bobot: newValue });
+    setDataSubKriteria({ ...dataSubkriteria, bobot: newValue });
   };
-
+  
   const setKeterangan = (newValue) => {
-    setSubKriteria({ ...subkriteria, keterangan: newValue });
+    setDataSubKriteria({ ...dataSubkriteria, keterangan: newValue });
   };
-
+  const setTipeSubKriteria = (newValue) => {
+    setDataSubKriteria({ ...dataSubkriteria, tipe_subKriteria: newValue });
+  };
+  
   const AddSubKriteria = async (e) => {
     e.preventDefault();
     try {
       await axios.post(`/subkriteria`, {
-        nama_kriteria: subkriteria.nama_kriteria,
-        nilai_min: subkriteria.nilai_min,
-        nilai_max: subkriteria.nilai_max,
-        bobot: subkriteria.bobot,
-        keterangan: subkriteria.keterangan,
+        nama_kriteria: dataSubkriteria.nama_kriteria,
+        sub_kriteria: dataSubkriteria.sub_kriteria,
+        bobot: dataSubkriteria.bobot,
+        keterangan: dataSubkriteria.keterangan,
+        tipe_subKriteria: dataSubkriteria.tipe_subKriteria,
         kriteriumId: kriteriaId,
       });
       alert("Data Sub Kriteria Berhasil Di Tambah")
@@ -64,11 +61,22 @@ export default function AddSubKriteriaForm() {
     }
   };
 
+  const tipeSubKriteriaEnum = {
+    NUMERIK: 'numerik',
+    KATEGORI: 'kategori',
+  };
+  
+  const pilihanTipeSubKriteria = Object.keys(tipeSubKriteriaEnum).map(key => ({
+    value: tipeSubKriteriaEnum[key],
+    label: tipeSubKriteriaEnum[key].charAt(0).toUpperCase() + tipeSubKriteriaEnum[key].slice(1)
+  }));
+
   return (
     <div className="add-kriteria-column">
       <h2 className="kriteria-judul">Tambah Sub Kriteria</h2>
       <form onSubmit={AddSubKriteria}>
         {/* <p>{msg}</p> */}
+
         <div className="field">
           <label className="label">Nama Kriteria</label>
           <div className="control">
@@ -88,33 +96,19 @@ export default function AddSubKriteriaForm() {
                   </option>
                 ))}
               </select>
-
             </div>
           </div>
         </div>
 
         <div className="field">
-          <label className="label">Nilai Min</label>
+          <label className="label">Sub Kriteria</label>
           <div className="control">
             <input
               type="text"
               className="input"
-              value={subkriteria.nilai_min}
-              onChange={(e) => setNilaiMin(e.target.value)}
-              placeholder="Nilai Minimal"
-            ></input>
-          </div>
-        </div>
-
-        <div className="field">
-          <label className="label">Nilai Max</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={subkriteria.nilai_max}
-              onChange={(e) => setNilaiMax(e.target.value)}
-              placeholder="Nilai Maximal"
+              value={dataSubkriteria.sub_kriteria}
+              onChange={(e) => setSubKriteria(e.target.value)}
+              placeholder="Sub Kriteria"
             ></input>
           </div>
         </div>
@@ -125,7 +119,7 @@ export default function AddSubKriteriaForm() {
             <input
               type="text"
               className="input"
-              value={subkriteria.bobot}
+              value={dataSubkriteria.bobot}
               onChange={(e) => setBobot(e.target.value)}
               placeholder="Bobot Sub Kriteria"
             ></input>
@@ -138,10 +132,30 @@ export default function AddSubKriteriaForm() {
             <input
               type="text"
               className="input"
-              value={subkriteria.keterangan}
+              value={dataSubkriteria.keterangan}
               onChange={(e) => setKeterangan(e.target.value)}
               placeholder="Keterangan"
             ></input>
+          </div>
+        </div>
+
+        <div className="field">
+          <label className="label">Tipe Sub Kriteria</label>
+          <div className="control">
+            <select
+              className="input"
+              value={dataSubkriteria.tipe_subKriteria}
+              onChange={(e) => setTipeSubKriteria(e.target.value)}
+            >
+              <option value="" disabled>
+                --- Pilih Tipe SubKriteria ---
+              </option>
+              {pilihanTipeSubKriteria.map(pilihan => (
+                <option key={pilihan.value} value={pilihan.value}>
+                  {pilihan.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 

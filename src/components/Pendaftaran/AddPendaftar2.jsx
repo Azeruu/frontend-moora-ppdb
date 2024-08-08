@@ -13,16 +13,9 @@ export default function Daftar2() {
     const [dataKriteriumId, setDataKriteriumId] = useState([]);
     const navigate = useNavigate();
     const {namaAlternatif, jalurId} = useParams();
+    const [dataSubKriteria, setDataSubKriteria] = useState([]);
 
 // START AMBIL DATA
-useEffect(()=>{
-    const getAlternatif = async (data) => {
-        const response = await axios.get("/alternatif", data);
-        setAmbilAlt(response.data);
-    };
-    getAlternatif();
-},[]);
-
 useEffect(()=>{
     const getKriteria = async () => {
         const response = await axios.get("/kriteria");
@@ -37,11 +30,12 @@ useEffect(()=>{
         });
         setDataKriteriumId(kriteriaIdMap);
     };
-    getKriteria();
-},[jalur]);
-// END AMBIL DATA
 
-useEffect(() => {
+    const getAlternatif = async (data) => {
+        const response = await axios.get("/alternatif", data);
+        setAmbilAlt(response.data);
+    };
+
     if (namaAlternatif && ambilAlt.length) {
         const selectedAlternatif = ambilAlt.find(item => item.nama_alternatif === namaAlternatif);
         if (selectedAlternatif) {
@@ -50,8 +44,11 @@ useEffect(() => {
         setAlternatifId(selectedAlternatif.id);
         }
     }
-}, [namaAlternatif, ambilAlt]);
 
+    getKriteria();
+    getAlternatif();
+},[jalur,namaAlternatif, ambilAlt]);
+// END AMBIL DATA
 
 const handleInputChange = (namaKriteria, nilai) => {
     setNilaiReal(prevState => ({
@@ -94,49 +91,34 @@ const onSubmit = async (e) => {
 };
 const FuzzyAndKeterangan = async (namaKriteria, nilai_real) => {
     let fuzzyValue, keteranganValue;
+    
+    // Ambil data sub_kriteria dari server
+    const response = await axios.get(`/subkriteria?kriteriumId=${dataKriteriumId[namaKriteria]}`);
+    const subKriteriaList = response.data;
+    
+    // console.log(subKriteriaList)
+    // Iterasi melalui sub_kriteria untuk menemukan kecocokan
+    for (const subKriteria of subKriteriaList) {
+        const { sub_kriteria, bobot, keterangan, tipe_subKriteria } = subKriteria;
 
-    if (namaKriteria === "Rata - Rata Nilai Rapot") {
-        if (nilai_real <= 70) {
-        fuzzyValue = 1;
-        keteranganValue = "Kurang Baik";
-        } else if (nilai_real > 70 && nilai_real <= 80) {
-        fuzzyValue = 2;
-        keteranganValue = "Cukup";
-        } else if (nilai_real > 80 && nilai_real <= 90) {
-        fuzzyValue = 3;
-        keteranganValue = "Baik";
-        } else if (nilai_real > 90) {
-        fuzzyValue = 4;
-        keteranganValue = "Sangat Baik";
+        if (tipe_subKriteria === "numerik") {
+            const range = sub_kriteria.split('-').map(Number);
+            if (nilai_real >= range[0] && nilai_real <= range[1]) {
+                fuzzyValue = bobot;
+                keteranganValue = keterangan;
+                break;
+            }
+        } else if (tipe_subKriteria === "kategori") {
+            const range = sub_kriteria.map(Number);
+            if (nilai_real === Number(sub_kriteria)) {
+                fuzzyValue = bobot;
+                keteranganValue = keterangan;
+            }
         }
-    } else if (namaKriteria === "Usia") {
-        if (nilai_real <= 10) {
-        fuzzyValue = 1;
-        keteranganValue = "Kurang Baik";
-        } else if (nilai_real == 11) {
-        fuzzyValue = 2;
-        keteranganValue = "Cukup";
-        } else if (nilai_real == 12) {
-        fuzzyValue = 3;
-        keteranganValue = "Baik";
-        } else if (nilai_real == 13) {
-        fuzzyValue = 4;
-        keteranganValue = "Sangat Baik";
-        }
-    } else if (namaKriteria === "Jarak") {
-        if (nilai_real > 2000) {
-        fuzzyValue = 1;
-        keteranganValue = "Kurang Baik";
-        } else if (nilai_real > 1000 && nilai_real <= 2000) {
-        fuzzyValue = 2;
-        keteranganValue = "Cukup";
-        } else if (nilai_real > 500 && nilai_real <= 1000) {
-        fuzzyValue = 3;
-        keteranganValue = "Baik";
-        } else if (nilai_real < 500) {
-        fuzzyValue = 4;
-        keteranganValue = "Sangat Baik";
-        }
+
+        console.log(sub_kriteria)
+        console.log(`Nilai Real: ${nilai_real}, Sub Kriteria: ${sub_kriteria}, Fuzzy Value: ${fuzzyValue}`)
+
     }
     return {
         nilai_fuzzy: fuzzyValue,

@@ -4,12 +4,12 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from "../../lib/axios";
 
 export default function EditSubKriteriaForm() {
-  const [subkriteria, setSubKriteria] = useState({
-    nama_kriteria:'',
-    nilai_min:'',
-    nilai_max:'',
-    bobot:'',
-    keterangan:''
+  const [dataSubkriteria, setDataSubKriteria] = useState({
+    nama_kriteria: '',
+    sub_kriteria: '',
+    bobot: '',
+    keterangan: '',
+    tipe_subKriteria: ''
   });
   const [kriteria, setKriteria] = useState([]);
   const {id} = useParams();
@@ -24,7 +24,7 @@ export default function EditSubKriteriaForm() {
     const getSubKriteriaById = async(data) =>{
       try {
         const response = await axios.get(`/subkriteria/${id}`,data);
-        setSubKriteria(response.data);
+        setDataSubKriteria(response.data);
     } catch (e) {
       console.log("error dalam submit data :", e.response.msg);
     }
@@ -34,30 +34,32 @@ export default function EditSubKriteriaForm() {
 }, [id]);
 
 const setNamaKriteria = (newValue) => {
-  setSubKriteria({ ...subkriteria, nama_kriteria: newValue });
+  setDataSubKriteria({ ...dataSubkriteria, nama_kriteria: newValue });
 };
-const setNilaiMin = (newValue) => {
-  setSubKriteria({ ...subkriteria, nilai_min: newValue });
-};
-const setNilaiMax = (newValue) => {
-setSubKriteria({ ...subkriteria, nilai_max: newValue });
+
+const setSubKriteria = (newValue) => {
+  setDataSubKriteria({ ...dataSubkriteria, sub_kriteria: newValue });
 };
 const setBobot = (newValue) => {
-setSubKriteria({ ...subkriteria, bobot: newValue });
+  setDataSubKriteria({ ...dataSubkriteria, bobot: newValue });
 };
+
 const setKeterangan = (newValue) => {
-setSubKriteria({ ...subkriteria, keterangan: newValue });
+  setDataSubKriteria({ ...dataSubkriteria, keterangan: newValue });
+};
+const setTipeSubKriteria = (newValue) => {
+  setDataSubKriteria({ ...dataSubkriteria, tipe_subKriteria: newValue });
 };
 
 const updateKriteria = async (e) => {
   e.preventDefault();
   try {
     await axios.patch(`/subkriteria/${id}`,{
-      nama_kriteria:subkriteria.nama_kriteria,
-      nilai_min:subkriteria.nilai_min,
-      nilai_max:subkriteria.nilai_max,
-      bobot:subkriteria.bobot,
-      keterangan:subkriteria.keterangan
+      nama_kriteria: dataSubkriteria.nama_kriteria,
+        sub_kriteria: dataSubkriteria.sub_kriteria,
+        bobot: dataSubkriteria.bobot,
+        keterangan: dataSubkriteria.keterangan,
+        tipe_subKriteria: dataSubkriteria.tipe_subKriteria,
     });
     alert("Data Sub-Kriteria Berhasil Di Update")
     navigate(`/subkriteria`);
@@ -66,6 +68,15 @@ const updateKriteria = async (e) => {
     alert(e.response.data.msg);
   }
 };
+const tipeSubKriteriaEnum = {
+  NUMERIK: 'numerik',
+  KATEGORI: 'kategori',
+};
+
+const pilihanTipeSubKriteria = Object.keys(tipeSubKriteriaEnum).map(key => ({
+  value: tipeSubKriteriaEnum[key],
+  label: tipeSubKriteriaEnum[key].charAt(0).toUpperCase() + tipeSubKriteriaEnum[key].slice(1)
+}));
 
   return (
     <div className="edit-kriteria-column">
@@ -76,7 +87,7 @@ const updateKriteria = async (e) => {
             <label className="label">Nama Kriteria</label>
             <div className="control">
               <div className="select">
-                <select value={subkriteria.nama_kriteria} onChange={(e) => setNamaKriteria(e.target.value)}>
+                <select value={dataSubkriteria.nama_kriteria} onChange={(e) => setNamaKriteria(e.target.value)}>
                   <option value="" disabled>Pilih Kriteria</option>
                   {kriteria.map((item, index) => (
                     <option key={index} value={item.nama_kriteria}>
@@ -89,30 +100,17 @@ const updateKriteria = async (e) => {
           </div>
 
           <div className="field">
-            <label className="label">Nilai Min</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={subkriteria.nilai_min}
-                onChange={(e) => setNilaiMin(e.target.value)}
-                placeholder="Nilai Minimal"
-              ></input>
-            </div>
+          <label className="label">Sub Kriteria</label>
+          <div className="control">
+            <input
+              type="text"
+              className="input"
+              value={dataSubkriteria.sub_kriteria}
+              onChange={(e) => setSubKriteria(e.target.value)}
+              placeholder="Sub Kriteria"
+            ></input>
           </div>
-          
-          <div className="field">
-            <label className="label">Nilai Max</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={subkriteria.nilai_max}
-                onChange={(e) => setNilaiMax(e.target.value)}
-                placeholder="Nilai Maximal"
-              ></input>
-            </div>
-          </div>
+        </div>
 
           <div className="field">
             <label className="label">Bobot Kriteria</label>
@@ -120,7 +118,7 @@ const updateKriteria = async (e) => {
               <input
                 type="text"
                 className="input"
-                value={subkriteria.bobot}
+                value={dataSubkriteria.bobot}
                 onChange={(e) => setBobot(e.target.value)}
                 placeholder="Bobot Sub Kriteria"
               ></input>
@@ -133,12 +131,32 @@ const updateKriteria = async (e) => {
               <input
                 type="text"
                 className="input"
-                value={subkriteria.keterangan}
+                value={dataSubkriteria.keterangan}
                 onChange={(e) => setKeterangan(e.target.value)}
                 placeholder="Keterangan"
               ></input>
             </div>
           </div>
+
+          <div className="field">
+          <label className="label">Tipe Sub Kriteria</label>
+          <div className="control">
+            <select
+              className="input"
+              value={dataSubkriteria.tipe_subKriteria}
+              onChange={(e) => setTipeSubKriteria(e.target.value)}
+            >
+              <option value="" disabled>
+                --- Pilih Tipe SubKriteria ---
+              </option>
+              {pilihanTipeSubKriteria.map(pilihan => (
+                <option key={pilihan.value} value={pilihan.value}>
+                  {pilihan.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
           <div className="btn-field">
             <Link to={`/subkriteria`} className="action-btn">

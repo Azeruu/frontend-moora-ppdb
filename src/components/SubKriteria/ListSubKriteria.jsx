@@ -80,10 +80,10 @@ const ListSubKriteria = () => {
                     <tr>
                         <th>No</th>
                         <th>Nama Kriteria</th>
-                        <th>Nilai Min</th>
-                        <th>Nilai Max</th>
+                        <th>Sub Kriteria</th>
                         <th>Bobot Sub-Kriteria</th>
                         <th>Keterangan</th>
+                        <th>Tipe Sub-Kriteria</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -92,10 +92,10 @@ const ListSubKriteria = () => {
                         <tr key={nil.id}>
                             <td>{startIndex + index + 1}</td>
                             <td>{nil.nama_kriteria}</td>
-                            <td>{nil.nilai_min}</td>
-                            <td>{nil.nilai_max}</td>
+                            <td>{nil.sub_kriteria}</td>
                             <td>{nil.bobot}</td>
                             <td>{nil.keterangan}</td>
+                            <td>{nil.tipe_subKriteria}</td>
                             <td className="button-action">
                                 <Link
                                 to={`/subkriteria/editSubKriteria/${nil.id}`}
