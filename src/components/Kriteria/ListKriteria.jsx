@@ -80,6 +80,7 @@ const ListKriteria = () => {
                     <tr>
                         <th>No</th>
                         <th>Nama Kriteria</th>
+                        <th>Tipe Kriteria</th>
                         <th>Jalur Pendaftaran</th>
                         <th>Bobot Kriteria(%)</th>
                         <th>Tipe Data (cost/benefit)</th>
@@ -91,6 +92,7 @@ const ListKriteria = () => {
                         <tr key={nil.id}>
                             <td>{startIndex + index + 1}</td>
                             <td>{nil.nama_kriteria}</td>
+                            <td>{nil.tipe_kriteria}</td>
                             <td>{nil.jalur_pendaftaran}</td>
                             <td>{nil.bobot_kriteria}</td>
                             <td>{nil.tipe_data}</td>

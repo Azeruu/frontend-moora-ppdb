@@ -1,19 +1,21 @@
 import './AddKriteria.css'
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "../../lib/axios";
 
 export default function AddKriteriaForm() {
   const [kriteria, setKriteria] = useState({
     nama_kriteria:'',
+    tipe_kriteria:'',
     jalur_pendaftaran:'',
     bobot_kriteria:'',
     tipe_data:''
   });
   const [jalur, setjalur] = useState([]);
   const tipe_data = ['Cost', 'Benefit'];
+  const tipe_kriteria = ['Numerik', 'String'];
 
-  const {id} = useParams();
+  // const {id} = useParams();
   const navigate = useNavigate();
 
   const getJalur = async()=>{
@@ -26,6 +28,9 @@ export default function AddKriteriaForm() {
 
 const setNamaKriteria = (newValue) => {
   setKriteria({ ...kriteria, nama_kriteria: newValue });
+};
+const setTipeKriteria = (newValue) => {
+  setKriteria({ ...kriteria, tipe_kriteria: newValue });
 };
 const setJalurPendaftaran = (newValue) => {
   setKriteria({ ...kriteria, jalur_pendaftaran: newValue });
@@ -42,6 +47,7 @@ const createKriteria = async (e) => {
   try {
     await axios.post(`/kriteria`,{
       nama_kriteria:kriteria.nama_kriteria,
+      tipe_kriteria:kriteria.tipe_kriteria,
       jalur_pendaftaran:kriteria.jalur_pendaftaran,
       bobot_kriteria:kriteria.bobot_kriteria,
       tipe_data:kriteria.tipe_data
@@ -70,6 +76,22 @@ const createKriteria = async (e) => {
                 onChange={(e) => setNamaKriteria(e.target.value)}
                 placeholder="Nama Kriteria"
               ></input>
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Tipe Kriteria</label>
+            <div className="control">
+              <div className="select">
+                <select value={kriteria.tipe_kriteria} onChange={(e) => setTipeKriteria(e.target.value)}>
+                  <option value="" disabled>Pilih Tipe Kriteria</option>
+                  {tipe_kriteria.map((item, index) => (
+                    <option key={index} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
 

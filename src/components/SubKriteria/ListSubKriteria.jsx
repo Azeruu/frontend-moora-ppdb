@@ -83,7 +83,6 @@ const ListSubKriteria = () => {
                         <th>Sub Kriteria</th>
                         <th>Bobot Sub-Kriteria</th>
                         <th>Keterangan</th>
-                        <th>Tipe Sub-Kriteria</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -95,7 +94,6 @@ const ListSubKriteria = () => {
                             <td>{nil.sub_kriteria}</td>
                             <td>{nil.bobot}</td>
                             <td>{nil.keterangan}</td>
-                            <td>{nil.tipe_subKriteria}</td>
                             <td className="button-action">
                                 <Link
                                 to={`/subkriteria/editSubKriteria/${nil.id}`}

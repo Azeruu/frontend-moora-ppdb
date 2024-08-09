@@ -6,12 +6,14 @@ import axios from "../../lib/axios";
 export default function EditKriteriaForm() {
   const [kriteria, setKriteria] = useState({
     nama_kriteria:'',
+    tipe_kriteria:'',
     jalur_pendaftaran:'',
     bobot_kriteria:'',
     tipe_data:''
   });
   const [jalur, setjalur] = useState([]);
   const tipe_data = ['Cost', 'Benefit'];
+  const tipe_kriteria = ['Numerik', 'String'];
   const {id} = useParams();
   const navigate = useNavigate();
   
@@ -36,6 +38,9 @@ export default function EditKriteriaForm() {
 const setNamaKriteriaBaru = (newValue) => {
   setKriteria({ ...kriteria, nama_kriteria: newValue });
 };
+const setTipeKriteriaBaru = (newValue) => {
+  setKriteria({ ...kriteria, tipe_kriteria: newValue });
+};
 const setJalurPendaftaranBaru = (newValue) => {
   setKriteria({ ...kriteria, jalur_pendaftaran: newValue });
 };
@@ -51,6 +56,7 @@ const updateKriteria = async (e) => {
   try {
     await axios.patch(`/kriteria/${id}`,{
       nama_kriteria:kriteria.nama_kriteria,
+      tipe_kriteria:kriteria.tipe_kriteria,
       jalur_pendaftaran:kriteria.jalur_pendaftaran,
       bobot_kriteria:kriteria.bobot_kriteria,
       tipe_data:kriteria.tipe_data
@@ -80,6 +86,23 @@ const updateKriteria = async (e) => {
               ></input>
             </div>
           </div>
+
+          <div className="field">
+            <label className="label">Tipe Kriteria</label>
+            <div className="control">
+              <div className="select">
+                <select value={kriteria.tipe_kriteria} onChange={(e) => setTipeKriteriaBaru(e.target.value)}>
+                  <option value="" disabled>Pilih Tipe Kriteria</option>
+                  {tipe_kriteria.map((item, index) => (
+                    <option key={index} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+
           <div className="field">
             <label className="label">Jalur Pendaftaran</label>
             <div className="control">
