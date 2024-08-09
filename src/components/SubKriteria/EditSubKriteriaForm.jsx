@@ -8,8 +8,7 @@ export default function EditSubKriteriaForm() {
     nama_kriteria: '',
     sub_kriteria: '',
     bobot: '',
-    keterangan: '',
-    tipe_subKriteria: ''
+    keterangan: ''
   });
   const [kriteria, setKriteria] = useState([]);
   const {id} = useParams();
@@ -47,9 +46,6 @@ const setBobot = (newValue) => {
 const setKeterangan = (newValue) => {
   setDataSubKriteria({ ...dataSubkriteria, keterangan: newValue });
 };
-const setTipeSubKriteria = (newValue) => {
-  setDataSubKriteria({ ...dataSubkriteria, tipe_subKriteria: newValue });
-};
 
 const updateKriteria = async (e) => {
   e.preventDefault();
@@ -59,7 +55,6 @@ const updateKriteria = async (e) => {
         sub_kriteria: dataSubkriteria.sub_kriteria,
         bobot: dataSubkriteria.bobot,
         keterangan: dataSubkriteria.keterangan,
-        tipe_subKriteria: dataSubkriteria.tipe_subKriteria,
     });
     alert("Data Sub-Kriteria Berhasil Di Update")
     navigate(`/subkriteria`);
@@ -68,15 +63,6 @@ const updateKriteria = async (e) => {
     alert(e.response.data.msg);
   }
 };
-const tipeSubKriteriaEnum = {
-  NUMERIK: 'numerik',
-  KATEGORI: 'kategori',
-};
-
-const pilihanTipeSubKriteria = Object.keys(tipeSubKriteriaEnum).map(key => ({
-  value: tipeSubKriteriaEnum[key],
-  label: tipeSubKriteriaEnum[key].charAt(0).toUpperCase() + tipeSubKriteriaEnum[key].slice(1)
-}));
 
   return (
     <div className="edit-kriteria-column">
@@ -137,26 +123,6 @@ const pilihanTipeSubKriteria = Object.keys(tipeSubKriteriaEnum).map(key => ({
               ></input>
             </div>
           </div>
-
-          <div className="field">
-          <label className="label">Tipe Sub Kriteria</label>
-          <div className="control">
-            <select
-              className="input"
-              value={dataSubkriteria.tipe_subKriteria}
-              onChange={(e) => setTipeSubKriteria(e.target.value)}
-            >
-              <option value="" disabled>
-                --- Pilih Tipe SubKriteria ---
-              </option>
-              {pilihanTipeSubKriteria.map(pilihan => (
-                <option key={pilihan.value} value={pilihan.value}>
-                  {pilihan.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
 
           <div className="btn-field">
             <Link to={`/subkriteria`} className="action-btn">

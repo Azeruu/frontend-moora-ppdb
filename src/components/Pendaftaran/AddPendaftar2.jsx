@@ -52,6 +52,7 @@ export default function Daftar2() {
     // END AMBIL DATA
 
     const handleInputChange = (namaKriteria, nilai) => {
+        // console.log('namaKriteria:', namaKriteria, 'nilai:', nilai);
         setNilaiReal(prevState => ({
             ...prevState,
             [namaKriteria]: nilai
@@ -77,7 +78,7 @@ export default function Daftar2() {
                     keterangan: keterangan,
                     jalurId : jalurId,
                     dataAlternatifId: alternatifId,
-                    dataKriteriumId: dataKriteriumId[namaKriteria],
+                    kriteriumId: dataKriteriumId[namaKriteria],
                 });
                 kriteriaIdArray.push(response.data.id);
             }
@@ -89,48 +90,60 @@ export default function Daftar2() {
         }
     };
 
-    const checkRange = (nilaiAktual, rangeString) => {
-        const range = rangeString.replace(/[a-zA-Z]/g, '').split('-').map(Number);
-        return nilaiAktual >= range[0] && nilaiAktual <= range[1];
-    };
+    // const checkRange = (nilaiAktual, rangeString) => {
+    //     const range = rangeString.replace(/[a-zA-Z]/g, '').split('-').map(Number);
+    //     return nilaiAktual >= range[0] && nilaiAktual <= range[1];
+    // };
 
     const FuzzyAndKeterangan = async (namaKriteria, nilai_real) => {
-        let fuzzyValue = null;
-        let keteranganValue = null;
+        const kriteriumId = dataKriteriumId[namaKriteria];
     
-        const response = await axios.get(`/subkriteria?kriteriumId=${dataKriteriumId[namaKriteria]}`);
-        const subKriteriaList = response.data;
+        // Debugging: Cek dataKriteriumId dan namaKriteria
+        console.log('namaKriteria:', namaKriteria, 'kriteriumId:', kriteriumId);
     
-        // console.log('SubKriteria List:', subKriteriaList);
+        try {
+            const response = await axios.get(`/subkriteria?kriteriumId=${kriteriumId}`);
+            const subKriteriaList = response.data;
     
-        for (const subKriteria of subKriteriaList) {
-            const { sub_kriteria, bobot, keterangan, tipe_subKriteria } = subKriteria;
-            
-            console.log('sub kriteria:', sub_kriteria); // Ini untuk mengecek tipe_subKriteria
-            console.log('boobot:', bobot); // Ini untuk mengecek tipe_subKriteria
-            console.log('keterangan:', keterangan); // Ini untuk mengecek tipe_subKriteria
-            console.log('Tipe SubKriteria:', tipe_subKriteria); // Ini untuk mengecek tipe_subKriteria
+            // Debugging: Cek data subKriteriaList
+            // console.log('subKriteriaList:', subKriteriaList);
     
-            switch (tipe_subKriteria) {
-                case "numerik":
-                    if (checkRange(nilai_real, sub_kriteria)) {
+            for (const subKriteria of subKriteriaList) {
+                const { sub_kriteria, bobot, keterangan } = subKriteria;
+                
+                // console.log('sub kriteria:', subKriteria);
+    
+                if (namaKriteria === 'Jarak') {
+                    const range = sub_kriteria.replace(/[a-zA-Z]/g, '').split('-').map(Number);
+                    if (nilai_real >= range[0] && nilai_real <= range[1]) {
                         return { nilai_fuzzy: bobot, keterangan };
                     }
                     break;
-    
-                case "kategori":
-                    if (parseInt(sub_kriteria, 10) === parseInt(nilai_real, 10)) {
-                        return { nilai_fuzzy: bobot, keterangan };
-                    }
+                } else if (namaKriteria === 'Usia') {
+                    // console.log('nilai_real:', nilai_real);
+                    // console.log('sub_kriteria:', sub_kriteria);
+                    // console.log('bobot:', bobot);
+                    // console.log('keterangan:', keterangan);
+                    console.log('keterangan:', subKriteria);
+                    
+                    // Pastikan sub_kriteria adalah angka
+                    // const nilaiSubKriteria = sub_kriteria.replace(/[a-zA-Z]/g, '').split('-').map(Number);
+                    
+                    // // Bandingkan nilai_real dengan nilaiSubKriteria
+                    // if (nilai_real === nilaiSubKriteria) {
+                    //     console.log('Cocok dengan sub_kriteria:', nilaiSubKriteria);
+                    //     // return { nilai_fuzzy: bobot, keterangan };
+                    // }
                     break;
-    
-                default:
-                    console.error("Tipe sub-kriteria tidak valid");
-                    break;
+                }
             }
+        } catch (error) {
+            console.error('Error fetching subkriteria:', error);
         }
-        return { nilai_fuzzy: fuzzyValue, keterangan: keteranganValue };
+    
+        return { nilai_fuzzy: 0, keterangan: 'Tidak ada yang cocok' };
     };
+    
     
     // END SUBMIT
 
