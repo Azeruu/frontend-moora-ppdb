@@ -90,59 +90,84 @@ export default function Daftar2() {
         }
     };
 
-    // const checkRange = (nilaiAktual, rangeString) => {
-    //     const range = rangeString.replace(/[a-zA-Z]/g, '').split('-').map(Number);
-    //     return nilaiAktual >= range[0] && nilaiAktual <= range[1];
-    // };
-
-    const FuzzyAndKeterangan = async (namaKriteria, nilai_real) => {
-        const kriteriumId = dataKriteriumId[namaKriteria];
-    
-        // Debugging: Cek dataKriteriumId dan namaKriteria
-        console.log('namaKriteria:', namaKriteria, 'kriteriumId:', kriteriumId);
-    
-        try {
-            const response = await axios.get(`/subkriteria?kriteriumId=${kriteriumId}`);
-            const subKriteriaList = response.data;
-    
-            // Debugging: Cek data subKriteriaList
-            // console.log('subKriteriaList:', subKriteriaList);
-    
-            for (const subKriteria of subKriteriaList) {
-                const { sub_kriteria, bobot, keterangan } = subKriteria;
-                
-                // console.log('sub kriteria:', subKriteria);
-    
-                if (namaKriteria === 'Jarak') {
-                    const range = sub_kriteria.replace(/[a-zA-Z]/g, '').split('-').map(Number);
-                    if (nilai_real >= range[0] && nilai_real <= range[1]) {
-                        return { nilai_fuzzy: bobot, keterangan };
-                    }
-                    break;
-                } else if (namaKriteria === 'Usia') {
-                    // console.log('nilai_real:', nilai_real);
-                    // console.log('sub_kriteria:', sub_kriteria);
-                    // console.log('bobot:', bobot);
-                    // console.log('keterangan:', keterangan);
-                    console.log('keterangan:', subKriteria);
-                    
-                    // Pastikan sub_kriteria adalah angka
-                    // const nilaiSubKriteria = sub_kriteria.replace(/[a-zA-Z]/g, '').split('-').map(Number);
-                    
-                    // // Bandingkan nilai_real dengan nilaiSubKriteria
-                    // if (nilai_real === nilaiSubKriteria) {
-                    //     console.log('Cocok dengan sub_kriteria:', nilaiSubKriteria);
-                    //     // return { nilai_fuzzy: bobot, keterangan };
-                    // }
-                    break;
-                }
+    const FuzzyAndKeterangan = (namaKriteria, nilaiReal) => {
+        let nilai_fuzzy = 0;
+        let keterangan = "";
+        
+        // Logika untuk kriteria Jarak
+        if (namaKriteria === "Jarak") {
+            if (nilaiReal >= 0 && nilaiReal <= 500) {
+                nilai_fuzzy = 5;
+                keterangan = "sangat baik";
+            } else if (nilaiReal > 500 && nilaiReal <= 750) {
+                nilai_fuzzy = 4;
+                keterangan = "Baik";
+            } else if (nilaiReal > 750 && nilaiReal <= 1000) {
+                nilai_fuzzy = 3;
+                keterangan = "cukup";
+            } else if (nilaiReal > 1000 && nilaiReal <= 1500) {
+                nilai_fuzzy = 2;
+                keterangan = "buruk";
+            } else if (nilaiReal > 1500 && nilaiReal <= 2000) {
+                nilai_fuzzy = 1;
+                keterangan = "sangat buruk";
             }
-        } catch (error) {
-            console.error('Error fetching subkriteria:', error);
         }
+        
+        // Logika untuk kriteria Usia
+        if (namaKriteria === "Usia") {
+            if (nilaiReal == 15) {
+                nilai_fuzzy = 5;
+                keterangan = "sangat baik";
+            } else if (nilaiReal == 14) {
+                nilai_fuzzy = 4;
+                keterangan = "Baik";
+            } else if (nilaiReal == 13) {
+                nilai_fuzzy = 3;
+                keterangan = "cukup";
+            } else if (nilaiReal == 12) {
+                nilai_fuzzy = 2;
+                keterangan = "buruk";
+            } else if (nilaiReal == 11) {
+                nilai_fuzzy = 1;
+                keterangan = "sangat buruk";
+            }
+        }
+        
+        return { nilai_fuzzy, keterangan };
+        };
+
+    // const FuzzyAndKeterangan = async (namaKriteria, nilai_real) => {
+    //     const kriteriumId = dataKriteriumId[namaKriteria];
+    //     try {
+    //         const response = await axios.get(`/subkriteria?kriteriumId=${kriteriumId}`);
+    //         const subKriteriaList = response.data;
     
-        return { nilai_fuzzy: 0, keterangan: 'Tidak ada yang cocok' };
-    };
+    //         // Debugging: Cek data subKriteriaList
+    //         // console.log('subKriteriaList:', subKriteriaList);
+    
+    //         for (const subKriteria of subKriteriaList) {
+    //             const { nama_kriteria, sub_kriteria, bobot, keterangan } = subKriteria;
+    //             const nilaiSubKriteria = sub_kriteria.replace(/[a-zA-Z]/g, '').split('-').map(Number);
+    
+    //             if (namaKriteria === 'Jarak') {
+    //                 if (nilai_real >= nilaiSubKriteria[0] && nilai_real <= nilaiSubKriteria[1]) {
+    //                     return { nilai_fuzzy: bobot, keterangan };
+    //                 }
+    //                 break;
+    //             } else if (namaKriteria === 'Usia') {
+    //                 if (nilai_real === Number(nilaiSubKriteria)) {
+    //                     return { nilai_fuzzy: bobot, keterangan };
+    //                 }
+    //                 break;
+    //             }
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching subkriteria:', error);
+    //     }
+    
+    //     return { nilai_fuzzy: 0, keterangan: 'Tidak ada yang cocok' };
+    // };
     
     
     // END SUBMIT
