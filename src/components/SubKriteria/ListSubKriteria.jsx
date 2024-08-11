@@ -81,6 +81,7 @@ const ListSubKriteria = () => {
                         <th>No</th>
                         <th>Nama Kriteria</th>
                         <th>Sub Kriteria</th>
+                        <th>Tipe Sub-Kriteria</th>
                         <th>Bobot Sub-Kriteria</th>
                         <th>Keterangan</th>
                         <th>Action</th>
@@ -92,6 +93,7 @@ const ListSubKriteria = () => {
                             <td>{startIndex + index + 1}</td>
                             <td>{nil.nama_kriteria}</td>
                             <td>{nil.sub_kriteria}</td>
+                            <td>{nil.tipe_sub}</td>
                             <td>{nil.bobot}</td>
                             <td>{nil.keterangan}</td>
                             <td className="button-action">

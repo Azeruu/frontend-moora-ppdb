@@ -13,6 +13,8 @@ export default function Daftar2() {
     const [dataKriteriumId, setDataKriteriumId] = useState({});
     const navigate = useNavigate();
     const {namaAlternatif, jalurId} = useParams();
+    const [subKriteriaData, setSubKriteriaData] = useState([]);
+
 
     // START AMBIL DATA
     useEffect(()=>{
@@ -29,12 +31,16 @@ export default function Daftar2() {
             });
             setDataKriteriumId(kriteriaIdMap);
         };
-
         const getAlternatif = async () => {
             const response = await axios.get("/alternatif");
             setAmbilAlt(response.data);
         };
-
+        const getSubKriteria = async () => {
+            const response = await axios.get("/subkriteria");
+            setSubKriteriaData(response.data);
+        };
+        
+        getSubKriteria();
         getKriteria();
         getAlternatif();
     },[jalur]);
@@ -66,7 +72,7 @@ export default function Daftar2() {
             const kriteriaIdArray = [];
             const kriteriaKeys = Object.keys(nilai_real);
             for (const namaKriteria of kriteriaKeys) {
-                const fuzzyDanKeterangan = await FuzzyAndKeterangan(namaKriteria, nilai_real[namaKriteria]);
+                const fuzzyDanKeterangan = Fuzzy(namaKriteria, nilai_real[namaKriteria]);
                 const { nilai_fuzzy, keterangan } = fuzzyDanKeterangan;
 
                 const response = await axios.post("/nilai_alternatif", {
@@ -89,86 +95,44 @@ export default function Daftar2() {
             alert("Terjadi kesalahan pada server");
         }
     };
+    
+    const Fuzzy = (namaKriteria, nilaiReal) => {
+        const relevantSubKriteria = subKriteriaData.filter(
+            (sub) => sub.kriteriumId === dataKriteriumId[namaKriteria]
+            );
+        // console.log(relevantSubKriteria)
+            for (const sub of relevantSubKriteria) {
+                const {tipe_sub, sub_kriteria, bobot, keterangan } = sub;
+                const split = sub_kriteria.replace(/[a-zA-Z]/g, '').split('-').map(Number);
+                const split2 = Number(sub_kriteria);
+                const nilai_real = Number(nilaiReal)
+                // console.log(tipe_sub)
 
-    const FuzzyAndKeterangan = (namaKriteria, nilaiReal) => {
-        let nilai_fuzzy = 0;
-        let keterangan = "";
-        
-        // Logika untuk kriteria Jarak
-        if (namaKriteria === "Jarak") {
-            if (nilaiReal >= 0 && nilaiReal <= 500) {
-                nilai_fuzzy = 5;
-                keterangan = "sangat baik";
-            } else if (nilaiReal > 500 && nilaiReal <= 750) {
-                nilai_fuzzy = 4;
-                keterangan = "Baik";
-            } else if (nilaiReal > 750 && nilaiReal <= 1000) {
-                nilai_fuzzy = 3;
-                keterangan = "cukup";
-            } else if (nilaiReal > 1000 && nilaiReal <= 1500) {
-                nilai_fuzzy = 2;
-                keterangan = "buruk";
-            } else if (nilaiReal > 1500 && nilaiReal <= 2000) {
-                nilai_fuzzy = 1;
-                keterangan = "sangat buruk";
+                if (tipe_sub === 'range') {
+                    // console.log("batas bawah :", split[0])
+                    // console.log("batas atas :",split[1])
+                    // console.log(nilaiReal)
+                    // console.log("setelah diubah",nilai_real)
+
+                    if (nilai_real >= split[0] && nilai_real <= split[1]) {
+                        console.log('jarak sukses')
+                        return { nilai_fuzzy: bobot, keterangan };
+                    }
+                    // break;
+                } else if(tipe_sub=== 'satuan'){
+                    // console.log(nilaiReal)
+                    // console.log("setelah diubah",nilai_real)
+                    // console.log(split2)
+                    if (nilai_real === split2) {
+                        console.log('usia sukses')
+                        return { nilai_fuzzy: bobot, keterangan };
+                    }
+                    // break;
+                }
             }
-        }
         
-        // Logika untuk kriteria Usia
-        if (namaKriteria === "Usia") {
-            if (nilaiReal == 15) {
-                nilai_fuzzy = 5;
-                keterangan = "sangat baik";
-            } else if (nilaiReal == 14) {
-                nilai_fuzzy = 4;
-                keterangan = "Baik";
-            } else if (nilaiReal == 13) {
-                nilai_fuzzy = 3;
-                keterangan = "cukup";
-            } else if (nilaiReal == 12) {
-                nilai_fuzzy = 2;
-                keterangan = "buruk";
-            } else if (nilaiReal == 11) {
-                nilai_fuzzy = 1;
-                keterangan = "sangat buruk";
-            }
-        }
-        
-        return { nilai_fuzzy, keterangan };
+            return { nilai_fuzzy: 0, keterangan: 'Tidak ada yang cocok' };
         };
-
-    // const FuzzyAndKeterangan = async (namaKriteria, nilai_real) => {
-    //     const kriteriumId = dataKriteriumId[namaKriteria];
-    //     try {
-    //         const response = await axios.get(`/subkriteria?kriteriumId=${kriteriumId}`);
-    //         const subKriteriaList = response.data;
-    
-    //         // Debugging: Cek data subKriteriaList
-    //         // console.log('subKriteriaList:', subKriteriaList);
-    
-    //         for (const subKriteria of subKriteriaList) {
-    //             const { nama_kriteria, sub_kriteria, bobot, keterangan } = subKriteria;
-    //             const nilaiSubKriteria = sub_kriteria.replace(/[a-zA-Z]/g, '').split('-').map(Number);
-    
-    //             if (namaKriteria === 'Jarak') {
-    //                 if (nilai_real >= nilaiSubKriteria[0] && nilai_real <= nilaiSubKriteria[1]) {
-    //                     return { nilai_fuzzy: bobot, keterangan };
-    //                 }
-    //                 break;
-    //             } else if (namaKriteria === 'Usia') {
-    //                 if (nilai_real === Number(nilaiSubKriteria)) {
-    //                     return { nilai_fuzzy: bobot, keterangan };
-    //                 }
-    //                 break;
-    //             }
-    //         }
-    //     } catch (error) {
-    //         console.error('Error fetching subkriteria:', error);
-    //     }
-    
-    //     return { nilai_fuzzy: 0, keterangan: 'Tidak ada yang cocok' };
-    // };
-    
     
     // END SUBMIT
 

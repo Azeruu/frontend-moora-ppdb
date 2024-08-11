@@ -7,12 +7,14 @@ export default function AddSubKriteriaForm() {
   const [dataSubkriteria, setDataSubKriteria] = useState({
     nama_kriteria: '',
     sub_kriteria: '',
+    tipe_sub:'',
     bobot: '',
     keterangan: ''
   });
   const [kriteria, setKriteria] = useState([]);
   const [kriteriaId, setKriteriaId] = useState('');
   const navigate = useNavigate();
+  const tipe_sub = ['range', 'satuan'];
 
   const getKriteria = async () => {
     const response = await axios.get('/kriteria');
@@ -30,6 +32,9 @@ export default function AddSubKriteriaForm() {
   const setSubKriteria = (newValue) => {
     setDataSubKriteria({ ...dataSubkriteria, sub_kriteria: newValue });
   };
+  const setTipeSubKriteria = (newValue) => {
+    setDataSubKriteria({ ...dataSubkriteria, tipe_sub: newValue });
+  };
   const setBobot = (newValue) => {
     setDataSubKriteria({ ...dataSubkriteria, bobot: newValue });
   };
@@ -44,6 +49,7 @@ export default function AddSubKriteriaForm() {
       await axios.post(`/subkriteria`, {
         nama_kriteria: dataSubkriteria.nama_kriteria,
         sub_kriteria: dataSubkriteria.sub_kriteria,
+        tipe_sub:dataSubkriteria.tipe_sub,
         bobot: dataSubkriteria.bobot,
         keterangan: dataSubkriteria.keterangan,
         kriteriumId: kriteriaId,
@@ -74,7 +80,7 @@ export default function AddSubKriteriaForm() {
                   setNamaKriteria(nama_kriteria);
                 }}
               >
-                <option value="" disabled>Pilih Kriteria</option>
+                <option value="" disabled>--Pilih Kriteria--</option>
                 {kriteria.map((item) => (
                   <option key={item.id} value={`${item.id},${item.nama_kriteria}`}>
                     {item.nama_kriteria} ({item.jalur_pendaftaran})
@@ -97,6 +103,22 @@ export default function AddSubKriteriaForm() {
             ></input>
           </div>
         </div>
+
+        <div className="field">
+            <label className="label">Tipe Sub-Kriteria</label>
+            <div className="control">
+              <div className="select">
+                <select value={dataSubkriteria.tipe_sub} onChange={(e) => setTipeSubKriteria(e.target.value)}>
+                  <option value="" disabled>--Pilih Tipe sub Kriteria--</option>
+                  {tipe_sub.map((item, index) => (
+                    <option key={index} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
 
         <div className="field">
           <label className="label">Bobot Kriteria</label>
