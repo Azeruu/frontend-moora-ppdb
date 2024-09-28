@@ -104,9 +104,12 @@ export default function Daftar2() {
             for (const sub of relevantSubKriteria) {
                 const {tipe_sub, sub_kriteria, bobot, keterangan } = sub;
                 const split = sub_kriteria.replace(/[a-zA-Z]/g, '').split('-').map(Number);
-                const split2 = Number(sub_kriteria);
+                const split2 = Number(sub_kriteria.match(/\d+/)[0]);
                 const nilai_real = Number(nilaiReal)
                 // console.log(tipe_sub)
+                // console.log(nilai_real)
+                // console.log(split[0])
+                // console.log(split[1])
 
                 if (tipe_sub === 'range') {
                     // console.log("batas bawah :", split[0])
