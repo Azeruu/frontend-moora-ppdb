@@ -27,7 +27,8 @@ export default function Daftar2() {
             // Membuat objek untuk menyimpan ID kriteria berdasarkan nama kriterianya
             const kriteriaIdMap = {};
             response.data.forEach(kriteria => {
-                kriteriaIdMap[kriteria.nama_kriteria] = kriteria.id;
+                const key = `${kriteria.nama_kriteria}-${kriteria.jalur_pendaftaran}`;
+                kriteriaIdMap[key] = kriteria.id;
             });
             setDataKriteriumId(kriteriaIdMap);
         };
@@ -68,38 +69,47 @@ export default function Daftar2() {
     // START SUBMIT
     const onSubmit = async (e) => {
         e.preventDefault();
+    
         try {
             const kriteriaIdArray = [];
             const kriteriaKeys = Object.keys(nilai_real);
             for (const namaKriteria of kriteriaKeys) {
-                const fuzzyDanKeterangan = Fuzzy(namaKriteria, nilai_real[namaKriteria]);
+                // Mengambil hanya angka dari nilai_real menggunakan RegExp
+                const nilaiRealAsli = nilai_real[namaKriteria];
+                const angkaHanya = nilaiRealAsli.replace(/\D/g, '');  // Hanya angka
+    
+                // Lakukan perhitungan fuzzy seperti biasa menggunakan angkaHanya
+                const fuzzyDanKeterangan = Fuzzy(namaKriteria, angkaHanya);
                 const { nilai_fuzzy, keterangan } = fuzzyDanKeterangan;
-
+    
                 const response = await axios.post("/nilai_alternatif", {
                     nama_alternatif: alternatif,
                     jalur_pendaftaran: jalur,
                     nama_kriteria: namaKriteria,
-                    nilai_real: nilai_real[namaKriteria],
+                    nilai_real: angkaHanya,  // Kirim hanya angka
                     nilai_fuzzy: nilai_fuzzy,
                     keterangan: keterangan,
-                    jalurId : jalurId,
+                    jalurId: jalurId,
                     dataAlternatifId: alternatifId,
                     kriteriumId: dataKriteriumId[namaKriteria],
                 });
+    
                 kriteriaIdArray.push(response.data.id);
             }
+    
             alert("Data Alternatif Berhasil Diinput");
             navigate(`/daftar`);
         } catch (error) {
             console.error("Error:", error);
             alert("Terjadi kesalahan pada server");
         }
-    };
+    };    
     
     const Fuzzy = (namaKriteria, nilaiReal) => {
+        const kriteriaKey = `${namaKriteria}-${jalur}`;
         const relevantSubKriteria = subKriteriaData.filter(
-            (sub) => sub.kriteriumId === dataKriteriumId[namaKriteria]
-            );
+            (sub) => sub.kriteriumId === dataKriteriumId[kriteriaKey]
+        );
         // console.log(relevantSubKriteria)
             for (const sub of relevantSubKriteria) {
                 const {tipe_sub, sub_kriteria, bobot, keterangan } = sub;
