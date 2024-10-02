@@ -5,149 +5,155 @@
 
 /* CSS untuk list-hasil-grid */
 .list-hasil-grid {
-    /* background-color: #fff; */
-    padding: 20px;
-    text-align: center;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+text-align: center;
+padding: 20px;
+border-radius: 5px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* CSS untuk list-hasil-judul */
 .list-hasil-judul {
-    font-size: 26px;
-    margin-bottom: 20px;
+font-size: 26px;
+margin-bottom: 20px;
 }
-.list-hasil-subjudul {
-    margin-bottom: 20px;
+
+.list-rekap-subjudul {
+margin-bottom: 20px;
+color: var(--secondary);
 }
-.bungkus-btn{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 3rem;
-    gap: 10px;
-    /* background-color: #007bff; */
+
+.list-hasil-table-container {
+margin-top: 3rem;
 }
-/* CSS untuk btnadd */
-.btnadd-hasil {
-    display: inline-block;
-    padding: 16px 32px;
-    background-color: var(--primary);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 15px;
-    width: fit-content;
-    font-weight: bold;
-    font-size: 1rem;
-}
-.btnadd-hasil:hover {
-    background-color: #0056b3;
-}
-.btnUpdate-hasil {
-    display: inline-block;
-    padding: 16px 32px;
-    background-color: green;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 15px;
-    width: fit-content;
-    font-weight: bold;
-    font-size: 1rem;
-}
-.btnUpdate-hasil:hover {
-    background-color: #2ca114;
-}
+
 /* CSS untuk table */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+.container-table-hasil {
+height: 100%;
+overflow-x: auto;
+margin-top: 50px;
+max-width: 100%;
 }
 
-.table th,
-.table td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
+table {
+width: 100%;
+border-collapse: collapse;
 }
 
-.table th {
-    background-color: var(--quartenary);
+th, td {
+border: 1px solid #ccc;
+padding: 10px;
+text-align: center;
+}
+
+th {
+background-color: var(--quartenary);
+top: 0;
+position: sticky;
 }
 
 /* Style Untuk Pagination */
 .pagination {
-    text-align: center;
-    margin-top: 20px;
+text-align: center;
+margin-top: 20px;
 }
 
 .pagination .page-button {
-    padding: 10px 20px;
-    margin: 0 15px;
-    cursor: pointer;
-    background-color: transparent;
-    color: #fff;
-    border: none;
+padding: 10px 20px;
+margin: 0 15px;
+cursor: pointer;
+background-color: transparent;
+color: #fff;
+border: none;
 }
 
 .pagination .page-button-active {
-    background-color: var(--hover);
-    padding: 10px 15px;
-    margin: 0 5px;
-    cursor: pointer;
-    color: #fff;
-    border-radius: 50%;
+background-color: var(--hover);
+padding: 10px 15px;
+margin: 0 5px;
+cursor: pointer;
+color: #fff;
+border-radius: 50%;
 }
 
 .pagination .page-button-nonactive {
-    background-color: transparent;
-    padding: 10px;
-    margin: 5px;
-    cursor: pointer;
-    color: #fff;
+background-color: transparent;
+padding: 10px;
+margin: 5px;
+cursor: pointer;
+color: #fff;
 }
 
 /* CSS untuk jumlah-data */
 .jumlah-data {
-    margin-top: 20px;
-    font-size: 16px;
-    text-align: left;
+margin-top: 20px;
+font-size: 16px;
+text-align: left;
 }
 
-/* CSS untuk VLabel */
-.VLabel {
-    font-size: 16px;
-    margin-top: 20px;
+/* CSS untuk input search */
+.search-box {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
 }
 
-/* CSS untuk atur-jumlah */
-.atur-jumlah {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+/* CSS untuk tombol input data */
+.btnadd {
+background-color: #007bff;
+color: #fff;
+border: none;
+border-radius: 5px;
+padding: 10px 20px;
+cursor: pointer;
+margin: 10px 0;
 }
 
-/* CSS untuk btn-data */
-.btn-data {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    margin: 0 5px;
+.btnadd:disabled {
+background-color: #ccc;
 }
 
-.btn-data:hover {
-    background-color: #0056b3;
+/* CSS untuk tab */
+.tabs-jalur{
+display: flex;
+justify-content: space-around;
+margin-bottom: 1rem;
+background-color: transparent;
+height: 3rem;
 }
 
-/* CSS untuk input-banyakdata */
-.input-banyakdata {
-    width: 50px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin: 0 5px;
+.tabs-jalur button {
+background-color: var(--quartenary);
+border: none;
+flex: 1;
+padding: 0.5rem 1rem;
+cursor: pointer;
+transition: background-color 0.3s, color 0.3s;
+border-radius: 5px;
+font-size: 1.5rem;
+}
+
+.tabs-jalur button.active {
+background-color: var(--secondary);
+color: rgb(15, 15, 15);
+}
+
+.tabs-jalur button.active:hover {
+background-color:#9e8e02;
+}
+.tabs-jalur button:hover:not(.active) {
+background-color: var(--hover);
+}
+
+/* CSS untuk tombol hapus */
+.btnHapus {
+background-color: #dc3545;
+color: #fff;
+border: none;
+border-radius: 5px;
+padding: 5px 10px;
+cursor: pointer;
+}
+
+.btnHapus:hover {
+background-color: #c82333;
 }
