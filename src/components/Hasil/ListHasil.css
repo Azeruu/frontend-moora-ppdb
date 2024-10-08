@@ -14,7 +14,7 @@ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 /* CSS untuk list-hasil-judul */
 .list-hasil-judul {
 font-size: 26px;
-margin-bottom: 20px;
+margin-bottom: 10px;
 }
 
 .list-rekap-subjudul {
@@ -145,6 +145,13 @@ background-color: var(--hover);
 }
 
 /* CSS untuk tombol hapus */
+.btnHapus-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #9e8e02; */
+}
+
 .btnHapus {
 background-color: #dc3545;
 color: #fff;

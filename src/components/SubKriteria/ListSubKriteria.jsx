@@ -25,7 +25,9 @@ const ListSubKriteria = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const filteredData = subKriteria.filter((nil) =>
-    nil.nama_kriteria.toLowerCase().includes(search.toLowerCase())
+        nil.nama_kriteria.toLowerCase().includes(search.toLowerCase()) ||
+        nil.sub_kriteria.toLowerCase().includes(search.toLowerCase()) ||
+        nil.jalur_pendaftaran.toLowerCase().includes(search.toLowerCase())
     );
     const currentData = filteredData.slice(startIndex, endIndex);
   // END Pagination
@@ -80,6 +82,7 @@ const ListSubKriteria = () => {
                     <tr>
                         <th>No</th>
                         <th>Nama Kriteria</th>
+                        <th>Jalur Pendaftaran</th>
                         <th>Sub Kriteria</th>
                         <th>Tipe Sub-Kriteria</th>
                         <th>Bobot Sub-Kriteria</th>
@@ -92,6 +95,7 @@ const ListSubKriteria = () => {
                         <tr key={nil.id}>
                             <td>{startIndex + index + 1}</td>
                             <td>{nil.nama_kriteria}</td>
+                            <td>{nil.jalur_pendaftaran}</td>
                             <td>{nil.sub_kriteria}</td>
                             <td>{nil.tipe_sub}</td>
                             <td>{nil.bobot}</td>

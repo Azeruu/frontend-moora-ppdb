@@ -25,7 +25,8 @@ const ListKriteria = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const filteredData = kriteria.filter((nil) =>
-    nil.nama_kriteria.toLowerCase().includes(search.toLowerCase())
+        nil.nama_kriteria.toLowerCase().includes(search.toLowerCase())||
+        nil.jalur_pendaftaran.toLowerCase().includes(search.toLowerCase())
     );
     const currentData = filteredData.slice(startIndex, endIndex);
   // Batas

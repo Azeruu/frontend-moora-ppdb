@@ -120,3 +120,12 @@
     margin-right: 5rem;
     gap:5rem;
 }
+
+.disabled-input{
+    padding: .5rem;
+    font-size: 1.3rem;
+    border: 1px solid #0c6ef8;
+    border-radius: .5rem;
+    width: 68rem;
+    color: #fefeff;
+}

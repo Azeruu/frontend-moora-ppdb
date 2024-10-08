@@ -6,6 +6,7 @@ import axios from "../../lib/axios";
 export default function AddSubKriteriaForm() {
   const [dataSubkriteria, setDataSubKriteria] = useState({
     nama_kriteria: '',
+    jalur_pendaftaran:'',
     sub_kriteria: '',
     tipe_sub:'',
     bobot: '',
@@ -25,8 +26,12 @@ export default function AddSubKriteriaForm() {
     getKriteria();
   }, []);
 
-  const setNamaKriteria = (newValue) => {
-    setDataSubKriteria({ ...dataSubkriteria, nama_kriteria: newValue });
+  const setNamaKriteria = (nama_kriteria, jalur_pendaftaran) => {
+    setDataSubKriteria({ 
+      ...dataSubkriteria, 
+      nama_kriteria, 
+      jalur_pendaftaran
+    });
   };
 
   const setSubKriteria = (newValue) => {
@@ -48,6 +53,7 @@ export default function AddSubKriteriaForm() {
     try {
       await axios.post(`/subkriteria`, {
         nama_kriteria: dataSubkriteria.nama_kriteria,
+        jalur_pendaftaran: dataSubkriteria.jalur_pendaftaran,
         sub_kriteria: dataSubkriteria.sub_kriteria,
         tipe_sub:dataSubkriteria.tipe_sub,
         bobot: dataSubkriteria.bobot,
@@ -75,19 +81,32 @@ export default function AddSubKriteriaForm() {
               <select
                 defaultValue=""
                 onChange={(e) => {
-                  const [id, nama_kriteria] = e.target.value.split(',');
+                  const [id, nama_kriteria, jalur_pendaftaran] = e.target.value.split(',');
                   setKriteriaId(id);
-                  setNamaKriteria(nama_kriteria);
+                  setNamaKriteria(nama_kriteria, jalur_pendaftaran);
                 }}
               >
                 <option value="" disabled>--Pilih Kriteria--</option>
                 {kriteria.map((item) => (
-                  <option key={item.id} value={`${item.id},${item.nama_kriteria}`}>
+                  <option key={item.id} value={`${item.id},${item.nama_kriteria},${item.jalur_pendaftaran}`}>
                     {item.nama_kriteria} ({item.jalur_pendaftaran})
                   </option>
                 ))}
               </select>
             </div>
+          </div>
+        </div>
+
+        <div className="field">
+          <label className="label">Jalur Pendaftaran</label>
+          <div className="control">
+            <input
+              type="text"
+              className="disabled-input"
+              value={dataSubkriteria.jalur_pendaftaran}
+              disabled
+              placeholder="Jalur Pendaftaran"
+            ></input>
           </div>
         </div>
 

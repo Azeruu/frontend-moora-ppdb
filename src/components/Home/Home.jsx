@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
     const navigate = useNavigate();
     const handleDaftarButton = () => {
-        navigate(`/daftar/addpendaftar`);
+        navigate(`/login`);
+        alert("Silahkan Login Terlebih Dahulu");
     };
   // const {user} = useSelector((state) => state.auth);
   // const Huruf = (user) => {

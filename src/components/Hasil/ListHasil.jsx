@@ -79,6 +79,17 @@ const ListHasil = () => {
         </p>
 
         <div className="action-box">
+          {/* Tombol untuk Input Data */}
+          <div className="input-data-container">
+            <button
+              onClick={handleInputData}
+              className="btnadd"
+              disabled={loading}
+            >
+              {loading ? "Menginput Data..." : "Input Data"}
+            </button>
+          </div>
+
           <input
             type="text"
             value={search}
@@ -86,17 +97,6 @@ const ListHasil = () => {
             placeholder="Cari ..."
             className="search-box"
           />
-        </div>
-
-        {/* Tombol untuk Input Data */}
-        <div className="input-data-container">
-          <button
-            onClick={handleInputData}
-            className="btnadd"
-            disabled={loading}
-          >
-            {loading ? "Menginput Data..." : "Input Data"}
-          </button>
         </div>
 
         {/* Tab untuk Jalur Pendaftaran */}
@@ -133,7 +133,7 @@ const ListHasil = () => {
                   <td>{item.poin.toFixed(2)}</td>
                   <td>{item.peringkat}</td>
                   {user.role === "admin" && (
-                    <td>
+                    <td className="btnHapus-container">
                       <button
                         onClick={() => {
                           if (

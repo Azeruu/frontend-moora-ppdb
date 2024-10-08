@@ -6,6 +6,7 @@ import axios from "../../lib/axios";
 export default function EditSubKriteriaForm() {
   const [dataSubkriteria, setDataSubKriteria] = useState({
     nama_kriteria: '',
+    jalur_pendaftaran:'',
     sub_kriteria: '',
     bobot: '',
     keterangan: ''
@@ -32,8 +33,12 @@ export default function EditSubKriteriaForm() {
     getSubKriteriaById();
 }, [id]);
 
-const setNamaKriteria = (newValue) => {
-  setDataSubKriteria({ ...dataSubkriteria, nama_kriteria: newValue });
+const setNamaKriteria = (nama_kriteria, jalur_pendaftaran) => {
+  setDataSubKriteria({ 
+    ...dataSubkriteria, 
+    nama_kriteria, 
+    jalur_pendaftaran
+  });
 };
 
 const setSubKriteria = (newValue) => {
@@ -52,9 +57,10 @@ const updateKriteria = async (e) => {
   try {
     await axios.patch(`/subkriteria/${id}`,{
       nama_kriteria: dataSubkriteria.nama_kriteria,
-        sub_kriteria: dataSubkriteria.sub_kriteria,
-        bobot: dataSubkriteria.bobot,
-        keterangan: dataSubkriteria.keterangan,
+      jalur_pendaftaran: dataSubkriteria.jalur_pendaftaran,
+      sub_kriteria: dataSubkriteria.sub_kriteria,
+      bobot: dataSubkriteria.bobot,
+      keterangan: dataSubkriteria.keterangan,
     });
     alert("Data Sub-Kriteria Berhasil Di Update")
     navigate(`/subkriteria`);
@@ -69,21 +75,28 @@ const updateKriteria = async (e) => {
         <h2 className="kriteria-judul">Edit Data Kriteria</h2>
       <form onSubmit={updateKriteria}>
       {/* <p>{msg}</p> */}
+
       <div className="field">
-            <label className="label">Nama Kriteria</label>
-            <div className="control">
-              <div className="select">
-                <select value={dataSubkriteria.nama_kriteria} onChange={(e) => setNamaKriteria(e.target.value)}>
-                  <option value="" disabled>Pilih Kriteria</option>
-                  {kriteria.map((item, index) => (
-                    <option key={index} value={item.nama_kriteria}>
-                      {item.nama_kriteria} ({item.jalur_pendaftaran})
-                    </option>
-                  ))}
-                </select>
-              </div>
+          <label className="label">Nama Kriteria</label>
+          <div className="control">
+            <div className="select">
+              <select
+                value={dataSubkriteria.nama_kriteria}
+                onChange={(e) => {
+                  const [nama_kriteria] = e.target.value.split(',');
+                  setNamaKriteria(nama_kriteria);
+                }}
+              >
+                <option value="" disabled>--Pilih Kriteria--</option>
+                {kriteria.map((item) => (
+                  <option key={item.id} value={`${item.id},${item.nama_kriteria},${item.jalur_pendaftaran}`}>
+                    {item.nama_kriteria} ({item.jalur_pendaftaran})
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
+        </div>
 
           <div className="field">
           <label className="label">Sub Kriteria</label>
