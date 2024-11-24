@@ -1,0 +1,48 @@
+
+    .judul_upload {
+    font-size: 3rem;
+    color: var(--secondary);
+    margin-bottom: 10px;
+    }
+
+    .input_file {
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    }
+
+    .button_upload {
+    background-color: var(--primary);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1rem;
+    }
+
+    .button_upload:hover {
+    background-color: var(--hover);
+    }
+
+    .judul_preview {
+    font-size: 2rem;
+    color: var(--secondary);
+    margin-top: 20px;
+    }
+
+    .preview_data {
+    background-color: var(--bg);
+    border: 1px solid #ccc;
+    padding: 10px;
+    max-height: 400px; /* Batas tinggi untuk scroll */
+    overflow-y: auto;
+    white-space: pre-wrap; /* Bungkus teks jika terlalu panjang */
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 10px;
+    border-radius: 4px;
+    }

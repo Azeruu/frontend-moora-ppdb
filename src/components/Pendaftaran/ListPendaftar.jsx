@@ -2,6 +2,7 @@ import "./ListPendaftar.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../lib/axios";
+import InputPendaftar from "../Upload/Inputpendaftar";
 
 const ListPendaftar = () => {
   const [nilaiAlt, setNilaiAlt] = useState([]);
@@ -15,8 +16,17 @@ const ListPendaftar = () => {
   const [filteredNilaiAlt, setFilteredNilaiAlt] = useState([]);
   const [filteredKriteria, setFilteredKriteria] = useState([]);
   const [jumlahAlternatifPerJalur, setJumlahAlternatifPerJalur] = useState([]);
+  const [modal, setModal] = useState(false);
   const itemsPerPage = 7;
   const navigate = useNavigate();
+
+  // Modal
+  const openModal = () => {
+    setModal(true);
+  };
+  const closeModal = () => {
+    setModal(false);
+  };
 
 // Ambil data Nilai Alternatif, Kriteria, dan Jalur
   const getNilaiAlt = async () => {
@@ -174,7 +184,10 @@ const ListPendaftar = () => {
         </div>
 
         <div className="action-box">
-          <button onClick={handleTambahButtonClick} className="btnadd-siswa">Daftar</button>
+          <div className="btn-container">
+            <button onClick={handleTambahButtonClick} className="btn-daftar">Daftar</button>
+            <button onClick={openModal} className="btn-daftar">Upload Data</button>
+          </div>
           <input
             type="text"
             value={search}
@@ -223,6 +236,7 @@ const ListPendaftar = () => {
         <p className="jumlah-data">Jumlah Data : {jmlData}</p>
         <p className="jumlah-data">Jumlah Page : {totalPages}</p>
       </div>
+      <InputPendaftar isOpen={modal} isClose={closeModal}/>
     </div>
   );
 };
